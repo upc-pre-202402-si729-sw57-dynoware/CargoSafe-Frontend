@@ -25,26 +25,11 @@ export class BaseService<T> {
   }
 
   private resourcePath() {
-    return `${this.basePath}${this.resourceEndpoint}`;
+    return`${this.basePath}${this.resourceEndpoint}`;
   }
 
-  public create(item: any): Observable<T> {
-    return this.http.post<T>(this.resourcePath(), JSON.stringify(item), this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
-  }
-
-  public delete(id: any): Observable<any> {
-    return this.http.delete(`${this.resourcePath()}/${id}`, this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
-  }
-
-  public update(id: any, item: any): Observable<T> {
-    return this.http.put<T>(`${this.resourcePath()}/${id}`, JSON.stringify(item), this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
-  }
-
-  public getAll(): Observable<T[]> {
-    return this.http.get<T[]>(this.resourcePath())
+  public getChartData(): Observable<T[]> {
+    return this.http.get<T[]>(this.resourcePath(), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
