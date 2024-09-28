@@ -7,6 +7,7 @@ import {
 } from "./orders-on-trip/pages/orders-on-trip-management/orders-on-trip-management.component";
 import {ListTripComponent} from "./trip/components/list-trip/list-trip.component";
 import {TripTrackingComponent} from "./trip/components/trip-tracking/trip-tracking.component";
+import {VehiclesManagementComponent} from "./vehicles/pages/vehicle-management/vehicle-management.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
