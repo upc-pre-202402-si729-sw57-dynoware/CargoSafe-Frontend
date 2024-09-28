@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MatCard, MatCardContent, MatCardHeader} from "@angular/material/card";
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {MatLabel} from "@angular/material/form-field";
 import {MatList, MatListItem} from "@angular/material/list";
 
@@ -12,7 +12,8 @@ import {MatList, MatListItem} from "@angular/material/list";
     MatCardContent,
     MatLabel,
     MatList,
-    MatListItem
+    MatListItem,
+    MatCardTitle
   ],
   templateUrl: './trip-tracking.component.html',
   styleUrl: './trip-tracking.component.css'

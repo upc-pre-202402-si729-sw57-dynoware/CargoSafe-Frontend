@@ -1,10 +1,11 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {FormsModule, NgForm} from "@angular/forms";
 import {TripEntity} from "../../model/trip.entity";
-import {MatCard, MatCardContent, MatCardHeader} from "@angular/material/card";
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-add-trip',
@@ -17,7 +18,9 @@ import {MatButton} from "@angular/material/button";
     MatFormField,
     MatInput,
     FormsModule,
-    MatButton
+    MatButton,
+    NgIf,
+    MatCardTitle
   ],
   templateUrl: './add-trip.component.html',
   styleUrl: './add-trip.component.css'

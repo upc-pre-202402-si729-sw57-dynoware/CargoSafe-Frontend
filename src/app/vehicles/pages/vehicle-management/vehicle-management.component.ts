@@ -2,13 +2,44 @@ import {AfterViewInit, Component, inject, OnInit, ViewChild} from '@angular/core
 import {VehicleEntity} from "../../model/vehicle.entity";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {MatTableDataSource} from "@angular/material/table";
+import {
+  MatCell,
+  MatCellDef, MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef, MatRow, MatTable,
+  MatTableDataSource
+} from "@angular/material/table";
 import {VehicleService} from "../../service/vehicle.service";
+import {MatIconButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
+import {
+  VehiclesCreateAndEditComponent
+} from "../../components/vehicles-create-and-edit/vehicles-create-and-edit.component";
+import {MatCard, MatCardTitle} from "@angular/material/card";
 
 @Component({
   selector: 'app-vehicle-management',
   standalone: true,
-  imports: [],
+  imports: [
+    MatPaginator,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatIconButton,
+    MatIcon,
+    MatHeaderCell,
+    MatCellDef,
+    MatHeaderCellDef,
+    MatColumnDef,
+    MatCell,
+    VehiclesCreateAndEditComponent,
+    MatCard,
+    MatCardTitle,
+    MatTable,
+    MatSort,
+    MatRow
+  ],
   templateUrl: './vehicle-management.component.html',
   styleUrl: './vehicle-management.component.css'
 })
