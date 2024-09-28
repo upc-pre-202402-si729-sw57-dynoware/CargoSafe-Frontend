@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {VehicleEntity} from "../../model/vehicle.entity";
+import {VehiclesEntity} from "../../model/vehicles.entity";
 import {FormsModule, NgForm} from "@angular/forms";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
@@ -11,9 +11,9 @@ import {NgIf} from "@angular/common";
   standalone: true,
   imports: [
     MatFormField,
-    FormsModule,
     MatInput,
     MatButton,
+    FormsModule,
     NgIf
   ],
   templateUrl: './vehicles-create-and-edit.component.html',
@@ -21,21 +21,21 @@ import {NgIf} from "@angular/common";
 })
 export class VehiclesCreateAndEditComponent {
 
-  @Input() vehicle!: VehicleEntity;
+  @Input() vehicle!: VehiclesEntity;
   @Input() editMode: boolean = false;
-  @Output() vehicleAddRequested = new EventEmitter<VehicleEntity>();
-  @Output() vehicleUpdateRequested = new EventEmitter<VehicleEntity>();
+  @Output() vehicleAddRequested = new EventEmitter<VehiclesEntity>();
+  @Output() vehicleUpdateRequested = new EventEmitter<VehiclesEntity>();
   @Output() cancelRequested = new EventEmitter();
   @ViewChild('vehicleForm', { static: false }) vehicleForm!: NgForm;
 
 
   constructor() {
-    this.vehicle = new VehicleEntity({});
+    this.vehicle = new VehiclesEntity({});
   }
 
 
   private resetEditState() {
-    this.vehicle = new VehicleEntity({});
+    this.vehicle = new VehiclesEntity({});
     this.editMode = false;
     this.vehicleForm.resetForm();
   }
@@ -56,3 +56,4 @@ export class VehiclesCreateAndEditComponent {
     this.resetEditState();
   }
 }
+

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+
+import {VehiclesEntity} from "../model/vehicles.entity";
 import {BaseService} from "../../../shared/services/base.service";
-import {VehicleEntity} from "../model/vehicle.entity";
 
 @Injectable({
   providedIn: 'root'
 })
-export class VehicleService extends  BaseService<VehicleEntity>{
+export class VehiclesService extends  BaseService<VehiclesEntity>{
 
   constructor() {
     super();

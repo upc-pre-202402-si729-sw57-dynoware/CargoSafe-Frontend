@@ -1,4 +1,4 @@
-export class VehicleEntity {
+export class VehiclesEntity {
 
   id: number;
   model: string;
@@ -16,3 +16,5 @@ export class VehicleEntity {
     this.url_image = vehicle.url_image || '';
   }
 }
+
+

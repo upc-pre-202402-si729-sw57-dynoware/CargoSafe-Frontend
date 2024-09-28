@@ -4,7 +4,7 @@
   "memberships": [],
   "users": [],
   "entrepreneurs": [],
-  "driver": [
+  "drivers": [
     {
       "id": 1,
       "name": "Juan Perez",
@@ -28,23 +28,31 @@
       "phone": "911223344",
       "license": "112233",
       "url_image": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "asdasd",
+      "dni": "asdasd",
+      "phone": "asdasd",
+      "license": "asd"
     }
   ],
-  "ordersOnTrip": [    {
-    "id": 1,
-    "clientName": "Juan Pérez",
-    "productName": "Leche Entera Lactosa",
-    "quantity": 10,
-    "status": "En tránsito",
-    "dispatchTime": "2024-09-25T08:30:00Z",
-    "estimatedDeliveryTime": "2024-09-27T12:00:00Z",
-    "currentLocation": "Lima, Perú",
-    "originAddress": "Av. Lechera 123, Lima, Perú",
-    "destinationAddress": "Calle Leche 456, Arequipa, Perú",
-    "driverName": "Carlos Ruiz",
-    "vehicleId": "V001",
-    "imageUrl": "https://lactosa.org/wp-content/uploads/2020/04/leche-paquete-mercadona-kpkD-620x349@abc.jpg"
-  },
+  "ordersOnTrip": [
+    {
+      "id": 1,
+      "clientName": "Juan Pérez",
+      "productName": "Leche Entera Lactosa",
+      "quantity": 10,
+      "status": "En tránsito",
+      "dispatchTime": "2024-09-25T08:30:00Z",
+      "estimatedDeliveryTime": "2024-09-27T12:00:00Z",
+      "currentLocation": "Lima, Perú",
+      "originAddress": "Av. Lechera 123, Lima, Perú",
+      "destinationAddress": "Calle Leche 456, Arequipa, Perú",
+      "driverName": "Carlos Ruiz",
+      "vehicleId": "V001",
+      "imageUrl": "https://lactosa.org/wp-content/uploads/2020/04/leche-paquete-mercadona-kpkD-620x349@abc.jpg"
+    },
     {
       "id": 2,
       "clientName": "Ana Gómez",
@@ -104,7 +112,8 @@
       "driverName": "Andrés Jiménez",
       "vehicleId": "V005",
       "imageUrl": "https://s.alicdn.com/@sc04/kf/H52b1550b98954171ae3e830c98c2b18d1.jpg"
-    }],
+    }
+  ],
   "vehicles": [
     {
       "id": 1,
@@ -129,6 +138,14 @@
       "max_load": "22000",
       "volume": "50",
       "url_image": "https://img.linemedia.com/img/s/box-truck-Mercedes-Benz-Actros-2542---1708193832047511762_big--24021720075948461400.jpg"
+    },
+    {
+      "id": 4,
+      "model": "asdasd",
+      "plate": "asdasd",
+      "max_load": "asdasd",
+      "volume": "asdasd",
+      "url_image": "asdasd"
     }
   ],
   "trips": [
@@ -170,8 +187,8 @@
       "id": 3,
       "name": "1",
       "type": "test type",
-      "weight": "2",
-      "unload_location": "av. test 3 ",
+      "weight": 2,
+      "unload_location": "Av. test 3",
       "unload_date": "",
       "expense_id": 0,
       "alert_id": 0,
@@ -189,20 +206,38 @@
   "ongoing_trips": [],
   "evidences": [],
   "payment_cards": [],
-  "data_statistics": [{
-    "data": {
-      "chart1": {
-        "labels": ["Mayo", "Junio", "Julio", "Agosto"],
-        "orders": [200, 179, 165, 134]
-      },
-      "chart2": {
-        "labels": ["Lima", "Junin", "Pasco", "Piura"],
-        "deliveries": [100, 120, 133, 144]
-      },
-      "chart3": {
-        "labels": ["Carga general", "Carga a granel", "Carga peligrosa", "Carga perecedera"],
-        "cargo": [100, 50, 143, 200]
+  "data_statistics": [
+    {
+      "data": {
+        "chart1": {
+          "labels": [
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto"
+          ],
+          "orders": [
+            200,
+            179,
+            165,
+            134
+          ]
+        },
+        "chart2": {
+          "labels": [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril"
+          ],
+          "profits": [
+            3000,
+            2500,
+            2000,
+            1500
+          ]
+        }
       }
     }
-  }]
+  ]
 }
