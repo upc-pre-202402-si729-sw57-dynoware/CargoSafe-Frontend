@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Merchandise } from '../model/merchandise.entity';
-import { BaseService } from '../../shared/services/base.service';
+import {BaseService} from "../../../shared/services/base.service";
+
 
 @Injectable({
   providedIn: 'root'
