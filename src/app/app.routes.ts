@@ -8,6 +8,7 @@ import {
 import {ListTripComponent} from "./trip/components/list-trip/list-trip.component";
 import {TripTrackingComponent} from "./trip/components/trip-tracking/trip-tracking.component";
 import {VehiclesManagementComponent} from "./vehicles/pages/vehicles-management/vehicles-management.component";
+import {MerchandiseItemComponent} from "./merchandise/components/merchandise-item/merchandise-item.component";
 
 
 export const routes: Routes = [
@@ -19,4 +20,5 @@ export const routes: Routes = [
   {path: 'ordersOnTrip',component:OrdersOnTripManagementComponent},
   { path: 'list-trip',component: ListTripComponent },
   { path: 'trip-track',component: TripTrackingComponent },
+  { path: 'added-merchandise', component: MerchandiseItemComponent}
 ];
