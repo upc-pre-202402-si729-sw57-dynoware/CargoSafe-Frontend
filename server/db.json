@@ -253,6 +253,30 @@
             2000,
             1500
           ]
+        },
+        "chart3": {
+          "labels": [
+            "Carga general",
+            "Carga a granel",
+            "Carga peligrosa",
+            "Carga perecedera"
+          ],
+          "cargo": [
+            100,
+            50,
+            143,
+            200
+          ]
+        },
+        "chart4": {
+          "labels": [
+            "A tiempo",
+            "Atrasadas"
+          ],
+          "deliveries": [
+            430,
+            120
+          ]
         }
       }
     }
