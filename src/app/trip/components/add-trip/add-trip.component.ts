@@ -1,25 +1,39 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {FormsModule, NgForm} from "@angular/forms";
+import {TripEntity} from "../../model/trip.entity";
+import {MatCard, MatCardContent, MatCardHeader} from "@angular/material/card";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-add-trip',
   standalone: true,
-  imports: [],
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardContent,
+    MatLabel,
+    MatFormField,
+    MatInput,
+    FormsModule,
+    MatButton
+  ],
   templateUrl: './add-trip.component.html',
   styleUrl: './add-trip.component.css'
 })
 export class AddTripComponent {
-  @Input() trip!: Trip;
+  @Input() trip!: TripEntity;
   @Input() editMode: boolean = false;
-  @Output() tripAddRequested = new EventEmitter<Trip>();
-  @Output() tripUpdateRequested = new EventEmitter<Trip>();
+  @Output() tripAddRequested = new EventEmitter<TripEntity>();
+  @Output() tripUpdateRequested = new EventEmitter<TripEntity>();
   @Output() cancelRequested = new EventEmitter();
   @ViewChild('tripForm', { static: false }) tripForm!: NgForm;
   constructor() {
-    this.trip = new Trip({});
+    this.trip = new TripEntity({});
   }
   private resetEditState() {
-    this.trip = new Trip({});
+    this.trip = new TripEntity({});
     this.editMode = false;
     this.tripForm.resetForm();
   }

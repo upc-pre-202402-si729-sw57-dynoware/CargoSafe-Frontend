@@ -13,6 +13,7 @@ import {AddTripComponent} from "../add-trip/add-trip.component";
 import {MatIcon} from "@angular/material/icon";
 import {NgClass} from "@angular/common";
 import {TripEntity} from "../../model/trip.entity";
+import {TripService} from "../../service/trip.service";
 
 @Component({
   selector: 'app-list-trip',

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import {BaseService} from "../../../shared/services/base.service";
+import {TripEntity} from "../model/trip.entity";
 
 @Injectable({
   providedIn: 'root'
 })
-export class TripService extends BaseS<Tr> {
+export class TripService extends BaseService<TripEntity> {
 
   constructor() {
     super();
