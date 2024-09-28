@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BaseService} from "../../shared/services/base.service";
+import {BaseService} from "../../../shared/services/base.service";
 import {StatisticsEntity} from "../model/statistics.entity";
 import {catchError, Observable, retry} from "rxjs";
 

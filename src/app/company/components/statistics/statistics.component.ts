@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {StatisticsResponse, StatisticsService} from "../../services/stadistics.service";
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
-import { Chart } from 'chart.js';
+
 import {StatisticsEntity} from "../../model/statistics.entity";
+import {Chart} from "chart.js";
 
 @Component({
   selector: 'app-statistics',

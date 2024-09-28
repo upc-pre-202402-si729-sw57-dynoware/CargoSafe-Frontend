@@ -9,7 +9,7 @@ export class VehicleService extends  BaseService<VehicleEntity>{
 
   constructor() {
     super();
-    this.resourceEndpoint = 'vehicles';
+    this.resourceEndpoint = '/vehicles';
 
   }
 }
