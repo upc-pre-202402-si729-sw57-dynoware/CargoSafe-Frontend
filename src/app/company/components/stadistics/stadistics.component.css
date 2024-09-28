@@ -1,0 +1,27 @@
+.title-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  position: relative;
+  margin: 40px 0px 10px -20px;
+}
+
+.style-button {
+  margin-right: 0;
+  display: table-cell;
+  max-width: 600px;
+  position: absolute;
+  right: 40px;
+  background-color: transparent;
+  color: black;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.style-inside{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}

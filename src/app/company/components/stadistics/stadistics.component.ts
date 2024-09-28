@@ -3,6 +3,7 @@ import { DataService} from "../../services/data.service";
 
 import {Chart, registerables} from "chart.js";
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
+import {MatIcon} from "@angular/material/icon";
 Chart.register(...registerables);
 
 @Component({
@@ -11,6 +12,7 @@ Chart.register(...registerables);
   imports: [
     MatGridList,
     MatGridTile,
+    MatIcon,
   ],
   templateUrl: './stadistics.component.html',
   styleUrl: './stadistics.component.css',

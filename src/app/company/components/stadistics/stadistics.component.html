@@ -1,8 +1,14 @@
-<div class="chart-container">
-  <h3> Estadísticas </h3>
-  <mat-grid-list cols="3" rowHeight="2:1">
-    <mat-grid-tile><canvas id="load-chart-1" width="1500" height="450">{{ chart }}</canvas></mat-grid-tile>
-    <mat-grid-tile><canvas id="load-chart-2" width="1500" height="450">{{ chart }}</canvas></mat-grid-tile>
-    <mat-grid-tile><canvas id="load-chart-3" width="1500" height="450">{{ chart }}</canvas></mat-grid-tile>
+<div class="title-container">
+    <h3> Estadísticas </h3>
+    <button mat-button class="style-button">
+    <span class="style-inside">Ver más
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="keyboard_arrow_right"></mat-icon>
+    </span>
+    </button>
+  </div>
+
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile><canvas id="load-chart-1" width="1000" height="400">{{ chart }}</canvas></mat-grid-tile>
+    <mat-grid-tile><canvas id="load-chart-2" width="1000" height="450">{{ chart }}</canvas></mat-grid-tile>
+    <mat-grid-tile><canvas id="load-chart-3" width="1000" height="450">{{ chart }}</canvas></mat-grid-tile>
   </mat-grid-list>
-</div>
