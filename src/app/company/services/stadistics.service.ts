@@ -34,7 +34,7 @@ export interface StatisticsResponse {
 @Injectable({
   providedIn: 'root',
 })
-export class StatisticsService extends BaseService<StatisticsEntity> {
+export class StadisticsService extends BaseService<StatisticsEntity> {
   constructor() {
     super();
     this.resourceEndpoint = '/data_statistics';
@@ -47,4 +47,3 @@ export class StatisticsService extends BaseService<StatisticsEntity> {
   }
 
 }
-
