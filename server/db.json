@@ -1,10 +1,34 @@
 {
-  "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
-  }
+  "merchandise": [
+    {
+      "id": "1",
+      "direction": "Av. Perú",
+      "type": "Frágil",
+      "travel_price": "S/ 1500",
+      "product": "Vasos de cristal",
+      "amount": "200 unidades",
+      "date": "2024-09-27",
+      "special_conditions": "Transportar con cuidado"
+    },
+    {
+      "id": "2",
+      "direction": "Av. Lima",
+      "type": "Perecible",
+      "travel_price": "S/ 1800",
+      "product": "Pescado fresco",
+      "amount": "500 kg",
+      "date": "2024-09-25",
+      "special_conditions": "Mantener por debajo de 5°C"
+    },
+    {
+      "id": "3",
+      "direction": "Av. Primavera",
+      "type": "Pesado",
+      "travel_price": "S/ 2500",
+      "product": "Barras de acero",
+      "amount": "1000 unidades",
+      "date": "2024-09-28",
+      "special_conditions": "Sin condiciones especiales"
+    }
+  ]
 }
