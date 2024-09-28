@@ -42,6 +42,11 @@ export class LeftSidebarComponent {
       icon: 'fal fa-box',
       label: 'Added Merchandise',
     },
+    {
+      routeLink: 'stadistics',
+      icon: 'fal fa-chart-bar',
+      label: 'Statistics',
+    }
     /*
     {
       routeLink: 'settings',
