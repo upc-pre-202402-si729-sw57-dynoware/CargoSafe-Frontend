@@ -138,14 +138,6 @@
       "max_load": "22000",
       "volume": "50",
       "url_image": "https://img.linemedia.com/img/s/box-truck-Mercedes-Benz-Actros-2542---1708193832047511762_big--24021720075948461400.jpg"
-    },
-    {
-      "id": 4,
-      "model": "asdasd",
-      "plate": "asdasd",
-      "max_load": "asdasd",
-      "volume": "asdasd",
-      "url_image": "asdasd"
     }
   ],
   "trips": [
