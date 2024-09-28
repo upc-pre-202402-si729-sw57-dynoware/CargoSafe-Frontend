@@ -20,7 +20,7 @@ export class LeftSidebarComponent {
     {
       routeLink: 'home',
       icon: 'fal fa-home',
-      label: 'home',
+      label: 'Home',
     },
     {
       routeLink: 'ordersOnTrip',
@@ -30,18 +30,26 @@ export class LeftSidebarComponent {
     {
       routeLink: 'drivers/management',
       icon: 'fal fa-file',
-      label: 'drivers',
+      label: 'Drivers',
     },
     {
       routeLink: 'vehicles/management',
-      icon: 'fal fa-vehicles',
-      label: 'vehicles/management',
+      icon: 'fal fa-car',
+      label: 'Vehicles',
     },
+    {
+      routeLink: 'added-merchandise',
+      icon: 'fal fa-box',
+      label: 'Added Merchandise',
+    },
+    /*
     {
       routeLink: 'settings',
       icon: 'fal fa-cog',
       label: 'Settings',
     },
+
+     */
   ];
 
   toggleCollapse(): void {
