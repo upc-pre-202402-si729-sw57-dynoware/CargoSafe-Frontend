@@ -16,45 +16,33 @@
   "companies": [
     {
       "id": 1,
-      "name": "Transporte Seguro S.A.",
-      "ruc": "20123456789",
-      "address": "Av. Logística 123, Lima, Perú",
-      "phone": "015678901",
-      "email": "contacto@transporteseguro.com",
-      "url_logo": "https://randomcompanylogo.com/logo1.jpg"
+      "name": "Transporte Segurp S.A.",
+      "membershipId": 2
     },
     {
       "id": 2,
       "name": "Carga Rápida E.I.R.L.",
-      "ruc": "20234567890",
-      "address": "Calle Velocidad 456, Arequipa, Perú",
-      "phone": "054123456",
-      "email": "info@cargarapida.com",
-      "url_logo": "https://randomcompanylogo.com/logo2.jpg"
+      "membershipId": 1
     },
     {
       "id": 3,
       "name": "Servicios Logísticos del Sur",
-      "ruc": "20345678901",
-      "address": "Jr. Eficiencia 789, Cusco, Perú",
-      "phone": "084654321",
-      "email": "logistica@slosur.com",
-      "url_logo": "https://randomcompanylogo.com/logo3.jpg"
+      "membershipId": 3
     }
   ],
   "memberships": [
     {
       "id": 1,
-      "name": "Plan Básico",
+      "type": "Plan Básico",
       "price": "S/ 100",
       "duration": "1 mes",
-      "features": "Acceso limitado a servicios de transporte"
+      "description": "Acceso limitado a servicios de transporte"
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "Plan Premium",
       "price": "S/ 500",
-      "duration": "1 año",
+      "duration": "1 mes",
       "features": "Acceso completo y atención prioritaria"
     }
   ],
@@ -62,46 +50,45 @@
     {
       "id": 1,
       "name": "Carlos Ruiz",
+      "lastname": "Perez Gonzales",
       "email": "carlos.ruiz@empresa.com",
       "phone": "987654321",
+      "password": "123456",
       "role_id": 2,
-      "company_id": 1
+      "company_id": null,
+      "entrepreneur_id": 2
     },
     {
       "id": 2,
       "name": "Ana Gómez",
+      "lastname": "Perez Gonzales",
       "email": "ana.gomez@empresa.com",
       "phone": "984321678",
+      "password": "zzzzz",
       "role_id": 3,
-      "company_id": 2
+      "company_id": 2,
+      "entrepreneur_id": null
     },
     {
       "id": 3,
       "name": "Luis Martínez",
+      "lastname": "Perez Gonzales",
       "email": "luis.martinez@empresa.com",
       "phone": "981234567",
+      "password": "aaaa",
       "role_id": 3,
-      "company_id": 3
+      "company_id": null,
+      "entrepreneur_id": 2
     }
   ],
   "entrepreneurs": [
     {
       "id": 1,
-      "name": "Jorge Pérez",
-      "dni": "12345678",
-      "ruc": "10456789012",
-      "email": "jorge.perez@empresario.com",
-      "phone": "912345678",
-      "company_id": 2
+      "user_id": 2
     },
     {
       "id": 2,
-      "name": "María López",
-      "dni": "87654321",
-      "ruc": "10467890123",
-      "email": "maria.lopez@empresario.com",
-      "phone": "987654321",
-      "company_id": 3
+      "user_id": 3
     }
 
   ],
