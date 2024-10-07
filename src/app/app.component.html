@@ -1,12 +1,15 @@
+<div class="app-container">
+  <ng-container *ngIf="shouldShowToolbar()">
+    <app-left-sidebar
+      [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
+      (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)">
+    </app-left-sidebar>
 
-<app-left-sidebar
-  [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
-  (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)">
+    <app-toolbar-content></app-toolbar-content>
+  </ng-container>
 
-</app-left-sidebar>
-
-<app-toolbar-content></app-toolbar-content>
-<app-main
-  [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
-  [screenWidth]="screenWidth()">
-  ></app-main>
+  <app-main
+    [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
+    [screenWidth]="screenWidth()">
+  </app-main>
+</div>

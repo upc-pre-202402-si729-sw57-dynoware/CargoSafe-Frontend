@@ -1,9 +1,9 @@
 {
   "roles": [
     {
-    "id": 1,
-    "name": "Administrador"
-  },
+      "id": 1,
+      "name": "Administrador"
+    },
     {
       "id": 2,
       "name": "Transportista"
@@ -90,7 +90,6 @@
       "id": 2,
       "user_id": 3
     }
-
   ],
   "merchandise": [
     {

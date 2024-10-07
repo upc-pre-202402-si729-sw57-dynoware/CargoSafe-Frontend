@@ -8,7 +8,8 @@ export class UserEntity {
   RUC: string;
   address: string;
   role_id: number;
-  company_id: number;
+  company_id: number | null;
+  entrepreneur_id: number | null;
 
   constructor(user: {
     id?: number;
@@ -20,7 +21,8 @@ export class UserEntity {
     RUC?: string;
     address?: string;
     role_id?: number;
-    company_id?: number;
+    company_id?: number | null;
+    entrepreneur_id?: number | null;
   }) {
     this.id = user.id || 0;
     this.name = user.name || '';
@@ -31,6 +33,7 @@ export class UserEntity {
     this.RUC = user.RUC || '';
     this.address = user.address || '';
     this.role_id = user.role_id || 0;
-    this.company_id = user.company_id || 0;
+    this.company_id = user.company_id || null;
+    this.entrepreneur_id = user.entrepreneur_id || null;
   }
 }

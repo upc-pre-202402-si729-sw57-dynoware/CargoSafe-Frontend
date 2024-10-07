@@ -1,9 +1,9 @@
 export class RoleEntity {
   id: number;
-  type: string;
+  name: string;
 
-  constructor(role: { id?: number; type?: string }) {
+  constructor(role: { id?: number; name?: string }) {
     this.id = role.id || 0;
-    this.type = role.type || '';
+    this.name = role.name || '';
   }
 }
