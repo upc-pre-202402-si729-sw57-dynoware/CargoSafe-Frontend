@@ -4,6 +4,7 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.component";
 import {RouterLink} from "@angular/router";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 
 @Component({
   selector: 'app-toolbar-content',
@@ -14,7 +15,10 @@ import {RouterLink} from "@angular/router";
     MatIconButton,
     MatIcon,
     LanguageSwitcherComponent,
-    RouterLink
+    RouterLink,
+    MatMenu,
+    MatMenuTrigger,
+    MatMenuItem
   ],
   templateUrl: './toolbar-content.component.html',
   styleUrl: './toolbar-content.component.css'

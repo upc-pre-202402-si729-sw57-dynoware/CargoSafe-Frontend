@@ -13,20 +13,26 @@ import { RegisterComponent } from './auth/components/register/register.component
 
 import { AuthGuard } from './auth/guards/auth.guard';
 import {EntrepreneurGuard} from "./auth/guards/entrepreneur.guard";
+import {
+  ToolbarEntrepreneurContentComponent
+} from "./public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'pages', component: PageNotFoundComponent, canActivate: [AuthGuard] },
-  { path: 'drivers/management', component: DriverManagementComponent, canActivate: [AuthGuard] },
-  { path: 'vehicles/management', component: VehiclesManagementComponent, canActivate: [AuthGuard] },
-  { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent, canActivate: [AuthGuard] },
-  { path: 'list-trip', component: ListTripComponent, canActivate: [AuthGuard] },
-  { path: 'trip-track', component: TripTrackingComponent, canActivate: [AuthGuard] },
-  { path: 'added-merchandise', component: MerchandiseItemComponent, canActivate: [AuthGuard, EntrepreneurGuard] },
-  { path: 'stadistics', component: StatisticsComponent, canActivate: [AuthGuard] },
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'pages', component: PageNotFoundComponent },
+  { path: 'drivers/management', component: DriverManagementComponent },
+  { path: 'vehicles/management', component: VehiclesManagementComponent },
+  { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent },
+  { path: 'list-trip', component: ListTripComponent },
+  { path: 'trip-track', component: TripTrackingComponent },
+  { path: 'added-merchandise', component: MerchandiseItemComponent },
+  { path: 'stadistics', component: StatisticsComponent},
+  {path:'a', component: ToolbarEntrepreneurContentComponent },
+  { path: '**', component: PageNotFoundComponent },
+
 ];
+//,canActivate: [AuthGuard]

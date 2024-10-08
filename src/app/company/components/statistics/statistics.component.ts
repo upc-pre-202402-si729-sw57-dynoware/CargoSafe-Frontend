@@ -3,13 +3,15 @@ import { StatisticsResponse, StadisticsService } from "../../services/stadistics
 import { MatGridList, MatGridTile } from "@angular/material/grid-list";
 import { StatisticsEntity } from "../../model/statistics.entity";
 import { Chart, registerables } from 'chart.js';
+import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 
 @Component({
   selector: 'app-statistics',
   standalone: true,
   imports: [
     MatGridList,
-    MatGridTile
+    MatGridTile,
+    ToolbarContentComponent
   ],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.css'

@@ -21,37 +21,39 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatInput} from "@angular/material/input";
 import {MatCard, MatCardTitle} from "@angular/material/card";
+import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 
 @Component({
   selector: 'app-vehicles-management',
   standalone: true,
-  imports: [
-    VehiclesCreateAndEditComponent,
-    MatTable,
-    MatSort,
-    MatColumnDef,
-    MatHeaderCell,
-    MatSortHeader,
-    MatCell,
-    MatHeaderCellDef,
-    MatCellDef,
-    MatIcon,
-    MatHeaderRow,
-    NgClass,
-    MatRowDef,
-    MatHeaderRowDef,
-    MatRow,
-    MatPaginator,
-    MatIconModule,
-    MatIconButton,
-    MatFormField,
-    FormsModule,
-    MatInput,
-    MatButton,
-    MatLabel,
-    MatCardTitle,
-    MatCard
-  ],
+    imports: [
+        VehiclesCreateAndEditComponent,
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCell,
+        MatSortHeader,
+        MatCell,
+        MatHeaderCellDef,
+        MatCellDef,
+        MatIcon,
+        MatHeaderRow,
+        NgClass,
+        MatRowDef,
+        MatHeaderRowDef,
+        MatRow,
+        MatPaginator,
+        MatIconModule,
+        MatIconButton,
+        MatFormField,
+        FormsModule,
+        MatInput,
+        MatButton,
+        MatLabel,
+        MatCardTitle,
+        MatCard,
+        ToolbarContentComponent
+    ],
   templateUrl: './vehicles-management.component.html',
   styleUrl: './vehicles-management.component.css'
 })
