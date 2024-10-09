@@ -15,12 +15,15 @@ export class TripEntity {
   dimensiony: number;
   dimensionz: number;
   destination: string;
+  department: string;
+  district: string;
+  country:string;
 
   constructor(trip: {id?: number, name?: string, type?: string,
     weight?: number, unload_location?: string,unload_date?: string,
     expense_id?: number,alert_id?: number,ongoing_trip_id?: number,
     vehicle_id?: number,driver_id?: number,entrepreneur_id?: number,
-    dimensionx?:number,dimensiony?:number,dimensionz?:number, destination?: string}) {
+    dimensionx?:number,dimensiony?:number,dimensionz?:number, destination?: string, country?: string, department?: string, district?: string}) {
     this.id = trip.id || 0;
     this.name = trip.name || '';
     this.type = trip.type || '';
@@ -37,5 +40,8 @@ export class TripEntity {
     this.dimensiony = trip.dimensiony || 0;
     this.dimensionz = trip.dimensionz || 0;
     this.destination = trip.destination || '';
+    this.country = trip.country || '';
+    this.department = trip.department || '';
+    this.district = trip.district || '';
   }
 }

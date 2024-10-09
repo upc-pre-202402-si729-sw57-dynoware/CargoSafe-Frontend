@@ -2,11 +2,13 @@
   <mat-card-header>
     <mat-card-title>
       <mat-icon>add_circle</mat-icon>
-      {{ editMode ? 'Actualizar Viaje' : 'Agregar Viaje' }}
+      {{ 'Solicita un Viaje' }}
     </mat-card-title>
   </mat-card-header>
+
   <mat-card-content>
     <form (ngSubmit)="onSubmit()" #tripForm="ngForm" class="form-row">
+      <!-- Ubicación -->
       <mat-form-field appearance="outline">
         <mat-label>Ubicación</mat-label>
         <input matInput placeholder="Ubicación" name="location" required [(ngModel)]="trip.unload_location" #location="ngModel">
@@ -16,37 +18,53 @@
         </button>
       </mat-form-field>
 
-
+      <!-- Tipo de carga -->
       <mat-form-field appearance="outline">
         <mat-label>Tipo de carga</mat-label>
         <input matInput placeholder="Tipo de carga" name="type" required [(ngModel)]="trip.type" #type="ngModel">
         <mat-error *ngIf="type.invalid && type.touched">Tipo de carga es requerido</mat-error>
       </mat-form-field>
 
+      <!-- Número de paquetes -->
       <mat-form-field appearance="outline">
         <mat-label>Número de paquetes</mat-label>
         <input matInput placeholder="Número de paquetes" name="name" required [(ngModel)]="trip.name" #name="ngModel">
         <mat-error *ngIf="name.invalid && name.touched">Número de paquetes es requerido</mat-error>
       </mat-form-field>
 
+      <!-- Selección del país -->
       <mat-form-field appearance="outline">
-        <mat-label>Destino</mat-label>
-        <input matInput placeholder="Destino" name="destination" required [(ngModel)]="trip.destination" #destination="ngModel">
-        <mat-error *ngIf="destination.invalid && destination.touched">Destino es requerido</mat-error>
-        <button mat-icon-button type="button" (click)="openMap()" aria-label="Abrir mapa">
-          <mat-icon>map</mat-icon>
-        </button>
+        <mat-label>País</mat-label>
+        <mat-select [(value)]="trip.country" name="country" required>
+          <mat-option value="Perú">Perú</mat-option>
+        </mat-select>
       </mat-form-field>
 
-      <div *ngIf="trip.destination">
-        <p>Coordenadas:</p>
-        <ul>
-          <li>Latitud: {{ getLatitude(trip.destination) }}</li>
-          <li>Longitud: {{ getLongitude(trip.destination) }}</li>
-        </ul>
-      </div>
+      <!-- Selección del departamento -->
+      <mat-form-field appearance="outline">
+        <mat-label>Departamento</mat-label>
+        <mat-select [(value)]="selectedDepartment" (selectionChange)="onDepartmentChange()" name="department" required>
+          <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!selectedDepartment && tripForm.touched">Departamento es requerido</mat-error>
+      </mat-form-field>
 
-      <div fxLayout="row" fxLayoutAlign="end center" class="button-container">
+      <!-- Selección del distrito -->
+      <mat-form-field appearance="outline">
+        <mat-label>Distrito</mat-label>
+        <mat-select [(ngModel)]="trip.district" name="district" required>
+          <mat-option *ngFor="let district of districts" [value]="district">{{ district }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!trip.district && tripForm.touched">Distrito es requerido</mat-error>
+      </mat-form-field>
+      <!-- Destino con botón para abrir mapa -->
+      <mat-form-field appearance="outline">
+        <mat-label>Direccion </mat-label>
+        <input matInput placeholder="Destino" name="destination" required [(ngModel)]="trip.destination" #destination="ngModel">
+        <mat-error *ngIf="destination.invalid && destination.touched">La direccion es requerida</mat-error>
+      </mat-form-field>
+      <!-- Botones -->
+      <div class="button-container">
         <ng-container *ngIf="editMode; else elseTemplate">
           <button mat-raised-button color="primary" [disabled]="tripForm.invalid">
             <mat-icon>update</mat-icon> Actualizar

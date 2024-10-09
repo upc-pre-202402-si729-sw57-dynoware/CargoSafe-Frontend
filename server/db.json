@@ -281,8 +281,7 @@
       "dimensionx": 2,
       "dimensiony": 2,
       "dimensionz": 2
-    },
-    {
+    }, {
       "id": 7,
       "name": "asdasdas",
       "type": "asdasdasdasd",
@@ -300,24 +299,7 @@
       "dimensionz": 0,
       "destination": "dasdasd"
     },
-    {
-      "id": 8,
-      "name": "fsdfds",
-      "type": "sdfsdf",
-      "weight": 0,
-      "unload_location": "ddsf",
-      "unload_date": "",
-      "expense_id": 0,
-      "alert_id": 0,
-      "ongoing_trip_id": 0,
-      "vehicle_id": 0,
-      "driver_id": 0,
-      "entrepreneur_id": 0,
-      "dimensionx": 0,
-      "dimensiony": 0,
-      "dimensionz": 0,
-      "destination": "sdLat: undefined, Lon: undefined"
-    }
+
   ],
   "expenses": [],
   "alerts": [],
