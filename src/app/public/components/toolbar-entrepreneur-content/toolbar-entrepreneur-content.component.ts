@@ -4,6 +4,7 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-toolbar-entrepreneur-content',
@@ -16,7 +17,8 @@ import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.
     MatMenuTrigger,
     MatMenuItem,
     MatMenu,
-    LanguageSwitcherComponent
+    LanguageSwitcherComponent,
+    RouterLink
   ],
   templateUrl: './toolbar-entrepreneur-content.component.html',
   styleUrl: './toolbar-entrepreneur-content.component.css'
