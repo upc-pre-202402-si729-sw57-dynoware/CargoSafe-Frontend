@@ -1,15 +1,12 @@
+<app-toolbar-entrepreneur-content></app-toolbar-entrepreneur-content>
+
 <!-- Course Catalogue -->
 <div class="table-wrapper">
   <h1>Órdenes</h1>
   <button mat-raised-button color="primary">Retroceder</button>
 
   <!-- Add and Edit Form -->
-  <app-add-trip
-    (cancelRequested)="onCancelRequested()"
-    (tripAddRequested)="onTripAddRequested($event)"
-    (tripUpdateRequested)="onTripUpdateRequested($event)"
-    [trip]="tripData"
-    [editMode]="editMode"/>
+
 
   <!-- Data Table -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>

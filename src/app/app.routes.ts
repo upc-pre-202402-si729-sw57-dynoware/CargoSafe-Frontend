@@ -16,6 +16,7 @@ import {EntrepreneurGuard} from "./auth/guards/entrepreneur.guard";
 import {
   ToolbarEntrepreneurContentComponent
 } from "./public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
+import {RequestComponent} from "./request-service/component/request/request.component";
 
 
 export const routes: Routes = [
@@ -31,7 +32,13 @@ export const routes: Routes = [
   { path: 'trip-track', component: TripTrackingComponent },
   { path: 'added-merchandise', component: MerchandiseItemComponent },
   { path: 'stadistics', component: StatisticsComponent},
+
+
+
+
+  //ENTREPRENEUR
   {path:'a', component: ToolbarEntrepreneurContentComponent },
+  {path:'request/trip/new', component: RequestComponent},
   { path: '**', component: PageNotFoundComponent },
 
 ];

@@ -14,6 +14,10 @@ import {MatIcon} from "@angular/material/icon";
 import {NgClass} from "@angular/common";
 import {TripEntity} from "../../model/trip.entity";
 import {TripService} from "../../service/trip.service";
+import {MatButton} from "@angular/material/button";
+import {
+  ToolbarEntrepreneurContentComponent
+} from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 
 @Component({
   selector: 'app-list-trip',
@@ -33,7 +37,10 @@ import {TripService} from "../../service/trip.service";
     MatRow,
     NgClass,
     MatRowDef,
-    MatPaginator
+    MatPaginator,
+    MatSort,
+    MatButton,
+    ToolbarEntrepreneurContentComponent
   ],
   templateUrl: './list-trip.component.html',
   styleUrl: './list-trip.component.css'

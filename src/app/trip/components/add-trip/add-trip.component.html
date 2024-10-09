@@ -1,94 +1,59 @@
-<!-- Create  Trip -->
-<div style="display: flex;flex-direction: column; align-items: center;margin-bottom: 1rem">
-  <mat-card class="add-trip-card" style="width: 70%; margin: 0 auto !important;">
-    <mat-card-header style="display: flex;flex-direction: column; align-items: center;margin-bottom: 1rem">
-      <mat-card-title style="text-align: center;color:#FFFFFF">{{ editMode ? 'Editar tu orden' : 'Registrar tu orden' }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+<mat-card class="add-trip-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>add_circle</mat-icon>
+      {{ editMode ? 'Actualizar Viaje' : 'Agregar Viaje' }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" #tripForm="ngForm" class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Ubicación</mat-label>
+        <input matInput placeholder="Ubicación" name="location" required [(ngModel)]="trip.unload_location" #location="ngModel">
+        <mat-error *ngIf="location.invalid && location.touched">Ubicación es requerida</mat-error>
+        <button mat-icon-button type="button" (click)="getLocation()" aria-label="Obtener ubicación"> <!-- Cambiar type a "button" -->
+          <mat-icon>my_location</mat-icon>
+        </button>
+      </mat-form-field>
 
-      <div class="form-section">
-        <form (submit)="onSubmit()" #tripForm="ngForm" class="form-row">
-          <div>
-            <mat-label> Ubicación</mat-label>
-          </div>
-          <div>
-            <mat-form-field id="unload-location-form-field">
-              <input matInput placeholder="Ubicación" name="location" required [(ngModel)]="trip.unload_location">
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-label> Tipo de carga</mat-label>
-          </div>
-          <div>
-            <mat-form-field id="type-form-field">
-              <input matInput placeholder="Tipo de carga" name="type" required [(ngModel)]="trip.type">
-            </mat-form-field>
-          </div>
 
-          <div>
-            <mat-label> Número de paquetes</mat-label>
-          </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de carga</mat-label>
+        <input matInput placeholder="Tipo de carga" name="type" required [(ngModel)]="trip.type" #type="ngModel">
+        <mat-error *ngIf="type.invalid && type.touched">Tipo de carga es requerido</mat-error>
+      </mat-form-field>
 
-          <div>
-            <mat-form-field id="name-form-field">
-              <input matInput placeholder="Número de paquetes" name="name" required [(ngModel)]="trip.name">
-            </mat-form-field>
-          </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Número de paquetes</mat-label>
+        <input matInput placeholder="Número de paquetes" name="name" required [(ngModel)]="trip.name" #name="ngModel">
+        <mat-error *ngIf="name.invalid && name.touched">Número de paquetes es requerido</mat-error>
+      </mat-form-field>
 
-          <div>
-            <mat-label> Peso total de la orden</mat-label>
-          </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Destino</mat-label>
+        <input matInput placeholder="Destino" name="destination" required [(ngModel)]="trip.destination" #destination="ngModel">
+        <mat-error *ngIf="destination.invalid && destination.touched">Destino es requerido</mat-error>
+        <button mat-icon-button type="button" (click)="openMap()" aria-label="Abrir mapa">
+          <mat-icon>map</mat-icon>
+        </button>
+      </mat-form-field>
 
-          <div>
-            <mat-form-field id="weight-form-field">
-              <input matInput placeholder="Total weight of package" name="weight" required [(ngModel)]="trip.weight">
-            </mat-form-field>
-          </div>
 
-          <div>
-            <mat-label> Dimensiones de la orden</mat-label>
-          </div>
-          <mat-form-field id="dimensionx-form-field" fxLayout="column">
-            <input matInput fxFlex="30" placeholder="x" name="dimensionx" required [(ngModel)]="trip.dimensionx">
-          </mat-form-field>
-          <mat-label> x </mat-label>
-          <mat-form-field id="dimensiony-form-field" fxLayout="column">
-            <input matInput fxFlex="30"  placeholder="y" name="dimensiony" required [(ngModel)]="trip.dimensiony">
-          </mat-form-field>
-          <mat-label> x </mat-label>
-          <mat-form-field id="dimensionz-form-field" fxLayout="column">
-            <input matInput fxFlex="30" placeholder="z" name="dimensionz" required [(ngModel)]="trip.dimensionz">
-          </mat-form-field>
-          <div>
-            <mat-label> Conductor</mat-label>
-          </div>
-
-          <div>
-            <mat-form-field id="driver_id-form-field">
-              <input matInput placeholder="Conductor" name="driver_id" required [(ngModel)]="trip.driver_id">
-            </mat-form-field>
-          </div>
-
-          <div>
-            <mat-label> Vehículo</mat-label>
-          </div>
-
-          <div>
-            <mat-form-field id="vehicle_id-form-field">
-              <input matInput placeholder="Vehículo" name="vehicle_id" required [(ngModel)]="trip.vehicle_id">
-            </mat-form-field>
-          </div>
-
-          <ng-container *ngIf="editMode; else elseTemplate">
-            <button mat-raised-button color="primary">Update</button>
-            <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
-          </ng-container>
-          <ng-template #elseTemplate>
-            <button mat-raised-button color="primary">Agendar</button>
-          </ng-template>
-        </form>
+      <div fxLayout="row" fxLayoutAlign="end center" class="button-container">
+        <ng-container *ngIf="editMode; else elseTemplate">
+          <button mat-raised-button color="primary" [disabled]="tripForm.invalid">
+            <mat-icon>update</mat-icon> Actualizar
+          </button>
+          <button mat-raised-button color="warn" (click)="onCancel()">
+            <mat-icon>cancel</mat-icon> Cancelar
+          </button>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <button mat-raised-button color="primary" [disabled]="tripForm.invalid">
+            <mat-icon>add</mat-icon> Agregar
+          </button>
+        </ng-template>
       </div>
-    </mat-card-content>
-
-  </mat-card>
-</div>
+    </form>
+  </mat-card-content>
+</mat-card>
