@@ -7,6 +7,8 @@ import { MatInput } from "@angular/material/input";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import { NgIf } from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
+import {MapComponent} from "../../../request-service/component/map/map.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-add-trip',
@@ -37,22 +39,31 @@ export class AddTripComponent {
   @Output() cancelRequested = new EventEmitter();
   @ViewChild('tripForm', { static: false }) tripForm!: NgForm;
 
+  constructor(private dialog: MatDialog) {}
+
 
   getLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        this.trip.unload_location = `Lat: ${latitude}, Lon: ${longitude}`;
-
-        this.tripForm.controls['location'].setErrors(null);
-      }, (error) => {
-        console.error("Error obteniendo la ubicación: ", error);
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => this.setLocation(position),
+        (error) => console.error("Error fetching location: ", error)
+      );
     } else {
-      console.error("Geolocalización no es soportada por este navegador.");
+      console.error("Geolocation not supported by this browser");
     }
   }
 
+
+
+  private setLocation(position: GeolocationPosition) {
+    if (position && position.coords) {
+      const {latitude, longitude} = position.coords;
+      this.trip.unload_location = `Lat: ${latitude}, Lon: ${longitude}`;
+      this.tripForm.controls['location'].setErrors(null);
+    } else {
+      console.error("Invalid position object");
+    }
+  }
 
   private resetEditState() {
     this.trip = new TripEntity({});
@@ -67,7 +78,7 @@ export class AddTripComponent {
       emitter.emit(this.trip);
       this.resetEditState();
     } else {
-      console.error('Datos del formulario no válidos');
+      console.error("Invalid Data");
     }
   }
 
@@ -78,7 +89,22 @@ export class AddTripComponent {
   }
 
   openMap() {
-    const mapWindow = window.open(`https://www.google.com/maps/@?api=1&map_action=map&center=0,0&zoom=2`, '_blank', 'width=800,height=600');
+    const dialogRef = this.dialog.open(MapComponent);
 
+    dialogRef.componentInstance.locationSelected.subscribe((location: { latitude: number, longitude: number }) => {
+      const formattedDestination = `Lat: ${location.latitude}, Lon: ${location.longitude}`;
+      this.trip.destination = formattedDestination;
+      this.tripForm.controls['destination'].setValue(formattedDestination);
+    });
+  }
+
+  getLatitude(destination: string): string {
+    const latMatch = destination.match(/Lat:\s*(-?\d+(\.\d+)?)/);
+    return latMatch && latMatch[1] ? latMatch[1] : 'undefined';
+  }
+
+  getLongitude(destination: string): string {
+    const lngMatch = destination.match(/Lon:\s*(-?\d+(\.\d+)?)/);
+    return lngMatch && lngMatch[1] ? lngMatch[1] : 'undefined';
   }
 }
