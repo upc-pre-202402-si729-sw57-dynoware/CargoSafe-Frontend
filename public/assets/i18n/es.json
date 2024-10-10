@@ -6,5 +6,16 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
+  },
+  "stadistics": {
+    "mainTitle": "Estadísticas",
+    "title": {
+      "chart1": "Número de pedidos por mes",
+      "chart2": "Número de entregas por región",
+      "chart3": "Tipos de carga transportada",
+      "chart4": "Cargas entregadas a tiempo vs retrasos",
+      "chart5": "Costos de transporte por mes",
+      "chart6": "Tiempo medio de entrega por ruta"
+    }
   }
 }
