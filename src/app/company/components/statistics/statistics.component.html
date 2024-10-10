@@ -1,9 +1,50 @@
 <div class="chart-container">
-  <h3> Estadísticas </h3>
-  <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile><canvas id="load-chart-1" width="1500" height="450">{{ chart }}</canvas></mat-grid-tile>
-    <mat-grid-tile><canvas id="load-chart-2" width="1500" height="450">{{ chart }}</canvas></mat-grid-tile>
-    <mat-grid-tile><canvas id="load-chart-3" width="1500" height="450">{{ chart }}</canvas></mat-grid-tile>
-    <mat-grid-tile><canvas id="load-chart-4" width="1500" height="450">{{ chart }}</canvas></mat-grid-tile>
+
+   <h3 class="main-title">{{'stadistics.mainTitle'| translate}}</h3>
+
+  <mat-grid-list cols="2" rowHeight="350px" class="grid-charts">
+
+    <mat-grid-tile>
+      <div>
+        <h6 class="secondary-title"> {{ 'stadistics.title.chart1'| translate  }}</h6>
+        <canvas id="vertical-chart-1" width="500px" class="spacer">{{ chart }}</canvas>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div>
+        <h6 class="secondary-title"> {{ 'stadistics.title.chart2'| translate  }}</h6>
+        <canvas id="vertical-chart-2" width="500px" class="spacer">{{ chart }}</canvas>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div>
+        <h6 class="secondary-title"> {{ 'stadistics.title.chart4'| translate  }}</h6>
+        <canvas id="horizontal-chart" width="500px" class="spacer">{{ chart }}</canvas>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div>
+        <h6 class="secondary-title"> {{ 'stadistics.title.chart5'| translate  }}</h6>
+        <canvas id="line-chart" width="500px" class="spacer">{{ chart }}</canvas>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="1" rowHeight="600px" class="grid-charts">
+    <mat-grid-tile>
+      <div class="pie-position">
+        <h6 class="secondary-title"> {{ 'stadistics.title.chart3'| translate  }}</h6>
+        <canvas id="pie-chart" width="500px" height="500px" class="spacer">{{ chart }}</canvas>
+      </div>
+    </mat-grid-tile>
+      <mat-grid-tile>
+      <div class="radar-position">
+        <h6 class="secondary-title"> {{ 'stadistics.title.chart6'| translate  }}</h6>
+        <canvas id="radar-chart" width="510px" height="800px" class="spacer">{{ chart }}</canvas>
+      </div>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>
