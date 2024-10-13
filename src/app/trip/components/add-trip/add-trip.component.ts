@@ -10,6 +10,9 @@ import {MatIcon} from "@angular/material/icon";
 import {MapComponent} from "../../../request-service/component/map/map.component";
 import {MatDialog} from "@angular/material/dialog";
 import {MatOption, MatSelect} from "@angular/material/select";
+import {
+  DialogSuccessfullyComponent
+} from "../../../public/components/dialogs/dialog-successfully/dialog-successfully.component";
 
 @Component({
   selector: 'app-add-trip',
@@ -78,6 +81,8 @@ export class AddTripComponent {
   };
 
   constructor(private dialog: MatDialog) {}
+
+
   selectedCountry(){
 
   }
@@ -110,11 +115,17 @@ export class AddTripComponent {
       const emitter = this.editMode ? this.tripUpdateRequested : this.tripAddRequested;
       emitter.emit(this.trip);
       this.resetEditState();
+      this.openSuccessDialog('Agregado satisfactoriamente');
     } else {
       console.error("Invalid Data");
     }
   }
 
+  openSuccessDialog(message: string): void {
+    this.dialog.open(DialogSuccessfullyComponent, {
+      data: { message }
+    });
+  }
   onCancel() {
     this.cancelRequested.emit();
     this.resetEditState();
