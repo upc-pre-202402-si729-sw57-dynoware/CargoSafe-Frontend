@@ -1,0 +1,37 @@
+.trip-management-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.trip-table-card {
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.trip-mat-card-title {
+  font-size: 1.5rem;
+  color: #ccbb00;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.mat-table {
+  width: 100%;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    width: 100%;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+}

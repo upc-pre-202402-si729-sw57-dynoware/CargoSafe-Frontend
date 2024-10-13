@@ -11,13 +11,22 @@ import {MatSort, MatSortHeader} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {AddTripComponent} from "../add-trip/add-trip.component";
 import {MatIcon} from "@angular/material/icon";
-import {NgClass} from "@angular/common";
+import {DatePipe, NgClass, NgIf} from "@angular/common";
 import {TripEntity} from "../../model/trip.entity";
 import {TripService} from "../../service/trip.service";
-import {MatButton} from "@angular/material/button";
+import {MatButton, MatIconButton} from "@angular/material/button";
 import {
   ToolbarEntrepreneurContentComponent
 } from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  DialogSuccessfullyComponent
+} from "../../../public/components/dialogs/dialog-successfully/dialog-successfully.component";
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
+import {FormsModule} from "@angular/forms";
+import {MatFormField} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 
 @Component({
   selector: 'app-list-trip',
@@ -40,108 +49,68 @@ import {
     MatPaginator,
     MatSort,
     MatButton,
-    ToolbarEntrepreneurContentComponent
+    ToolbarEntrepreneurContentComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardContent,
+    FormsModule,
+    MatFormField,
+    NgIf,
+    MatInput,
+    MatIconButton,
+    MatCardTitle,
+    DatePipe,
+    ToolbarContentComponent
   ],
   templateUrl: './list-trip.component.html',
   styleUrl: './list-trip.component.css'
 })
 export class ListTripComponent implements OnInit, AfterViewInit {
+  protected trips: TripEntity[] = [];
+  protected displayedColumns: string[] = [
+    'name', 'type', 'unload_direction', 'unload_location',
+    'unload_date', 'destination', 'department', 'district',
+    'country', 'actions'
+  ];
 
-  //#region Attributes
+  protected dataSource: MatTableDataSource<TripEntity> = new MatTableDataSource();
 
-  protected tripData!: TripEntity;
-  protected columnsToDisplay: string[] = ['id', 'name', 'type', 'weight',
-    'unload_location','unload_date','expense_id','alert_id','ongoing_trip_id',
-    'vehicle_id','driver_id','entrepreneur_id','dimensionx',
-    'dimensiony','dimensionz', 'actions'];
-  @ViewChild(MatPaginator, {static: false})
-  protected paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  protected sort!: MatSort;
-  protected editMode: boolean = false;
-  protected dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatTable) table!: MatTable<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   private tripService: TripService = inject(TripService);
+  private dialog: MatDialog = inject(MatDialog);
 
-  //#endregion
-
-  //#region Methods
-
-  constructor() {
-    this.editMode = false;
-    this.tripData = new TripEntity({});
-    this.dataSource = new MatTableDataSource();
-    console.log(this.tripData);
+  ngOnInit(): void {
+    this.loadTrips();
   }
-
-  protected onEditItem(item: TripEntity) {
-    this.editMode = true;
-    this.tripData = item;
-  }
-
-  protected onDeleteItem(item: TripEntity) {
-    this.deleteTrip(item.id);
-  }
-  protected onCancelRequested() {
-    this.resetEditState();
-    this.getAllTrips();
-  }
-
-  protected onTripAddRequested(item: TripEntity) {
-    this.tripData = item;
-    this.createTrip();
-    this.resetEditState();
-  }
-
-  protected onTripUpdateRequested(item: TripEntity) {
-    this.tripData = item;
-    this.updateTrip();
-    this.resetEditState();
-  }
-
-  private resetEditState() {
-    this.tripData = new TripEntity({});
-    this.editMode = false;
-  }
-
-  private getAllTrips() {
-    this.tripService.getAll().subscribe((response: Array<TripEntity>) => {
-      this.dataSource.data = response;
-      console.log(response);
-    });
-  }
-
-  private createTrip() {
-    this.tripService.create(this.tripData).subscribe((response: TripEntity) => {
-      this.dataSource.data.push(response);
-      this.dataSource.data = this.dataSource.data;
-    });
-  }
-
-  private updateTrip() {
-    let tripToUpdate = this.tripData;
-    this.tripService.update(tripToUpdate.id, tripToUpdate).subscribe((response: TripEntity) => {
-      let index = this.dataSource.data.findIndex((trip: TripEntity) => trip.id === response.id);
-      this.dataSource.data[index] = response;
-      this.dataSource.data = this.dataSource.data;
-    });
-  }
-
-  private deleteTrip(id: number) {
-    this.tripService.delete(id).subscribe(() => {
-      this.dataSource.data = this.dataSource.data.filter((trip: TripEntity) => trip.id !== id);
-    });
-  }
-
-  //#endregion
-
-  //#region Lifecycle Hooks
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  ngOnInit(): void {
-    this.getAllTrips();
+  protected loadTrips(): void {
+    this.tripService.getAll().subscribe((trips: TripEntity[]) => {
+      this.dataSource.data = trips;
+    });
+  }
+
+  protected acceptTrip(trip: TripEntity): void {
+
+    //pending add acceptTrip logic !!
+    this.openSuccessDialog('Viaje aceptado satisfactoriamente');
+  }
+
+  protected rejectTrip(trip: TripEntity): void {
+    //pending add rejectTrip logic !!
+    this.openSuccessDialog('Viaje rechazado satisfactoriamente');
+  }
+
+  protected openSuccessDialog(message: string): void {
+    this.dialog.open(DialogSuccessfullyComponent, {
+      data: { message }
+    });
   }
 }

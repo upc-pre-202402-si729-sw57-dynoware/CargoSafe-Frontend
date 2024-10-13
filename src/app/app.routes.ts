@@ -39,7 +39,9 @@ export const routes: Routes = [
   //ENTREPRENEUR
   {path:'a', component: ToolbarEntrepreneurContentComponent },
   {path:'request/trip/new', component: RequestComponent},
+  {path:'list-trip', component:ListTripComponent},
   { path: '**', component: PageNotFoundComponent },
+
 
 ];
 //,canActivate: [AuthGuard]
