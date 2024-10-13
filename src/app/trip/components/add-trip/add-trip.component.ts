@@ -96,15 +96,17 @@ export class AddTripComponent {
   }
   private setLocation(position: GeolocationPosition) {
     if (position && position.coords) {
-      const {latitude, longitude} = position.coords;
+      const { latitude, longitude } = position.coords;
       this.trip.unload_location = `Lat: ${latitude}, Lon: ${longitude}`;
-      this.tripForm.controls['location'].setErrors(null);
+      console.log("Location stored:", this.trip.unload_location);
     } else {
       console.error("Invalid position object");
     }
   }
   onSubmit() {
     if (this.tripForm.valid) {
+      this.trip.unload_date = new Date().toISOString();
+      this.trip.department = this.selectedDepartment;
       const emitter = this.editMode ? this.tripUpdateRequested : this.tripAddRequested;
       emitter.emit(this.trip);
       this.resetEditState();
@@ -122,5 +124,15 @@ export class AddTripComponent {
     this.trip = new TripEntity({});
     this.editMode = false;
     this.tripForm.resetForm();
+  }
+
+  getLatitude(destination: string): string {
+    const latMatch = destination.match(/Lat:\s*(-?\d+(\.\d+)?)/);
+    return latMatch && latMatch[1] ? latMatch[1] : 'undefined';
+  }
+
+  getLongitude(destination: string): string {
+    const lngMatch = destination.match(/Lon:\s*(-?\d+(\.\d+)?)/);
+    return lngMatch && lngMatch[1] ? lngMatch[1] : 'undefined';
   }
 }

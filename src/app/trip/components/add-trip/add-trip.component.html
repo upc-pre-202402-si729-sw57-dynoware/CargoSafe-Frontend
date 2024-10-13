@@ -10,9 +10,9 @@
     <form (ngSubmit)="onSubmit()" #tripForm="ngForm" class="form-row">
 
       <mat-form-field appearance="outline">
-        <mat-label>Ubicación</mat-label>
-        <input matInput placeholder="Ubicación" name="location" required [(ngModel)]="trip.unload_location" #location="ngModel">
-        <mat-error *ngIf="location.invalid && location.touched">Ubicación es requerida</mat-error>
+        <mat-label>Punto de inicio (Lugar de carga)</mat-label>
+        <input matInput placeholder="Punto de inicio" name="unload_direction" required [(ngModel)]="trip.unload_direction" #unloadDirection="ngModel">
+        <mat-error *ngIf="unloadDirection.invalid && unloadDirection.touched">Punto de inicio es requerido</mat-error>
         <button mat-icon-button type="button" (click)="getLocation()" aria-label="Obtener ubicación">
           <mat-icon>my_location</mat-icon>
         </button>
@@ -48,7 +48,6 @@
         </mat-select>
         <mat-error *ngIf="!selectedDepartment && tripForm.touched">Departamento es requerido</mat-error>
       </mat-form-field>
-
 
       <mat-form-field appearance="outline">
         <mat-label>Distrito</mat-label>
