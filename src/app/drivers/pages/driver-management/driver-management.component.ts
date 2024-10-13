@@ -59,7 +59,7 @@ import {ToolbarContentComponent} from "../../../public/components/toolbar-conten
 })
 export class DriverManagementComponent implements OnInit, AfterViewInit {
   protected driverData: DriverEntity = new DriverEntity({});
-  protected columnsToDisplay: string[] = ['id', 'name', 'dni', 'phone', 'license', 'actions'];
+  protected columnsToDisplay: string[] = ['id', 'name', 'dni', 'phone', 'license', 'url_photo', 'actions'];
   protected dataSource: MatTableDataSource<DriverEntity> = new MatTableDataSource();
   protected editMode: boolean = false;
 
@@ -86,7 +86,8 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
         name: this.driverData.name,
         dni: this.driverData.dni,
         phone: this.driverData.phone,
-        license: this.driverData.license
+        license: this.driverData.license,
+        url_photo: this.driverData.url_photo
       };
       this.onDriverAddRequested(newDriver);
     }

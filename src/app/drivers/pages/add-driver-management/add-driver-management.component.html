@@ -1,0 +1,55 @@
+<app-toolbar-content></app-toolbar-content>
+
+<div class="driver-management-container">
+  <div class="driver-form-card">
+    <h2 class="form-title">
+      <i class="fas fa-car"></i>
+      {{ editMode ? 'Edit Driver' : 'Add Driver' }}
+    </h2>
+    <form (ngSubmit)="onSubmit()" #driverForm="ngForm">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <div class="input-container">
+          <i class="fas fa-user"></i>
+          <input type="text" id="name" placeholder="Enter driver's name" name="name" required [(ngModel)]="driverData.name" #name="ngModel">
+        </div>
+        <span class="error-message" *ngIf="name.invalid && name.touched">Name is required</span>
+      </div>
+
+      <div class="form-group">
+        <label for="dni">DNI</label>
+        <div class="input-container">
+          <i class="fas fa-id-card"></i>
+          <input type="text" id="dni" placeholder="Enter DNI" name="dni" required [(ngModel)]="driverData.dni" #dni="ngModel">
+        </div>
+        <span class="error-message" *ngIf="dni.invalid && dni.touched">DNI is required</span>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <div class="input-container">
+          <i class="fas fa-phone"></i>
+          <input type="text" id="phone" placeholder="Enter phone number" name="phone" required [(ngModel)]="driverData.phone" #phone="ngModel">
+        </div>
+        <span class="error-message" *ngIf="phone.invalid && phone.touched">Phone is required</span>
+      </div>
+
+      <div class="form-group">
+        <label for="license">License</label>
+        <div class="input-container">
+          <i class="fas fa-file-signature"></i>
+          <input type="text" id="license" placeholder="Enter driver's license" name="license" required [(ngModel)]="driverData.license" #license="ngModel">
+        </div>
+        <span class="error-message" *ngIf="license.invalid && license.touched">License is required</span>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn-primary" [disabled]="driverForm.invalid">
+          {{ editMode ? 'Update' : 'Add' }}
+        </button>
+        <button type="button" class="btn-cancel" (click)="onCancelRequested()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 <mat-toolbar class="toolbar" color="primary">
   <span class="spacer"></span>
+
   <div class="toolbar-content">
     <img src="./assets/images/cargosafe-logo.png" class="issuer-img" alt="CargoSafe Logo" />
     <p class="header-title" aria-label="title">CargoSafe</p>
@@ -12,14 +13,36 @@
       <mat-icon>assignment</mat-icon>
       <span class="nav-text">Registro</span>
     </button>
-    <button mat-button routerLink="/drivers/management">
+
+
+    <button mat-icon-button [matMenuTriggerFor]="driversMenu" aria-label="Conductores">
       <mat-icon>people</mat-icon>
-      <span class="nav-text">Conductores</span>
     </button>
-    <button mat-button routerLink="/vehicles/management">
+    <mat-menu #driversMenu="matMenu">
+      <button mat-menu-item routerLink="/management/driver/new">
+        <mat-icon>person_add</mat-icon>
+        <span>Agregar Conductor</span>
+      </button>
+      <button mat-menu-item routerLink="/drivers/management">
+        <mat-icon>manage_accounts</mat-icon>
+        <span>Ver Conductores</span>
+      </button>
+    </mat-menu>
+
+
+    <button mat-icon-button [matMenuTriggerFor]="vehiclesMenu" aria-label="Vehículos">
       <mat-icon>local_shipping</mat-icon>
-      <span class="nav-text">Vehículos</span>
     </button>
+    <mat-menu #vehiclesMenu="matMenu">
+      <button mat-menu-item routerLink="/vehicles/add">
+        <mat-icon>add_circle</mat-icon>
+        <span>Agregar Vehículo</span>
+      </button>
+      <button mat-menu-item routerLink="/vehicles/management">
+        <mat-icon>directions_car</mat-icon>
+        <span>Ver Vehículos</span>
+      </button>
+    </mat-menu>
   </nav>
 
   <span class="button-i18n" aria-description="switcher button for i18n">
@@ -39,6 +62,7 @@
       <span>Cerrar sesión</span>
     </button>
   </mat-menu>
+
   <button mat-icon-button aria-label="Notificaciones">
     <mat-icon>notifications</mat-icon>
   </button>

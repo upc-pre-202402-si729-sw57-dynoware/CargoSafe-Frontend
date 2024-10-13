@@ -7,6 +7,7 @@ import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {NgIf} from "@angular/common";
 import {MatIconModule} from "@angular/material/icon";
+import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 
 @Component({
   selector: 'app-drivers-create-and-edit',
@@ -24,7 +25,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatCardTitle,
     MatLabel,
     MatError,
-    MatIconModule
+    MatIconModule,
+    ToolbarContentComponent
 
   ],
   templateUrl: './drivers-create-and-edit.component.html',

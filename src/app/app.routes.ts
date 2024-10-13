@@ -17,6 +17,10 @@ import {
   ToolbarEntrepreneurContentComponent
 } from "./public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {RequestComponent} from "./request-service/component/request/request.component";
+import {
+  DriversCreateAndEditComponent
+} from "./drivers/components/drivers-create-and-edit/drivers-create-and-edit.component";
+import {AddDriverManagementComponent} from "./drivers/pages/add-driver-management/add-driver-management.component";
 
 
 export const routes: Routes = [
@@ -26,6 +30,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'pages', component: PageNotFoundComponent },
   { path: 'drivers/management', component: DriverManagementComponent },
+  {path: 'management/driver/new',component: AddDriverManagementComponent},
   { path: 'vehicles/management', component: VehiclesManagementComponent },
   { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent },
   { path: 'list-trip', component: ListTripComponent },
