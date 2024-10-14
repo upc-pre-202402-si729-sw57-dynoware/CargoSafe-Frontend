@@ -1,0 +1,68 @@
+.vehicle-form-container {
+  max-width: 650px;
+  margin: 0 auto;
+  background: #f7f9fc;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vehicle-form-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.vehicle-form-container h2 {
+  margin-bottom: 1.8rem;
+  font-size: 26px;
+  text-align: center;
+  color: #37474f;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.vehicle-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-submit {
+  flex-grow: 1;
+  background-color: #29b6f6;
+  color: #ffffff;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #0288d1;
+  transform: translateY(-2px);
+}
+
+.btn-reset {
+  flex-grow: 1;
+  color: #e57373;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-reset:hover {
+  background-color: rgba(229, 115, 115, 0.1);
+}

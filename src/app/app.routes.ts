@@ -21,6 +21,9 @@ import {
   DriversCreateAndEditComponent
 } from "./drivers/components/drivers-create-and-edit/drivers-create-and-edit.component";
 import {AddDriverManagementComponent} from "./drivers/pages/add-driver-management/add-driver-management.component";
+import {
+  AddVehiclesManagementComponent
+} from "./vehicles/pages/add-vehicles-management/add-vehicles-management.component";
 
 
 export const routes: Routes = [
@@ -31,6 +34,7 @@ export const routes: Routes = [
   { path: 'pages', component: PageNotFoundComponent },
   { path: 'drivers/management', component: DriverManagementComponent },
   {path: 'management/driver/new',component: AddDriverManagementComponent},
+  {path: 'management/vehicle/new',component: AddVehiclesManagementComponent},
   { path: 'vehicles/management', component: VehiclesManagementComponent },
   { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent },
   { path: 'list-trip', component: ListTripComponent },
