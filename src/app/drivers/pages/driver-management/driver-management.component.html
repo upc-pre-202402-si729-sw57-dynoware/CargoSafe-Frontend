@@ -1,43 +1,39 @@
+
 <app-toolbar-content></app-toolbar-content>
 <div class="driver-management-container">
+  <button mat-button class="add-driver-button" (click)="onAddDriver()">
+    <mat-icon>add</mat-icon> Add Driver
+  </button>
 
-  <!-- Driver Table -->
   <mat-card class="driver-table-card">
-    <mat-card-title class="driver-mat-card-title">Driver List</mat-card-title>
+    <mat-card-title class="driver-mat-card-title">DRIVER MANAGEMENT</mat-card-title>
     <div class="table-wrapper">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-
-        <!-- ID Column -->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
           <td mat-cell *matCellDef="let driver"> {{ driver.id }} </td>
         </ng-container>
 
-        <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
           <td mat-cell *matCellDef="let driver"> {{ driver.name }} </td>
         </ng-container>
 
-        <!-- DNI Column -->
         <ng-container matColumnDef="dni">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
           <td mat-cell *matCellDef="let driver"> {{ driver.dni }} </td>
         </ng-container>
 
-        <!-- Phone Column -->
         <ng-container matColumnDef="phone">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
           <td mat-cell *matCellDef="let driver"> {{ driver.phone }} </td>
         </ng-container>
 
-        <!-- License Column -->
         <ng-container matColumnDef="license">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> License </th>
           <td mat-cell *matCellDef="let driver"> {{ driver.license }} </td>
         </ng-container>
 
-        <!-- Photo Column -->
         <ng-container matColumnDef="url_photo">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Photo </th>
           <td mat-cell *matCellDef="let driver">
@@ -45,7 +41,6 @@
           </td>
         </ng-container>
 
-        <!-- Actions Column -->
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Actions </th>
           <td mat-cell *matCellDef="let driver">
@@ -58,7 +53,6 @@
           </td>
         </ng-container>
 
-        <!-- Row Definition -->
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
       </table>

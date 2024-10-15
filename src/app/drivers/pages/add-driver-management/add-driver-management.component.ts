@@ -1,12 +1,10 @@
-import {AfterViewInit, Component, EventEmitter, inject, Input, OnInit, Output, ViewChild} from '@angular/core';
+import { Component,inject, OnInit} from '@angular/core';
 import {
-    DriversCreateAndEditComponent
-} from "../../components/drivers-create-and-edit/drivers-create-and-edit.component";
+    DriversEditComponent
+} from "../../components/drivers-edit/drivers-edit.component";
 import {DriverEntity} from "../../model/driver.entity";
-import {FormsModule, NgForm} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
 import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
 import {DriverService} from "../../services/driver.service";
 import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {NgIf} from "@angular/common";
@@ -15,12 +13,17 @@ import {MatButton} from "@angular/material/button";
 import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {MatIcon} from "@angular/material/icon";
+import {
+  DialogSuccessfullyComponent
+} from "../../../public/components/dialogs/dialog-successfully/dialog-successfully.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-driver-management',
   standalone: true,
   imports: [
-    DriversCreateAndEditComponent,
+    DriversEditComponent,
     MatFormField,
     NgIf,
     MatInput,
@@ -43,6 +46,8 @@ export class AddDriverManagementComponent implements OnInit {
   protected dataSource: MatTableDataSource<DriverEntity> = new MatTableDataSource();
 
   private driverService: DriverService = inject(DriverService);
+  private dialog: MatDialog = inject(MatDialog);
+  private router: Router = inject(Router);
 
   ngOnInit(): void {
     this.getAllDrivers();
@@ -54,24 +59,6 @@ export class AddDriverManagementComponent implements OnInit {
     } else {
       this.createDriver();
     }
-    this.resetEditState();
-  }
-
-  protected onEditItem(item: DriverEntity): void {
-    this.editMode = true;
-    this.driverData = item;
-  }
-
-  protected onDeleteItem(item: DriverEntity): void {
-    this.deleteDriver(item.id);
-  }
-
-  protected onCancelRequested(): void {
-    this.resetEditState();
-    this.getAllDrivers();
-  }
-
-  protected onAddDriver(): void {
     this.resetEditState();
   }
 
@@ -89,6 +76,7 @@ export class AddDriverManagementComponent implements OnInit {
   private createDriver(): void {
     this.driverService.create(this.driverData).subscribe((response: DriverEntity) => {
       this.dataSource.data = [...this.dataSource.data, response];
+      this.showSuccessDialog();
     });
   }
 
@@ -97,12 +85,21 @@ export class AddDriverManagementComponent implements OnInit {
       const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
       this.dataSource.data[index] = response;
       this.dataSource.data = [...this.dataSource.data];
+      this.showSuccessDialog();
     });
   }
 
-  private deleteDriver(id: number): void {
-    this.driverService.delete(id).subscribe(() => {
-      this.dataSource.data = this.dataSource.data.filter(driver => driver.id !== id);
+  private showSuccessDialog(): void {
+    const dialogRef = this.dialog.open(DialogSuccessfullyComponent, {
+      data: { message: 'Driver added successfully!' }
     });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigate(['/drivers/management']);
+    });
+  }
+
+  onCancel(): void {
+    this.router.navigate(['/drivers/management']);
   }
 }

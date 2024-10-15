@@ -1,68 +1,97 @@
 .vehicle-form-container {
-  max-width: 650px;
+  max-width: 600px;
   margin: 0 auto;
-  background: #f7f9fc;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  padding: 2.5rem 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 3rem;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.8s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .vehicle-form-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.vehicle-form-container h2 {
-  margin-bottom: 1.8rem;
-  font-size: 26px;
+.form-title {
   text-align: center;
-  color: #37474f;
+  color: #333333;
+  font-size: 2.5rem;
   font-weight: 600;
-  text-transform: uppercase;
+  margin-bottom: 2rem;
 }
 
 .vehicle-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.5rem;
 }
 
-.full-width {
-  width: 100%;
+.mat-elegant-field {
+  background-color: #f9f9f9;
+  border-radius: 8px;
 }
 
-.mat-form-field {
-  width: 100%;
+.mat-elegant-field .mat-input-element {
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease;
+}
+
+.mat-elegant-field.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #F1F500;
+}
+
+.mat-elegant-field:hover .mat-input-element {
+  border-color: #F1F500;
+}
+
+.mat-elegant-field .mat-form-field-label {
+  color: #333333;
+  font-weight: bold;
 }
 
 .button-group {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  align-items: center;
+  margin-top: 2rem;
 }
 
 .btn-submit {
-  flex-grow: 1;
-  background-color: #29b6f6;
-  color: #ffffff;
+  background-color: #F1F500;
+  color: #333333;
   font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-submit:hover {
-  background-color: #0288d1;
-  transform: translateY(-2px);
-}
-
-.btn-reset {
-  flex-grow: 1;
-  color: #e57373;
-  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
   transition: background-color 0.3s ease;
 }
 
-.btn-reset:hover {
-  background-color: rgba(229, 115, 115, 0.1);
+.btn-submit:hover {
+  background-color: #e5db00;
+}
+
+.btn-cancel {
+  color: #ff5252;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  transition: color 0.3s ease;
+}
+
+.btn-cancel:hover {
+  color: #ff0000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
