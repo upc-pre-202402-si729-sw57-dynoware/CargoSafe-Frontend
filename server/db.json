@@ -160,7 +160,6 @@
       "url_photo": "testfinal"
     }
   ],
-  "ordersOnTrip": [],
   "vehicles": [
     {
       "id": 1,
@@ -277,5 +276,6 @@
         }
       }
     }
-  ]
+  ],
+  "ordersOnTrip": []
 }
