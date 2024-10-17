@@ -1,3 +1,10 @@
 {
-
+  "page_not_found": "Page not found",
+  "register": "Register",
+  "add_driver": "Add driver",
+  "see_drivers": "See drivers",
+  "add_vehicle": "Add vehicle",
+  "see_vehicles": "See vehicles",
+  "configuration": "Configuration",
+  "log_out": "Log out"
 }

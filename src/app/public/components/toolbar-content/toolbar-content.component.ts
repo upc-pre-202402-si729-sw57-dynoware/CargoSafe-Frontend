@@ -5,6 +5,7 @@ import {MatIcon} from "@angular/material/icon";
 import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.component";
 import {RouterLink} from "@angular/router";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-toolbar-content',
@@ -18,7 +19,8 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
     RouterLink,
     MatMenu,
     MatMenuTrigger,
-    MatMenuItem
+    MatMenuItem,
+    TranslateModule
   ],
   templateUrl: './toolbar-content.component.html',
   styleUrl: './toolbar-content.component.css'

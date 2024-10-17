@@ -11,7 +11,7 @@
   <nav class="toolbar-nav">
     <button mat-button routerLink="/ordersOnTrip">
       <mat-icon>assignment</mat-icon>
-      <span class="nav-text">Registro</span>
+      <span class="nav-text">{{ "register" | translate}}</span>
     </button>
 
 
@@ -21,11 +21,11 @@
     <mat-menu #driversMenu="matMenu">
       <button mat-menu-item routerLink="/management/driver/new">
         <mat-icon>person_add</mat-icon>
-        <span>Agregar Conductor</span>
+        <span>{{ "add_driver" | translate}}</span>
       </button>
       <button mat-menu-item routerLink="/drivers/management">
         <mat-icon>manage_accounts</mat-icon>
-        <span>Ver Conductores</span>
+        <span>{{ "see_drivers" | translate}}</span>
       </button>
     </mat-menu>
 
@@ -36,11 +36,11 @@
     <mat-menu #vehiclesMenu="matMenu">
       <button mat-menu-item routerLink="/management/vehicle/new">
         <mat-icon>add_circle</mat-icon>
-        <span>Agregar Vehículo</span>
+        <span>{{ "add_vehicle" | translate}}</span>
       </button>
       <button mat-menu-item routerLink="/vehicles/management">
         <mat-icon>directions_car</mat-icon>
-        <span>Ver Vehículos</span>
+        <span>{{ "see_vehicles" | translate}}</span>
       </button>
     </mat-menu>
   </nav>
@@ -55,11 +55,11 @@
   <mat-menu #profileMenu="matMenu">
     <button mat-menu-item>
       <mat-icon>settings</mat-icon>
-      <span>Configuración</span>
+      <span>{{ "configuration" | translate }}</span>
     </button>
     <button mat-menu-item>
       <mat-icon>logout</mat-icon>
-      <span>Cerrar sesión</span>
+      <span>{{ "log_out" | translate }}</span>
     </button>
   </mat-menu>
 

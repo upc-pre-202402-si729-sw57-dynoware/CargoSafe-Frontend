@@ -1,3 +1,10 @@
 {
-
+  "page_not_found": "Pagina no encontrada",
+  "register": "Registro",
+  "add_driver": "Agregar Conductor",
+  "see_drivers": "Ver Conductores",
+  "add_vehicle": "Agregar Vehículo",
+  "see_vehicles": "Ver Vehículos",
+  "configuration": "Configuración",
+  "log_out": "Cerrar sesión"
 }
