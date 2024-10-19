@@ -22,6 +22,10 @@ export class LanguageSwitcherComponent {  protected currentLang = 'en';
 
     this.currentLang = translate.currentLang;
 
+    this.translate.setDefaultLang('en');
+
+    this.translate.use('en');
+
   }
 
   useLanguage(language: string) {
