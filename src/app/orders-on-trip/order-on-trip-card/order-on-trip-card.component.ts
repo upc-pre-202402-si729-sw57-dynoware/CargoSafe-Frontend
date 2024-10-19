@@ -25,6 +25,7 @@ import {
 import {FormsModule, NgForm} from "@angular/forms";
 import {MatNativeDateModule} from "@angular/material/core";
 import {ToolbarContentComponent} from "../../public/components/toolbar-content/toolbar-content.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-order-on-trip-card',
@@ -54,7 +55,8 @@ import {ToolbarContentComponent} from "../../public/components/toolbar-content/t
     MatCardSubtitle,
     DatePipe,
     MatNativeDateModule,
-    ToolbarContentComponent
+    ToolbarContentComponent,
+    TranslateModule
   ],
   templateUrl: './order-on-trip-card.component.html',
   styleUrl: './order-on-trip-card.component.css'

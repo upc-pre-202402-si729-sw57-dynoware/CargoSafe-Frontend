@@ -26,6 +26,12 @@
   font-weight: bold;
 }
 
+.view-more2 {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 .order-card {
   display: flex;
   justify-content: space-between;

@@ -1,15 +1,15 @@
-<mat-card-title class="mat-title-medium">Mercancía Agendada</mat-card-title>
+<mat-card-title class="mat-title-medium">{{ "scheduled_merchandise" | translate }}</mat-card-title>
 <div class="container">
 <mat-card *ngFor="let merch of merchandises" class="merch-card">
   <mat-card-content>
-    <p>Dirección de entrega: {{merch.direction}}</p>
-    <p>Tipo de carga: {{merch.type}}</p>
-    <p>Costo de transporte: {{merch.travel_price}}</p>
-    <p>Producto transportado: {{merch.product}}</p>
-    <p>Cantidad de carga: {{merch.amount}}</p>
-    <p>Fecha y hora de entrega: {{merch.date}}</p>
-    <p>Condiciones especiales: {{merch.special_conditions}}</p>
-    <mat-button-toggle class="ubication-button">Ver ubicación</mat-button-toggle>
+    <p>{{ "delivery_address" | translate }}: {{merch.direction}}</p>
+    <p>{{ "type_cargo" | translate }}: {{merch.type}}</p>
+    <p>{{ "transportation_cost" | translate }}: {{merch.travel_price}}</p>
+    <p>{{ "transported_product" | translate }}: {{merch.product}}</p>
+    <p>{{ "cargo_quantity" | translate }}: {{merch.amount}}</p>
+    <p>{{ "delivery_date" | translate }}: {{merch.date}}</p>
+    <p>{{ "special_conditions" | translate }}: {{merch.special_conditions}}</p>
+    <mat-button-toggle class="ubication-button">{{ "view_location" | translate }}</mat-button-toggle>
   </mat-card-content>
 </mat-card>
 </div>

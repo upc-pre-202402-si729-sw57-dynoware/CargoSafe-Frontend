@@ -4,6 +4,7 @@ import { Merchandise } from '../../model/merchandise.entity';
 import { MerchandiseService } from '../../services/merchandise.service';
 import { NgForOf } from '@angular/common';
 import { MatButtonToggle } from '@angular/material/button-toggle';
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-merchandise-item',
@@ -13,7 +14,8 @@ import { MatButtonToggle } from '@angular/material/button-toggle';
     MatCard,
     MatCardContent,
     NgForOf,
-    MatButtonToggle
+    MatButtonToggle,
+    TranslateModule
   ],
   templateUrl: './merchandise-item.component.html',
   styleUrls: ['./merchandise-item.component.css']

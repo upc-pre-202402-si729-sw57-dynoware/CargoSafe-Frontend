@@ -18,26 +18,28 @@ import {
   OrdersOnTripDialogComponent
 } from "../../components/Dialog/orders-on-trip-dialog/orders-on-trip-dialog.component";
 import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-orders-on-trip-management',
   standalone: true,
-    imports: [
-        OrderOnTripCardComponent,
-        MatCard,
-        NgForOf,
-        MatCardHeader,
-        MatCardContent,
-        MatCardActions,
-        MatIcon,
-        MatIconButton,
-        MatCardTitle,
-        MatCardSubtitle,
-        MatCardImage,
-        DatePipe,
-        MatFabButton,
-        ToolbarContentComponent
-    ],
+  imports: [
+    OrderOnTripCardComponent,
+    MatCard,
+    NgForOf,
+    MatCardHeader,
+    MatCardContent,
+    MatCardActions,
+    MatIcon,
+    MatIconButton,
+    MatCardTitle,
+    MatCardSubtitle,
+    MatCardImage,
+    DatePipe,
+    MatFabButton,
+    ToolbarContentComponent,
+    TranslateModule
+  ],
   templateUrl: './orders-on-trip-management.component.html',
   styleUrl: './orders-on-trip-management.component.css'
 })

@@ -4,6 +4,7 @@ import { MatGridList, MatGridTile } from "@angular/material/grid-list";
 import { StatisticsEntity } from "../../model/statistics.entity";
 import { Chart, registerables } from 'chart.js';
 import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-statistics',
@@ -11,7 +12,8 @@ import {ToolbarContentComponent} from "../../../public/components/toolbar-conten
   imports: [
     MatGridList,
     MatGridTile,
-    ToolbarContentComponent
+    ToolbarContentComponent,
+    TranslateModule
   ],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.css'

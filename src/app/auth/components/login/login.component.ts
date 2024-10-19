@@ -7,6 +7,8 @@ import {NgIf} from "@angular/common";
 import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatButton} from "@angular/material/button";
 import {MatInput} from "@angular/material/input";
+import {TranslateModule} from "@ngx-translate/core";
+import {LanguageSwitcherComponent} from "../../../public/components/language-switcher/language-switcher.component";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,9 @@ import {MatInput} from "@angular/material/input";
     MatButton,
     MatFormField,
     MatLabel,
-    MatInput
+    MatInput,
+    TranslateModule,
+    LanguageSwitcherComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

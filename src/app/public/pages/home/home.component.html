@@ -4,14 +4,14 @@
   <!-- Órdenes en curso Section -->
   <section class="orders-section">
     <div class="orders-header">
-      <h2>Órdenes en curso</h2>
-      <a class="view-more" href="#">VER MÁS ></a>
+      <h2>{{ "orders_progress" | translate }}</h2>
+      <a class="view-more" href="#">{{ "see_more" | translate }} ></a>
     </div>
     <div class="order-card">
       <div class="order-info">
-        <p><strong>En Tránsito</strong></p>
-        <p>Hora: 08:10 AM</p>
-        <p>Estado: El envío ha salido de la planta y está en tránsito.</p>
+        <p><strong>{{ "in_transit" | translate }}</strong></p>
+        <p>{{ "time" | translate }}: 08:10 AM</p>
+        <p>{{ "status" | translate }}: El envío ha salido de la planta y está en tránsito.</p>
       </div>
       <div class="order-image">
         <img src="./assets/images/ordenImage.jpg"  alt="Imagen de Orden">
@@ -22,8 +22,8 @@
   <!-- Mercancía Agedada Section -->
   <section class="merchandise-section">
     <div class="merchandise-header">
-      <h2>Mercancía agedada</h2>
-      <a class="view-more" [routerLink]="['/ordersOnTrip']">VER MÁS </a>
+      <h2>{{ "aged_merchandise" | translate }}</h2>
+      <a class="view-more2" [routerLink]="['/ordersOnTrip']">{{ "see_more" | translate }} ></a>
     </div>
     <div class="merchandise-grid">
       <div class="merch-card">

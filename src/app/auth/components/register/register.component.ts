@@ -10,6 +10,8 @@ import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {MatOption, MatSelect} from "@angular/material/select";
 import {RouterLink} from "@angular/router";
+import {LanguageSwitcherComponent} from "../../../public/components/language-switcher/language-switcher.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-register',
@@ -25,7 +27,9 @@ import {RouterLink} from "@angular/router";
     NgIf,
     MatLabel,
     MatError,
-    RouterLink
+    RouterLink,
+    LanguageSwitcherComponent,
+    TranslateModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'

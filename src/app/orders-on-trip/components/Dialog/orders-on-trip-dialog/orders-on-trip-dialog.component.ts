@@ -21,6 +21,7 @@ import {
 } from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-orders-on-trip-dialog',
@@ -47,6 +48,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    TranslateModule,
 
 
   ],

@@ -8,20 +8,20 @@
 
     <mat-card-header>
       <mat-card-title>{{ order.productName }}</mat-card-title>
-      <mat-card-subtitle>Cliente: {{ order.clientName }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ "client" | translate }}: {{ order.clientName }}</mat-card-subtitle>
     </mat-card-header>
 
 
     <mat-card-content>
-      <p><strong>Cantidad:</strong> {{ order.quantity }}</p>
-      <p><strong>Estado:</strong> {{ order.status }}</p>
-      <p><strong>Ubicación actual:</strong> {{ order.currentLocation }}</p>
-      <p><strong>Conductor:</strong> {{ order.driverName }}</p>
-      <p><strong>Vehículo:</strong> {{ order.vehicleId }}</p>
-      <p><strong>Dirección de origen:</strong> {{ order.originAddress }}</p>
-      <p><strong>Dirección de destino:</strong> {{ order.destinationAddress }}</p>
-      <p><strong>Hora de despacho:</strong> {{ order.dispatchTime | date:'short' }}</p>
-      <p><strong>Entrega estimada:</strong> {{ order.estimatedDeliveryTime | date:'short' }}</p>
+      <p><strong>{{ "quantity" | translate }}:</strong> {{ order.quantity }}</p>
+      <p><strong>{{ "status" | translate }}:</strong> {{ order.status }}</p>
+      <p><strong>{{ "current_location" | translate }}:</strong> {{ order.currentLocation }}</p>
+      <p><strong>{{ "driver" | translate }}:</strong> {{ order.driverName }}</p>
+      <p><strong>{{ "vehicle" | translate }}:</strong> {{ order.vehicleId }}</p>
+      <p><strong>{{ "origin_address" | translate }}:</strong> {{ order.originAddress }}</p>
+      <p><strong>{{ "destination_address" | translate }}:</strong> {{ order.destinationAddress }}</p>
+      <p><strong>{{ "dispatch_time" | translate }}:</strong> {{ order.dispatchTime | date:'short' }}</p>
+      <p><strong>{{ "estimated_time" | translate }}:</strong> {{ order.estimatedDeliveryTime | date:'short' }}</p>
     </mat-card-content>
 
 

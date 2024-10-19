@@ -1,14 +1,18 @@
 <div class="register-container">
 
 
+  <span class="button-i18n" aria-description="switcher button for i18n">
+    <app-language-switcher></app-language-switcher>
+  </span>
+
   <div class="register-card">
-    <h2 class="register-title">Registro</h2>
+    <h2 class="register-title">{{ "register" | translate }}</h2>
     <div class="register-logo">
       <img src="assets/images/cargosafe-logo.png" alt="Logo" />
     </div>
     <form (ngSubmit)="onRegister()" #registerForm="ngForm" class="register-form">
       <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Nombre</mat-label>
+        <mat-label>{{ "name" | translate }}</mat-label>
         <input
           matInput
           type="text"
@@ -16,16 +20,16 @@
           [(ngModel)]="registerDTO.name"
           name="name"
           required
-          placeholder="Ingresa tu nombre"
+
           #name="ngModel"
         />
         <mat-error *ngIf="name.invalid && (name.dirty)">
-          El nombre es requerido.
+          {{ "t3" | translate }}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Apellido</mat-label>
+        <mat-label>{{ "last_name" | translate }}</mat-label>
         <input
           matInput
           type="text"
@@ -33,16 +37,16 @@
           [(ngModel)]="registerDTO.last_name"
           name="last_name"
           required
-          placeholder="Ingresa tu apellido"
+
           #lastName="ngModel"
         />
         <mat-error *ngIf="lastName.invalid && (lastName.dirty)">
-          El apellido es requerido.
+          {{ "last_name" | translate }}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Email</mat-label>
+        <mat-label>{{ "email" | translate }}</mat-label>
         <input
           matInput
           type="email"
@@ -50,16 +54,16 @@
           [(ngModel)]="registerDTO.email"
           name="email"
           required
-          placeholder="Ingresa tu email"
+
           #email="ngModel"
         />
         <mat-error *ngIf="email.invalid && (email.dirty)">
-          El email es requerido y debe ser válido.
+          {{ "t1" | translate }}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Teléfono</mat-label>
+        <mat-label>{{ "phone" | translate }}</mat-label>
         <input
           matInput
           type="text"
@@ -67,16 +71,16 @@
           [(ngModel)]="registerDTO.phone"
           name="phone"
           required
-          placeholder="Ingresa tu teléfono"
+
           #phone="ngModel"
         />
         <mat-error *ngIf="phone.invalid && (phone.dirty)">
-          El teléfono es requerido.
+          {{ "t5" | translate }}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Contraseña</mat-label>
+        <mat-label>{{ "password" | translate }}</mat-label>
         <input
           matInput
           type="password"
@@ -84,16 +88,16 @@
           [(ngModel)]="registerDTO.password"
           name="password"
           required
-          placeholder="Ingresa tu contraseña"
+
           #password="ngModel"
         />
         <mat-error *ngIf="password.invalid && (password.dirty)">
-          La contraseña es requerida.
+          {{ "t2" | translate }}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Tipo de Usuario</mat-label>
+        <mat-label>{{ "user_type" | translate }}</mat-label>
         <mat-select [(ngModel)]="registerDTO['role_id']" name="role_id" required>
           <ng-container *ngFor="let role of roles">
             <mat-option *ngIf="role.name !== 'Administrador'" [value]="role.id">
@@ -102,18 +106,18 @@
           </ng-container>
         </mat-select>
         <mat-error *ngIf="registerForm.controls['role_id']?.invalid && registerForm.controls['role_id']?.dirty">
-          El tipo de usuario es requerido.
+          {{ "t6" | translate }}
         </mat-error>
       </mat-form-field>
 
 
       <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" class="register-button">
-        Registrar
+        {{ "register" | translate }}
       </button>
 
       <div class="login-container">
-        <p>¿Ya tienes una cuenta?
-          <a routerLink="/login" class="login-link">Inicia sesión aquí</a>
+        <p>{{ "toLogin1" | translate }}
+          <a routerLink="/login" class="login-link">{{ "toLogin2" | translate }}</a>
         </p>
       </div>
     </form>
