@@ -27,6 +27,7 @@ import {FormsModule} from "@angular/forms";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-list-trip',
@@ -60,7 +61,8 @@ import {ToolbarContentComponent} from "../../../public/components/toolbar-conten
     MatIconButton,
     MatCardTitle,
     DatePipe,
-    ToolbarContentComponent
+    ToolbarContentComponent,
+    TranslateModule
   ],
   templateUrl: './list-trip.component.html',
   styleUrl: './list-trip.component.css'

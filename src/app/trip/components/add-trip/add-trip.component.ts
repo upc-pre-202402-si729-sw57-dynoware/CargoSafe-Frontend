@@ -13,6 +13,7 @@ import {MatOption, MatSelect} from "@angular/material/select";
 import {
   DialogSuccessfullyComponent
 } from "../../../public/components/dialogs/dialog-successfully/dialog-successfully.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-add-trip',
@@ -33,7 +34,8 @@ import {
     MatIconButton,
     MatSelect,
     MatOption,
-    NgForOf
+    NgForOf,
+    TranslateModule
   ],
   templateUrl: './add-trip.component.html',
   styleUrl: './add-trip.component.css'
