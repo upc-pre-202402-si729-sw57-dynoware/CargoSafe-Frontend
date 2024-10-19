@@ -16,6 +16,7 @@ import {
   MatDialogRef,
   MatDialogTitle
 } from "@angular/material/dialog";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-drivers-edit',
@@ -39,7 +40,8 @@ import {
     MatColumnDef,
     MatDialogTitle,
     MatDialogContent,
-    MatDialogActions
+    MatDialogActions,
+    TranslateModule
 
   ],
   templateUrl: './drivers-edit.component.html',

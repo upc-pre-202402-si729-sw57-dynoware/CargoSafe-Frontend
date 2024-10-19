@@ -22,38 +22,40 @@ import {MatCard, MatCardTitle} from "@angular/material/card";
 import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {VehiclesEdit} from "../../components/vehicles-edit/vehicles-edt.component";
 import {MatDialog} from "@angular/material/dialog";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-vehicles-management',
   standalone: true,
-    imports: [
-        VehiclesEdit,
-        MatTable,
-        MatSort,
-        MatColumnDef,
-        MatHeaderCell,
-        MatSortHeader,
-        MatCell,
-        MatHeaderCellDef,
-        MatCellDef,
-        MatIcon,
-        MatHeaderRow,
-        NgClass,
-        MatRowDef,
-        MatHeaderRowDef,
-        MatRow,
-        MatPaginator,
-        MatIconModule,
-        MatIconButton,
-        MatFormField,
-        FormsModule,
-        MatInput,
-        MatButton,
-        MatLabel,
-        MatCardTitle,
-        MatCard,
-        ToolbarContentComponent
-    ],
+  imports: [
+    VehiclesEdit,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCell,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatIcon,
+    MatHeaderRow,
+    NgClass,
+    MatRowDef,
+    MatHeaderRowDef,
+    MatRow,
+    MatPaginator,
+    MatIconModule,
+    MatIconButton,
+    MatFormField,
+    FormsModule,
+    MatInput,
+    MatButton,
+    MatLabel,
+    MatCardTitle,
+    MatCard,
+    ToolbarContentComponent,
+    TranslateModule
+  ],
   templateUrl: './vehicles-management.component.html',
   styleUrl: './vehicles-management.component.css'
 })

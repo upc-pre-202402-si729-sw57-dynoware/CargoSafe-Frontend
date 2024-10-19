@@ -1,36 +1,36 @@
 
-<h2 mat-dialog-title>Edit Vehicle</h2>
+<h2 mat-dialog-title>{{ "edit_vehicle" | translate }}</h2>
 <mat-dialog-content>
   <form #vehicleForm="ngForm" class="vehicle-form">
 
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Model</mat-label>
+      <mat-label>{{ "model" | translate }}</mat-label>
       <input matInput name="model" required [(ngModel)]="vehicle.model" />
     </mat-form-field>
 
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Plate</mat-label>
+      <mat-label>{{ "plate" | translate }}</mat-label>
       <input matInput name="plate" required [(ngModel)]="vehicle.plate" />
     </mat-form-field>
 
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Max Load (kg)</mat-label>
+      <mat-label>{{ "maximum_load" | translate }} (kg)</mat-label>
       <input matInput name="max_load" type="number" required [(ngModel)]="vehicle.max_load" />
     </mat-form-field>
 
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Volume (m³)</mat-label>
+      <mat-label>{{ "volume" | translate }} (m³)</mat-label>
       <input matInput name="volume" type="number" required [(ngModel)]="vehicle.volume" />
     </mat-form-field>
 
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Photo URL</mat-label>
+      <mat-label>{{ "image_url" | translate }}</mat-label>
       <input matInput name="url_image" [(ngModel)]="vehicle.url_image" />
     </mat-form-field>
 
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button color="primary" (click)="onSubmit()">Accept</button>
+  <button mat-button (click)="onCancel()">{{ "cancel" | translate }}</button>
+  <button mat-button color="primary" (click)="onSubmit()">{{ "add" | translate }}</button>
 </mat-dialog-actions>

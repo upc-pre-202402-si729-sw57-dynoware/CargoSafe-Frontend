@@ -23,6 +23,7 @@ import {MatInput} from "@angular/material/input";
 import {MatCard, MatCardTitle} from "@angular/material/card";
 import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {MatDialog} from "@angular/material/dialog";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-driver-management',
@@ -53,7 +54,8 @@ import {MatDialog} from "@angular/material/dialog";
     MatLabel,
     MatCardTitle,
     MatCard,
-    ToolbarContentComponent
+    ToolbarContentComponent,
+    TranslateModule
   ],
   templateUrl: './driver-management.component.html',
   styleUrl: './driver-management.component.css'

@@ -12,6 +12,7 @@ import {
   MatDialogRef,
   MatDialogTitle
 } from "@angular/material/dialog";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-vehicles-edit',
@@ -25,7 +26,8 @@ import {
     MatLabel,
     MatDialogActions,
     MatDialogContent,
-    MatDialogTitle
+    MatDialogTitle,
+    TranslateModule
   ],
   templateUrl: './vehicles-edit.component.html',
   styleUrl: './vehicles-edit.component.css'

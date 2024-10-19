@@ -1,11 +1,10 @@
-
-<h2 mat-dialog-title>Edit Driver</h2>
+<h2 mat-dialog-title>{{ "edit_driver" | translate }}</h2>
 <mat-dialog-content>
   <form #driverForm="ngForm" class="driver-form">
 
 
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Name</mat-label>
+      <mat-label>{{ "name" | translate }}</mat-label>
       <input matInput name="name" required [(ngModel)]="driver.name" />
     </mat-form-field>
 
@@ -17,19 +16,19 @@
 
 
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Phone</mat-label>
+      <mat-label>{{ "phone" | translate }}</mat-label>
       <input matInput name="phone" required [(ngModel)]="driver.phone" />
     </mat-form-field>
 
 
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>License</mat-label>
+      <mat-label>{{ "license" | translate }}</mat-label>
       <input matInput name="license" required [(ngModel)]="driver.license" />
     </mat-form-field>
 
 
     <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Photo URL</mat-label>
+      <mat-label>{{ "photo_url" | translate }}</mat-label>
       <input matInput name="url_photo" [(ngModel)]="driver.url_photo" />
     </mat-form-field>
 

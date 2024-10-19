@@ -18,6 +18,7 @@ import {
 } from "../../../public/components/dialogs/dialog-successfully/dialog-successfully.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-add-driver-management',
@@ -35,7 +36,8 @@ import {Router} from "@angular/router";
     ToolbarContentComponent,
     MatLabel,
     MatError,
-    MatIcon
+    MatIcon,
+    TranslateModule
   ],
   templateUrl: './add-driver-management.component.html',
   styleUrl: './add-driver-management.component.css'

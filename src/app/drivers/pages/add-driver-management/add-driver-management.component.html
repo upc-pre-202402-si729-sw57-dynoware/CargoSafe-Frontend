@@ -1,10 +1,10 @@
 <app-toolbar-content></app-toolbar-content>
 
 <div class="driver-form-container">
-  <h2 class="form-title">Agregar Conductor</h2>
+  <h2 class="form-title">{{ "add_driver" | translate }}</h2>
   <form (ngSubmit)="onSubmit()" #driverForm="ngForm" class="driver-form">
     <mat-form-field appearance="outline" class="full-width mat-elegant-field">
-      <mat-label>Nombre</mat-label>
+      <mat-label>{{ "name" | translate }}</mat-label>
       <input matInput placeholder="Nombre del conductor" name="name" required [(ngModel)]="driverData.name">
     </mat-form-field>
 
@@ -14,23 +14,23 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width mat-elegant-field">
-      <mat-label>Teléfono</mat-label>
+      <mat-label>{{ "phone" | translate }}</mat-label>
       <input matInput placeholder="Teléfono del conductor" name="phone" required [(ngModel)]="driverData.phone">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width mat-elegant-field">
-      <mat-label>Licencia</mat-label>
+      <mat-label>{{ "license" | translate }}</mat-label>
       <input matInput placeholder="Licencia del conductor" name="license" required [(ngModel)]="driverData.license">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width mat-elegant-field">
-      <mat-label>URL de Foto</mat-label>
+      <mat-label>{{ "photo_url" | translate }}</mat-label>
       <input matInput placeholder="URL de la foto del conductor" name="url_photo" [(ngModel)]="driverData.url_photo">
     </mat-form-field>
 
     <div class="button-group">
-      <button mat-raised-button color="primary" class="btn-submit">Agregar</button>
-      <button mat-button color="warn" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+      <button mat-raised-button color="primary" class="btn-submit">{{ "add" | translate }}</button>
+      <button mat-button color="warn" class="btn-cancel" (click)="onCancel()">{{ "cancel" | translate }}</button>
     </div>
   </form>
 </div>

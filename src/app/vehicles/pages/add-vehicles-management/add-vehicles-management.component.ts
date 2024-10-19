@@ -11,6 +11,7 @@ import {
 } from "../../../public/components/dialogs/dialog-successfully/dialog-successfully.component";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-add-vehicles-management',
@@ -21,7 +22,8 @@ import {MatDialog} from "@angular/material/dialog";
     MatFormField,
     MatButton,
     ToolbarContentComponent,
-    MatLabel
+    MatLabel,
+    TranslateModule
   ],
   templateUrl: './add-vehicles-management.component.html',
   styleUrl: './add-vehicles-management.component.css'
