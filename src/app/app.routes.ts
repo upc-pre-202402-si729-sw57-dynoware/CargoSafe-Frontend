@@ -24,6 +24,7 @@ import {AddDriverManagementComponent} from "./drivers/pages/add-driver-managemen
 import {
   AddVehiclesManagementComponent
 } from "./vehicles/pages/add-vehicles-management/add-vehicles-management.component";
+import {AddTripComponent} from "./trip/components/add-trip/add-trip.component";
 
 
 export const routes: Routes = [
@@ -38,6 +39,7 @@ export const routes: Routes = [
   { path: 'vehicles/management', component: VehiclesManagementComponent },
   { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent },
   { path: 'list-trip', component: ListTripComponent },
+  { path: 'add-trip', component: AddTripComponent },
   { path: 'trip-track', component: TripTrackingComponent },
   { path: 'added-merchandise', component: MerchandiseItemComponent },
   { path: 'stadistics', component: StatisticsComponent},
