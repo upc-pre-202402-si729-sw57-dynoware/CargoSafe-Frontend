@@ -1,4 +1,59 @@
 .add-trip-card{
-  background-color: yellow !important;
-  margin-bottom:10px ;
+  width:80%;
+  margin: 0 auto !important;
+  margin-top:10%!important;
+  background-color: #fff900;
+}
+.text-inside-grid {
+  position: absolute;
+  left: 5px;
+}
+.btn-card{
+  background-color: #232315;
+  color: #ffffff;
+}
+.progress-bar {
+  width: 100%;
+  mat-grid-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .step {
+      text-align: center;
+
+      .icon {
+        font-size: 25px;
+        color: #673ab7; // Color personalizado del ícono
+      }
+
+      .label {
+        margin-top: 8px;
+        font-size: 14px;
+        color: #333; // Color del texto del paso
+      }
+
+      .date {
+        margin-top: 4px;
+        font-size: 12px;
+        color: #999; // Color del texto de la fecha
+      }
+    }
+  }
+}
+.progress-bar {
+  position: relative;
+  mat-grid-tile {
+
+    &:not(:last-child):after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      height: 2px;
+      width: 100%;
+      background-color: #673ab7; // Color de la línea de progreso
+    }
+  }
 }
