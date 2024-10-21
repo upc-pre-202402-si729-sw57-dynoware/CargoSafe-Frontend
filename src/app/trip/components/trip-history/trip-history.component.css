@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+.table-wrapper {
+  width: 1024px;
+  margin:  auto;
+  text-align: center;
+}
+.title {
+  text-align: center;
+  margin-top: 20px;
+  color: #8D8000;
+}
+
+.trip-history-card {
+  margin: 50px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  color: #333;
+}
+
+.text-center {
+  text-align: center;
+}
