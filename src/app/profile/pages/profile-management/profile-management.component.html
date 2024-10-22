@@ -1,0 +1,28 @@
+<h2 class="main-title"> My profile </h2>
+
+<div class="profile-image">
+  <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+</div>
+
+<mat-card class="card-container-1">
+  <mat-card-content>
+    <div class="profile-container">
+      <div *ngIf="user" class="profile-info">
+        <h6 class="card-title"><strong>Name: </strong></h6>
+        <p>{{ user.name }}</p>
+        <h6 class="card-title"> Last Name: </h6>
+        <p> {{ user.last_name }}</p>
+        <h6 class="card-title"> Email: </h6>
+        <p> {{user.email }}</p>
+        <h6 class="card-title"> Phone: </h6>
+        <p> {{ user.phone }}</p>
+        <h6 class="card-title"> Password: </h6>
+        <p> {{ user.password }}</p>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button class="button-container" (click)="editProfile()">Edit</button>
+  </mat-card-actions>
+</mat-card>
+<div class="spacer"></div>
