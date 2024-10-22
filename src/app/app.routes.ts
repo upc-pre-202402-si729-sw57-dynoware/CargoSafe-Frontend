@@ -10,6 +10,8 @@ import {TripTrackingComponent} from "./trip/components/trip-tracking/trip-tracki
 import {VehiclesManagementComponent} from "./vehicles/pages/vehicles-management/vehicles-management.component";
 import {MerchandiseItemComponent} from "./merchandise/components/merchandise-item/merchandise-item.component";
 import {StatisticsComponent} from "./company/components/statistics/statistics.component";
+import {ProfileManagementComponent} from "./profile/pages/profile-management/profile-management.component";
+import {ProfileEditComponent} from "./profile/pages/profile-edit/profile-edit.component";
 
 
 export const routes: Routes = [
@@ -23,4 +25,6 @@ export const routes: Routes = [
   { path: 'trip-track',component: TripTrackingComponent },
   { path: 'added-merchandise', component: MerchandiseItemComponent},
   { path: 'stadistics', component: StatisticsComponent},
+  { path: 'profile', component: ProfileManagementComponent },
+  { path: 'profile/edit', component: ProfileEditComponent },
 ];
