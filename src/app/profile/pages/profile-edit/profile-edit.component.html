@@ -1,0 +1,51 @@
+<h2 class="main-title"> My profile </h2>
+
+<div class="profile-image">
+  <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+</div>
+
+<mat-card class="card-container-2">
+  <mat-card-content>
+    <div *ngIf="user">
+      <form (ngSubmit)="updateProfile()" class="form-container">
+        <div class="form-field">
+          <h6 class="title"><strong>Name: </strong></h6>
+          <mat-form-field class="large-form-field">
+            <input matInput placeholder="Name" name="name" required [(ngModel)]="user.name">
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <h6 class="title"><strong>Last Name: </strong></h6>
+          <mat-form-field class="large-form-field">
+            <input matInput placeholder="Last name" name="last_name" required [(ngModel)]="user.last_name">
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <h6 class="title"> Email: </h6>
+          <mat-form-field class="large-form-field">
+            <input matInput placeholder="Email" name="email" required [(ngModel)]="user.email">
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <h6 class="title"> Phone: </h6>
+          <mat-form-field class="large-form-field">
+            <input matInput placeholder="Phone" name="phone" required [(ngModel)]="user.phone">
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <h6 class="title"> Password: </h6>
+          <mat-form-field class="large-form-field">
+            <input matInput placeholder="Password" name="password" required [(ngModel)]="user.password">
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <ng-container class="button">
+            <button mat-raised-button color="primary" type="submit">Update</button>
+            <button mat-raised-button type="button" color="warn" (click)="cancelEdit()">Cancel</button>
+          </ng-container>
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>
+<div class="spacer"></div>

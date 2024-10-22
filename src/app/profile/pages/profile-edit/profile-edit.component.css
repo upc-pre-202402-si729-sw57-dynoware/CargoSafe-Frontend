@@ -1,0 +1,83 @@
+.main-title {
+  font-size: 35px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #333;
+}
+
+.profile-image {
+  display: flex;
+  padding-bottom: 20px;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.form-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-container-2 {
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  text-align: center;
+  color: #333;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  background-color: #f1f1f1;
+}
+
+.large-form-field {
+  width: 200%;
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  width: 50%;
+  margin-top: 20px;
+}
+
+.spacer{
+  padding-bottom: 50px;
+}
