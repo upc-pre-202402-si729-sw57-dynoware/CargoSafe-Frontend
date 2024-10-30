@@ -1,0 +1,25 @@
+<div class="container">
+  <mat-card class="register-user" aria-label="Container for register user form">
+    <h1 class="title">Registrarse</h1>
+    <mat-card-content>
+      <h2>¡Te damos la bienvenida a CargoSafe!</h2>
+      <img src="assets/images/cargosafe-logo.png" alt="Cargo Safe image" width="150px" />
+      <p class="role-description">Para empezar, ¿cuál es tu rol?</p>
+      <div class="roles">
+
+
+        <div class="role">
+          <button mat-flat-button style="background-color: #007BFF; color: white;" (click)="registerEntrepreneur()">Empresario</button>
+          <p class="role-text">Si eres un empresario </p>
+        </div>
+        <div class="role">
+          <button mat-flat-button style="background-color: #FF5733; color: white;" (click)="registerCompany()">Compañía</button>
+          <p class="role-text">Si representas a una compañía en el sector logistico.</p>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <p class="login"><a routerLink="/login">¿Ya tienes una cuenta? Inicia sesión</a></p>
+    </mat-card-actions>
+  </mat-card>
+</div>

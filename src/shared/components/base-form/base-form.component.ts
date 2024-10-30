@@ -5,8 +5,8 @@ import {FormGroup} from "@angular/forms";
   selector: 'app-base-form',
   standalone: true,
   imports: [],
-  templateUrl: './base-form.component.html',
-  styleUrl: './base-form.component.css'
+  templateUrl: './base-form.components.html',
+  styleUrl: './base-form.components.css'
 })
 export class BaseFormComponent {
 

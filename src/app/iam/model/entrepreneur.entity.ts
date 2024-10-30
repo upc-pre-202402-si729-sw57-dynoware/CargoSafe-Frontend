@@ -1,9 +1,9 @@
 export class EntrepreneurEntity {
   id: number;
-  user_id: number;
+  userId: number;
 
-  constructor(entrepreneur: { id?: number; user_id?: number }) {
+  constructor(entrepreneur: { id?: number; userId?: number }) {
     this.id = entrepreneur.id || 0;
-    this.user_id = entrepreneur.user_id || 0;
+    this.userId = entrepreneur.userId || 0;
   }
 }

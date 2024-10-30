@@ -2,162 +2,108 @@
   "roles": [
     {
       "id": 1,
-      "name": "Administrador"
+      "name": "ROLE_ADMINISTRATOR"
     },
     {
       "id": 2,
-      "name": "Transportista"
+      "name": "ROLE_COMPANY"
     },
     {
       "id": 3,
-      "name": "Empresario"
+      "name": "ROLE_ENTREPRENEUR"
     }
   ],
-  "companies": [
-    {
-      "id": 1,
-      "name": "Transporte Segurp S.A.",
-      "membershipId": 2
-    },
-    {
-      "id": 2,
-      "name": "Carga Rápida E.I.R.L.",
-      "membershipId": 1
-    }
-  ],
+  "companies": [],
   "memberships": [
     {
       "id": 1,
       "type": "Plan Básico",
-      "price": "S/ 100",
-      "duration": "1 mes",
+      "price": 100,
+      "duration": 1,
       "description": "Acceso limitado a servicios de transporte"
     },
     {
       "id": 2,
-      "name": "Plan Premium",
-      "price": "S/ 500",
-      "duration": "1 mes",
+      "type": "Plan Premium",
+      "price": 500,
+      "duration": 1,
       "features": "Acceso completo y atención prioritaria"
     }
+  ],
+  "authentication": [
+
   ],
   "users": [
     {
       "id": 1,
       "name": "Carlos Ruiz",
       "lastname": "Perez Gonzales",
-      "email": "carlos.ruiz@empresa.com",
+      "email": "carlos.ruiz@transporteseguro.com",
       "phone": "987654321",
       "password": "123456",
-      "role_id": 2,
-      "company_id": null,
-      "entrepreneur_id": 2
+      "roleId": 2
     },
     {
       "id": 2,
-      "name": "Ana Gómez",
-      "lastname": "Perez Gonzales",
-      "email": "ana.gomez@empresa.com",
-      "phone": "984321678",
-      "password": "zzzzz",
-      "role_id": 3,
-      "company_id": 2,
-      "entrepreneur_id": null
+      "name": "asdas",
+      "lastname": "",
+      "email": "dasdas@gmail.com",
+      "phone": "asdasdas",
+      "password": "asdasdasd",
+      "roleId": 3
     },
     {
-      "id": 3,
-      "name": "Luis Martínez",
-      "lastname": "Perez Gonzales",
-      "email": "luis.martinez@empresa.com",
-      "phone": "981234567",
-      "password": "aaaa",
-      "role_id": 3,
-      "company_id": null,
-      "entrepreneur_id": 2
+      "email": "dasdas@gmail.com",
+      "password": "asdasdasd",
+      "id": 3
+    },
+    {
+      "email": "rivacortezf@gmail.com",
+      "password": "riva133test@#!@#",
+      "id": 4
     }
   ],
   "entrepreneurs": [
+
+  ],
+  "profiles": [
     {
       "id": 1,
-      "user_id": 2
+      "userId": 1,
+      "bio": "Gerente de logística con 10 años de experiencia",
+      "avatar": "https://example.com/avatars/carlos.jpg"
     },
     {
       "id": 2,
-      "user_id": 3
-    }
-  ],
-  "merchandise": [
-    {
-      "id": "1",
-      "direction": "Av. Perú",
-      "type": "Frágil",
-      "travel_price": "S/ 1500",
-      "product": "Vasos de cristal",
-      "amount": "200 unidades",
-      "date": "2024-09-27",
-      "special_conditions": "Transportar con cuidado"
-    },
-    {
-      "id": "2",
-      "direction": "Av. Lima",
-      "type": "Perecible",
-      "travel_price": "S/ 1800",
-      "product": "Pescado fresco",
-      "amount": "500 kg",
-      "date": "2024-09-25",
-      "special_conditions": "Mantener por debajo de 5°C"
-    },
-    {
-      "id": "3",
-      "direction": "Av. Primavera",
-      "type": "Pesado",
-      "travel_price": "S/ 2500",
-      "product": "Barras de acero",
-      "amount": "1000 unidades",
-      "date": "2024-09-28",
-      "special_conditions": "Sin condiciones especiales"
+      "userId": 2,
+      "bio": "Emprendedora en el sector de comercio electrónico",
+      "avatar": "https://example.com/avatars/ana.jpg"
     }
   ],
   "drivers": [
     {
+      "id": 1,
+      "name": "Jorge Salas",
+      "dni": "87654321",
+      "phone": "923456789",
+      "license": "AIIIB",
+      "url_photo": "https://example.com/drivers/jorge.jpg"
+    },
+    {
       "id": 2,
-      "name": "2",
-      "dni": "a",
-      "phone": "a",
-      "license": "a",
-      "url_photo": "a"
+      "name": "Julio",
+      "dni": "72312312",
+      "phone": "9343534543",
+      "license": "9A1-3GT",
+      "url_photo": "https://www.seguridadvialenlaempresa.com/media/blog/requisitos-conductor-autobus-768x520-1.jpg"
     },
     {
       "id": 3,
-      "name": "z",
-      "dni": "z",
-      "phone": "z",
-      "license": "z",
-      "url_photo": "z"
-    },
-    {
-      "id": 5,
-      "name": "1",
-      "dni": "1",
-      "phone": "1",
-      "license": "1",
-      "url_photo": "1"
-    },
-    {
-      "id": 6,
-      "name": "pepito test",
-      "dni": "7555556666",
-      "phone": "99999999999",
-      "license": "no tiene",
-      "url_photo": "urllll"
-    },
-    {
-      "id": 7,
-      "name": "testfinal",
-      "dni": "testfinal",
-      "phone": "testfinal",
-      "license": "testfinal",
-      "url_photo": "testfinal"
+      "name": "Pepito Rodriguez",
+      "dni": "74534543",
+      "phone": "945345345",
+      "license": "34C1-243R",
+      "url_photo": "FDFSDFSDF"
     }
   ],
   "vehicles": [
@@ -165,117 +111,197 @@
       "id": 1,
       "model": "Volvo FH",
       "plate": "ABC-123",
-      "max_load": "18000",
-      "volume": "40",
+      "max_load": 18000,
+      "volume": 40,
       "url_image": "https://www.novologistica.com/wp-content/uploads/2020/03/volvofh.jpg",
-      "name": "asd"
+      "name": "Camión Principal"
     },
     {
       "id": 2,
-      "model": "Scania R500",
-      "plate": "DEF-456",
-      "max_load": "20000",
-      "volume": "45",
-      "url_image": "https://www.degrootetrucks.com/sites/degroote/files/uploads/b3/24074869-3.JPG"
-    },
-    {
-      "id": 3,
-      "model": "Volvitotest",
-      "plate": "GHI-789",
-      "max_load": "22000",
-      "volume": "50",
-      "url_image": "https://img.linemedia.com/img/s/box-truck-Mercedes-Benz-Actros-2542---1708193832047511762_big--24021720075948461400.jpg"
-    },
-    {
-      "id": 4,
-      "model": "testfinal",
-      "plate": "testfinal",
-      "max_load": 0,
-      "volume": 0,
-      "url_image": "000000000000000"
+      "model": "MERCEDES-BENZ",
+      "plate": "231p-ER45",
+      "max_load": 1200,
+      "volume": 120,
+      "url_image": "ASDASD"
     }
   ],
   "trips": [
+
+  ],
+  "requestServiceTrips": [
     {
       "id": 1,
-      "name": "test",
-      "type": "test type",
-      "weight": 2,
-      "unload_location": "Av. test",
-      "unload_date": "2024-01-01",
-      "expense_id": 1,
-      "alert_id": 1,
-      "ongoing_trip_id": 1,
-      "vehicle_id": 1,
-      "driver_id": 1,
-      "entrepreneur_id": 1,
-      "dimensionx": 1,
-      "dimensiony": 1,
-      "dimensionz": 1
-    }
-  ],
-  "expenses": [],
-  "alerts": [],
-  "ongoing_trips": [],
-  "evidences": [],
-  "payment_cards": [],
-  "data_statistics": [
+      "unload_direction": "Villa el salvador ",
+      "type": "Pesada ",
+      "numberPackages": "120",
+      "country": "Perú",
+      "department": "Ayacucho",
+      "district": "Huanca Sancos",
+      "destination": "AVENIDA LOS PECRED",
+      "unload_location": "Lat: -12.2162215, Lon: -76.9265782",
+      "unload_date": "2024-10-30T00:05:02.085Z",
+      "statusId": 1,
+      "holderName": "Jose galvez"
+    },
     {
-      "data": {
-        "chart1": {
-          "labels": [
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto"
-          ],
-          "orders": [
-            200,
-            179,
-            165,
-            134
-          ]
-        },
-        "chart2": {
-          "labels": [
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril"
-          ],
-          "profits": [
-            3000,
-            2500,
-            2000,
-            1500
-          ]
-        },
-        "chart3": {
-          "labels": [
-            "Carga general",
-            "Carga a granel",
-            "Carga peligrosa",
-            "Carga perecedera"
-          ],
-          "cargo": [
-            100,
-            50,
-            143,
-            200
-          ]
-        },
-        "chart4": {
-          "labels": [
-            "A tiempo",
-            "Atrasadas"
-          ],
-          "deliveries": [
-            430,
-            120
-          ]
-        }
-      }
+      "id": 2,
+      "unload_direction": "Almacén Central, Lima",
+      "type": "Electrónicos,Ropa,Alimentos",
+      "numberPackages": "10",
+      "country": "Perú",
+      "department": "Arequipa",
+      "district": "Camana",
+      "destination": "Av. Larco 123",
+      "unload_location": "",
+      "unload_date": "2024-10-30T01:56:05.491Z",
+      "statusId": 3,
+      "holderName": "Carlos Mendoza"
+    },
+    {
+      "id": 3,
+      "unload_direction": "Almacén Sur, Arequipa",
+      "type": "Productos farmacéuticos",
+      "numberPackages": "5",
+      "country": "Perú",
+      "department": "Áncash",
+      "district": "Asunción",
+      "destination": "Calle Mercaderes 250, Cercado",
+      "unload_location": "",
+      "unload_date": "2024-10-30T01:56:52.536Z",
+      "statusId": 3,
+      "holderName": "Ana Gómez"
+    },
+    {
+      "id": 4,
+      "unload_direction": "Centro Logístico Norte, Chiclayo",
+      "type": "Equipos de construcción",
+      "numberPackages": "15",
+      "country": "Perú",
+      "department": "Ayacucho",
+      "district": "Huanta",
+      "destination": " Av. Balta 100, José Leonardo Ortiz",
+      "unload_location": "",
+      "unload_date": "2024-10-30T01:57:28.359Z",
+      "statusId": 1,
+      "holderName": "Miguel Torres"
+    },
+    {
+      "id": 5,
+      "unload_direction": "Depósito Lima Este",
+      "type": " Textiles",
+      "numberPackages": "20",
+      "country": "Perú",
+      "department": "La Libertad",
+      "district": "Virú",
+      "destination": " Jr. Real 450, Huancayo",
+      "unload_location": "",
+      "unload_date": "2024-10-30T01:57:58.159Z",
+      "statusId": 3,
+      "holderName": "Patricia Rivera"
+    },
+    {
+      "id": 6,
+      "unload_direction": " Almacén Callao",
+      "type": "Productos químicos",
+      "numberPackages": "8",
+      "country": "Perú",
+      "department": "Cusco",
+      "district": "Quispicanchi",
+      "destination": "Av. de la Cultura 1200",
+      "unload_location": "",
+      "unload_date": "2024-10-30T01:58:42.171Z",
+      "statusId": 3,
+      "holderName": "Juan Pérez"
+    },
+    {
+      "id": 7,
+      "unload_direction": "Terminal Logístico Centro",
+      "type": "Alimentos perecibles",
+      "numberPackages": "25",
+      "country": "Perú",
+      "department": "Piura",
+      "district": "Sullana",
+      "destination": "Calle Comercio 123",
+      "unload_location": "",
+      "unload_date": "2024-10-30T01:59:16.701Z",
+      "statusId": 3,
+      "holderName": " Luisa Ramírez"
     }
   ],
-  "ordersOnTrip": []
+  "status": [
+    {
+      "id": 1,
+      "status": "accepted"
+    },
+    {
+      "id": 2,
+      "status": " rejected"
+    },
+    {
+      "id": 3,
+      "status": "pending"
+    }
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "description": "Combustible para viaje Lima",
+      "amount": 350,
+      "date": "2024-01-02"
+    }
+  ],
+  "alerts": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "message": "El conductor ha excedido el límite de velocidad.",
+      "severity": "Alta",
+      "createdAt": "2024-01-04T15:30:00Z"
+    }
+  ],
+  "ongoing_trips": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "status": "En tránsito",
+      "startedAt": "2024-01-01T08:00:00Z",
+      "updatedAt": "2024-01-03T12:00:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "userId": 1,
+      "message": "Tu solicitud ha sido aceptada",
+      "status": "unread",
+      "createdAt": "2024-10-20T08:00:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "message": "Tu solicitud ha sido rechazada",
+      "status": "unread",
+      "createdAt": "2024-10-20T09:00:00Z"
+    }
+  ],
+  "evidences": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "url_photo": "https://example.com/evidences/unload.jpg",
+      "description": "Foto del descargue en el punto de entrega",
+      "createdAt": "2024-01-05T14:00:00Z"
+    }
+  ],
+  "payment_cards": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "card_number": "4111111111111111",
+      "card_holder": "Ana Gómez",
+      "expiration_date": "2026-09",
+      "cvv": "123"
+    }
+  ]
 }

@@ -1,0 +1,21 @@
+.trip-management-container {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.trip-table-card {
+  width: 100%;
+  max-width: 1000px;
+  background-color: #e3f2fd; /* Azul claro */
+  color: #FFFFFF;
+}
+
+.trip-mat-card-title {
+  font-weight: bold;
+  color: #0E0D0B; /* Texto negro */
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}

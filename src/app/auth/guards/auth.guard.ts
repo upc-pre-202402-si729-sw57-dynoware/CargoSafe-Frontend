@@ -6,17 +6,5 @@ import {Injectable} from "@angular/core";
 })
 
 
-export class AuthGuard implements CanActivate {
+export class AuthGuard {}
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  canActivate(): boolean {
-    const user = this.authService.getCurrentUser();
-    if (user) {
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-      return false;
-    }
-  }
-}

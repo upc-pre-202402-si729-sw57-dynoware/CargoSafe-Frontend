@@ -1,0 +1,51 @@
+<app-toolbar-content></app-toolbar-content>
+<mat-icon (click)="goBack()" style="cursor: pointer;">arrow_back</mat-icon>
+<div *ngIf="trip" class="trip-details-container">
+  <mat-card class="trip-card">
+    <mat-card-header>
+      <mat-card-title class="trip-title">Detalles del Viaje</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="trip-info-section">
+        <p><mat-icon color="accent">info</mat-icon> <strong>ID:</strong> {{ trip.id }}</p>
+        <p><mat-icon color="accent">category</mat-icon> <strong>Tipo:</strong> {{ trip.type }}</p>
+        <p><mat-icon color="accent">place</mat-icon> <strong>Destino:</strong> {{ trip.destination }}</p>
+        <p><mat-icon color="accent">person</mat-icon> <strong>Conductor:</strong> {{ driverName }}</p>
+        <p><mat-icon color="accent">local_shipping</mat-icon> <strong>Vehículo:</strong> {{ vehiclePlate }}</p>
+        <p><mat-icon color="accent">event</mat-icon> <strong>Fecha de Destino:</strong> {{ trip.destinationDate | date }}</p>
+        <p><mat-icon color="accent">attach_money</mat-icon> <strong>Costo Total:</strong> {{ trip.totalAmount | currency }}</p>
+      </div>
+      <form [formGroup]="tripForm" (ngSubmit)="onSubmit()" class="trip-form">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Conductor</mat-label>
+          <mat-select formControlName="driverId">
+            <mat-option *ngFor="let driver of drivers" [value]="driver.id">{{ driver.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Vehículo</mat-label>
+          <mat-select formControlName="vehicleId">
+            <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{ vehicle.model }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Fecha de Destino</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="destinationDate">
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Costo Total</mat-label>
+          <input matInput formControlName="totalAmount" type="number" placeholder="Ingrese el costo total">
+        </mat-form-field>
+        <mat-card-actions>
+
+          <button mat-button color="warn" (click)="onCancel()">Cancelar</button>
+          <button mat-button color="accent" (click)="assignDetails(trip)">Guardar</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,11 +1,13 @@
 export class CompanyEntity {
   id: number;
-  company_name: string;
-  membership_id: number;
+  companyname: string;
+  membershipId: number;
+  userId: number;
 
-  constructor(company: { id?: number; company_name?: string; membership_id?: number }) {
+  constructor(company: { id?: number; companyname?: string; membershipId?: number; userId?: number }) {
     this.id = company.id || 0;
-    this.company_name = company.company_name || '';
-    this.membership_id = company.membership_id || 0;
+    this.companyname = company.companyname || '';
+    this.membershipId = company.membershipId || 0;
+    this.userId = company.userId || 0;
   }
 }

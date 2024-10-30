@@ -1,0 +1,85 @@
+<mat-card class="add-trip-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>add_circle</mat-icon>
+      {{ 'Solicita un Viaje' }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" #tripForm="ngForm" class="form-row">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del Titular</mat-label>
+        <input matInput placeholder="Nombre del Titular" name="holderName" required [(ngModel)]="trip.holderName" #holderName="ngModel">
+        <mat-error *ngIf="holderName.invalid && holderName.touched">Nombre del titular es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Punto de inicio (Lugar de carga)</mat-label>
+        <input matInput placeholder="Punto de inicio" name="unload_direction" required [(ngModel)]="trip.unload_direction" #unloadDirection="ngModel">
+        <mat-error *ngIf="unloadDirection.invalid && unloadDirection.touched">Punto de inicio es requerido</mat-error>
+        <button mat-icon-button type="button" (click)="getLocation()" aria-label="Obtener ubicación">
+          <mat-icon>my_location</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de carga</mat-label>
+        <input matInput placeholder="Tipo de carga" name="type" required [(ngModel)]="trip.type" #type="ngModel">
+        <mat-error *ngIf="type.invalid && type.touched">Tipo de carga es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Número de paquetes</mat-label>
+        <input matInput placeholder="Número de paquetes" name="name" required [(ngModel)]="trip.numberPackages" #numberPackages="ngModel">
+        <mat-error *ngIf="numberPackages.invalid && numberPackages.touched">Número de paquetes es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>País (Destino)</mat-label>
+        <mat-select [(value)]="trip.country" name="country" required>
+          <mat-option value="Perú">Perú</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Departamento (Destino)</mat-label>
+        <mat-select [(value)]="selectedDepartment" (selectionChange)="onDepartmentChange()" name="department" required>
+          <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!selectedDepartment && tripForm.touched">Departamento es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Distrito (Destino)</mat-label>
+        <mat-select [(ngModel)]="trip.district" name="district" required>
+          <mat-option *ngFor="let district of districts" [value]="district">{{ district }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!trip.district && tripForm.touched">Distrito es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Direccion  (Destino)</mat-label>
+        <input matInput placeholder="Destino" name="destination" required [(ngModel)]="trip.destination" #destination="ngModel">
+        <mat-error *ngIf="destination.invalid && destination.touched">La direccion es requerida</mat-error>
+      </mat-form-field>
+
+      <div class="button-container">
+        <ng-container *ngIf="editMode; else elseTemplate">
+          <button mat-raised-button color="primary" [disabled]="tripForm.invalid">
+            <mat-icon>update</mat-icon> Actualizar
+          </button>
+          <button mat-raised-button color="warn" (click)="onCancel()">
+            <mat-icon>cancel</mat-icon> Cancelar
+          </button>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <button mat-raised-button color="primary" [disabled]="tripForm.invalid">
+            <mat-icon>add</mat-icon> Agregar
+          </button>
+        </ng-template>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

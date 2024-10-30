@@ -1,0 +1,30 @@
+.trip-details-container {
+  padding: 16px;
+}
+
+.trip-card {
+  background-color: #ffeb3b; /* Light yellow background */
+}
+
+.trip-title {
+  color: #000000; /* Dark yellow color */
+}
+
+.trip-info-section p {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.trip-info-section mat-icon {
+  margin-right: 8px;
+}
+
+.trip-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  margin-bottom: 16px;
+}

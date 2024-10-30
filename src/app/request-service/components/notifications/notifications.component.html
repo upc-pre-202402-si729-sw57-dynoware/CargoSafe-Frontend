@@ -1,0 +1,10 @@
+<div [ngClass]="getClass()" class="notification" @fadeIn>
+  <img *ngIf="imageUrl" [src]="imageUrl" alt="Notification Image" class="notification-image">
+  <div class="notification-content">
+    <span>{{ message }}</span>
+    <p>{{ description }}</p>
+  </div>
+  <button mat-icon-button (click)="close()" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

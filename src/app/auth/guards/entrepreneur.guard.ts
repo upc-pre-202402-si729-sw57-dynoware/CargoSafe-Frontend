@@ -6,17 +6,9 @@ import {Injectable} from "@angular/core";
 @Injectable({
   providedIn: 'root'
 })
-export class EntrepreneurGuard implements CanActivate {
+export class EntrepreneurGuard   {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): boolean {
-    const user = this.authService.getCurrentUser();
-    if (user && user.entrepreneur_id) {
-      return true;
-    } else {
-      this.router.navigate(['/home']);
-      return false;
-    }
-  }
+
 }
