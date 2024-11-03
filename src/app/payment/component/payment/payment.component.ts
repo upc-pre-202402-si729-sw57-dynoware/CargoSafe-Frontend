@@ -32,12 +32,16 @@ export class PaymentComponent implements OnInit {
   driverName: string = '';
   vehiclePlate: string = '';
 
+  //Methods
+
   constructor(
     private paymentService: PaymentService,
     private tripService: TripService,
     private driverService: DriverService,
     private vehicleService: VehiclesService
   ) {}
+
+  //Event Handlers
 
   ngOnInit(): void {
     this.loadTripDetails();

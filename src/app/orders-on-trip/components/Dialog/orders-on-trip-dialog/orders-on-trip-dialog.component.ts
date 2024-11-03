@@ -58,6 +58,8 @@ export class OrdersOnTripDialogComponent {
   editMode: boolean;
   formTouched: boolean = false;
 
+  //#region Methods
+
   constructor(
     public dialogRef: MatDialogRef<OrdersOnTripDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { orderOnTrip: OrderOnTripEntity, editMode: boolean }
@@ -66,6 +68,9 @@ export class OrdersOnTripDialogComponent {
     this.editMode = data.editMode;
   }
 
+  //#endregion
+
+  //Event Handlers
   onSubmit(form: NgForm) {
     this.formTouched = Object.values(form.controls).some(control => control.touched);
     if (form.valid) {

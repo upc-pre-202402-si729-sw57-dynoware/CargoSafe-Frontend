@@ -48,12 +48,16 @@ import {
 export class DriversEditComponent {
   driver: DriverEntity;
 
+  //#region Methods
+
   constructor(
     public dialogRef: MatDialogRef<DriversEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DriverEntity
   ) {
     this.driver = { ...data };
   }
+
+  //#endregion
 
   onSubmit(): void {
     this.dialogRef.close(this.driver);

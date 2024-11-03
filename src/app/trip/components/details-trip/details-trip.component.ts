@@ -64,6 +64,9 @@ export class DetailsTripComponent implements OnInit {
   trip: TripEntity | undefined;
   driverName: string = '';
   vehiclePlate: string = '';
+
+  //Methods
+
   constructor(
     private route: ActivatedRoute,
     private tripService: TripService,
@@ -80,6 +83,8 @@ export class DetailsTripComponent implements OnInit {
       totalAmount: ['', [Validators.required, Validators.min(0)]]
     });
   }
+
+  //Event Handlers
 
   ngOnInit(): void {
     this.loadTripDetails();
