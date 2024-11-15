@@ -10,7 +10,7 @@ describe('OrderOnTripCardComponent', () => {
     await TestBed.configureTestingModule({
       imports: [OrderOnTripCardComponent]
     })
-      .compileComponents();
+    .compileComponents();
 
     fixture = TestBed.createComponent(OrderOnTripCardComponent);
     component = fixture.componentInstance;

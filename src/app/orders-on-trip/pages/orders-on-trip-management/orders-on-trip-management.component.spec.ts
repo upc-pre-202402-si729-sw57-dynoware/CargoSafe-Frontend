@@ -10,7 +10,7 @@ describe('OrdersOnTripManagementComponent', () => {
     await TestBed.configureTestingModule({
       imports: [OrdersOnTripManagementComponent]
     })
-      .compileComponents();
+    .compileComponents();
 
     fixture = TestBed.createComponent(OrdersOnTripManagementComponent);
     component = fixture.componentInstance;

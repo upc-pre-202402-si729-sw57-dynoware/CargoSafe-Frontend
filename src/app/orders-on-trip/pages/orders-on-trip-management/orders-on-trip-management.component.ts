@@ -20,22 +20,22 @@ import {ToolbarContentComponent} from "../../../public/components/toolbar-conten
 @Component({
   selector: 'app-orders-on-trip-management',
   standalone: true,
-  imports: [
-    OrderOnTripCardComponent,
-    MatCard,
-    NgForOf,
-    MatCardHeader,
-    MatCardContent,
-    MatCardActions,
-    MatIcon,
-    MatIconButton,
-    MatCardTitle,
-    MatCardSubtitle,
-    MatCardImage,
-    DatePipe,
-    MatFabButton,
-    ToolbarContentComponent
-  ],
+    imports: [
+        OrderOnTripCardComponent,
+        MatCard,
+        NgForOf,
+        MatCardHeader,
+        MatCardContent,
+        MatCardActions,
+        MatIcon,
+        MatIconButton,
+        MatCardTitle,
+        MatCardSubtitle,
+        MatCardImage,
+        DatePipe,
+        MatFabButton,
+        ToolbarContentComponent
+    ],
   templateUrl: './orders-on-trip-management.component.html',
   styleUrl: './orders-on-trip-management.component.css'
 })
