@@ -10,7 +10,7 @@ describe('DriverManagementComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DriverManagementComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DriverManagementComponent);
     component = fixture.componentInstance;

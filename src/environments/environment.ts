@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  //serverBasePath:'https://cargosafe-fake-api.vercel.app'
-  serverBasePath:'http://localhost:3000/'
+  serverBasePath: 'http://localhost:3000/api/v1',
 };

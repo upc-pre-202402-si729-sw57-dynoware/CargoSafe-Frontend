@@ -1,47 +1,42 @@
-<div class="container">
+<app-toolbar-entrepreneur-content></app-toolbar-entrepreneur-content>
 
-  <!-- Órdenes en curso Section -->
-  <section class="orders-section">
-    <div class="orders-header">
-      <h2>Órdenes en curso</h2>
-      <a class="view-more" href="#">VER MÁS ></a>
-    </div>
-    <div class="order-card">
-      <div class="order-info">
-        <p><strong>En Tránsito</strong></p>
-        <p>Hora: 08:10 AM</p>
-        <p>Estado: El envío ha salido de la planta y está en tránsito.</p>
-      </div>
-      <div class="order-image">
-        <img src="./assets/images/ordenImage.jpg"  alt="Imagen de Orden">
-      </div>
-    </div>
-  </section>
+<section id="home" class="hero">
+  <div class="container">
+    <h1 class="hero-title">Bienvenido a CargoSafe</h1>
+    <p class="hero-subtitle">Soluciones logísticas seguras y eficientes para tu negocio</p>
 
-  <!-- Mercancía Agedada Section -->
-  <section class="merchandise-section">
-    <div class="merchandise-header">
-      <h2>Mercancía agedada</h2>
-      <a class="view-more" [routerLink]="['/ordersOnTrip']">VER MÁS </a>
+    <div class="botnsito">
+      <button  routerLink="/request/trip/new" class="btn-class-name">
+        Solicitar Nuevo Viaje
+      </button>
     </div>
-    <div class="merchandise-grid">
-      <div class="merch-card">
-        <img src="./assets/images/milk.jpg"  alt="Leche">
-        <p>LECHE</p>
-      </div>
-      <div class="merch-card">
-        <img src="./assets/images/yogurt.jpg"  alt="Yogurt Natural">
-        <p>YOGURT NATURAL<br>SIN CONSERVANTES</p>
-      </div>
-      <div class="merch-card">
-        <img src="./assets/images/cremaLeche.jpg"  alt="Crema de Leche">
-        <p>CREMA DE LECHE</p>
-      </div>
-      <div class="merch-card">
-        <img src="./assets/images/QUESOBRIE.png"  alt="Queso Brie">
-        <p>QUESO BRIE</p>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-</div>
+
+
+<section id="services" class="services">
+
+
+
+  <div class="container">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="assets/images/requesimage.png" alt="Ver Historial">
+
+        <button routerLink="/list-request-history" class="btn-class-name">Ver Historial</button>
+      </div>
+      <div class="service-card">
+        <img src="assets/images/las-compras-en-linea.png" alt="Solicitar Servicio">
+
+        <button routerLink="/request/trip/new" class="btn-class-name">Solicitar Servicio</button>
+      </div>
+      <div class="service-card">
+        <img src="assets/images/salario.png" alt="Pagar Viajes Aceptados">
+
+        <button routerLink="/payment" class="btn-class-name">Pagar Viajes Aceptados</button>
+      </div>
+    </div>
+  </div>
+</section>

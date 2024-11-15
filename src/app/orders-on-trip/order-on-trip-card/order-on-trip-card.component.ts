@@ -24,6 +24,7 @@ import {
 } from "@angular/material/card";
 import {FormsModule, NgForm} from "@angular/forms";
 import {MatNativeDateModule} from "@angular/material/core";
+import {ToolbarContentComponent} from "../../public/components/toolbar-content/toolbar-content.component";
 
 @Component({
   selector: 'app-order-on-trip-card',
@@ -52,12 +53,13 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatCardTitle,
     MatCardSubtitle,
     DatePipe,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ToolbarContentComponent
   ],
   templateUrl: './order-on-trip-card.component.html',
   styleUrl: './order-on-trip-card.component.css'
 })
-export class OrderOnTripCardComponent {  // Attributes
+export class OrderOnTripCardComponent {
   @Input() orderOnTrip!: OrderOnTripEntity;
   @Input() editMode: boolean = false;
   @Output() orderOnTripAddRequested = new EventEmitter<OrderOnTripEntity>();

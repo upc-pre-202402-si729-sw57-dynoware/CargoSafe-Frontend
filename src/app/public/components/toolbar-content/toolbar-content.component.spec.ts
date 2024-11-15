@@ -10,7 +10,7 @@ describe('ToolbarContentComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ToolbarContentComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ToolbarContentComponent);
     component = fixture.componentInstance;
