@@ -10,7 +10,7 @@ import {map} from "rxjs/operators";
 })
 export class ProfileService  extends BaseService<ProfileEntity> {
 
-  private baseUrl = 'http://localhost:3000/profiles';
+  //private baseUrl = 'http://localhost:3000/profiles';
 
   constructor(private httpClient: HttpClient) {
     super();

@@ -14,7 +14,7 @@ export class AuthenticationApiService extends BaseService<User> {
     super();
     this.http = http;
     this.basePath = environment.serverBasePath;
-    this.extraUrl= environment.authenticationURL;
+    //this.extraUrl= environment.authenticationURL;
   }
 
   signUp(username: string, password: string, role: string) {
