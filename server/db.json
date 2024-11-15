@@ -1,149 +1,496 @@
 {
-  "roles": [],
-  "companies": [],
-  "memberships": [],
-  "users": [],
-  "entrepreneurs": [],
-  "merchandise": [
+  "roles": [
     {
-      "id": "1",
-      "direction": "Av. Perú",
-      "type": "Frágil",
-      "travel_price": "S/ 1500",
-      "product": "Vasos de cristal",
-      "amount": "200 unidades",
-      "date": "2024-09-27",
-      "special_conditions": "Transportar con cuidado"
+      "id": 1,
+      "name": "ROLE_ADMINISTRATOR"
     },
     {
-      "id": "2",
-      "direction": "Av. Lima",
-      "type": "Perecible",
-      "travel_price": "S/ 1800",
-      "product": "Pescado fresco",
-      "amount": "500 kg",
-      "date": "2024-09-25",
-      "special_conditions": "Mantener por debajo de 5°C"
+      "id": 2,
+      "name": "ROLE_COMPANY"
     },
     {
-      "id": "3",
-      "direction": "Av. Primavera",
-      "type": "Pesado",
-      "travel_price": "S/ 2500",
-      "product": "Barras de acero",
-      "amount": "1000 unidades",
-      "date": "2024-09-28",
-      "special_conditions": "Sin condiciones especiales"
+      "id": 3,
+      "name": "ROLE_ENTREPRENEUR"
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "name": "Envios SAC",
+      "location": "Avenida test123a",
+      "description": "asdasdasdsad",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "name": "pepitos123",
+      "location": "en el medio del mar",
+      "description": "venta de  hormigas",
+      "userId": 4
+    },
+    {
+      "id": 3,
+      "name": "z",
+      "location": "z@gmail.com",
+      "description": "z@gmail.com",
+      "userId": 7
+    },
+    {
+      "id": 4,
+      "name": "gggggggggggg",
+      "location": "qwdasdasdasd",
+      "description": "aaaaa",
+      "userId": 10
+    },
+    {
+      "id": 5,
+      "name": "LosVagosSAC",
+      "location": "2312312312321312",
+      "description": "sadcascasdc",
+      "userId": 19
+    },
+    {
+      "id": 6,
+      "name": "xd",
+      "location": "qweqwe",
+      "description": "qweqwew",
+      "userId": 29
+    },
+    {
+      "id": 7,
+      "name": "aaaa",
+      "location": "43543534",
+      "description": "453454",
+      "userId": 30
+    },
+    {
+      "id": 8,
+      "name": "usuario123",
+      "location": "AV test",
+      "description": "test",
+      "userId": 33
+    }
+  ],
+  "memberships": [
+    {
+      "id": 1,
+      "type": "Plan Básico",
+      "price": 100,
+      "duration": 1,
+      "description": "Acceso limitado a servicios de transporte"
+    },
+    {
+      "id": 2,
+      "type": "Plan Premium",
+      "price": 500,
+      "duration": 1,
+      "features": "Acceso completo y atención prioritaria"
+    }
+  ],
+  "authentication": [
+    {
+      "email": "envios@gmail.com",
+      "password": "envios@gmail.com",
+      "role": "ROLE_COMPANY",
+      "id": 1
+    },
+    {
+      "email": "envios@gmail.com",
+      "password": "envios@gmail.com",
+      "id": 2
+    },
+    {
+      "email": "envios@gmail.com",
+      "password": "envios@gmail.com",
+      "id": 3
+    },
+    {
+      "email": "pepitos123@gmail.com",
+      "password": "pepitos123@gmail.com",
+      "role": "ROLE_COMPANY",
+      "id": 4
+    },
+    {
+      "email": "pepitos123@gmail.com",
+      "password": "pepitos123@gmail.com",
+      "id": 5
+    },
+    {
+      "email": "pepitos123@gmail.com",
+      "password": "pepitos123@gmail.com",
+      "id": 6
+    },
+    {
+      "email": "z@gmail.com",
+      "password": "z@gmail.com",
+      "role": "ROLE_COMPANY",
+      "id": 7
+    },
+    {
+      "email": "z@gmail.com",
+      "password": "z@gmail.com",
+      "id": 8
+    },
+    {
+      "email": "z@gmail.com",
+      "password": "z@gmail.com",
+      "id": 9
+    },
+    {
+      "email": "gggggggggggg@gmail.com",
+      "password": "gggggggggggg@gmail.com",
+      "role": "ROLE_COMPANY",
+      "id": 10
+    },
+    {
+      "email": "gggggggggggg@gmail.com",
+      "password": "gggggggggggg@gmail.com",
+      "id": 11
+    },
+    {
+      "email": "gggggggggggg@gmail.com",
+      "password": "gggggggggggg@gmail.com",
+      "id": 12
+    },
+    {
+      "email": "gggggggggggg@gmail.com",
+      "password": "gggggggggggg@gmail.com",
+      "id": 13
+    },
+    {
+      "email": "gggggggggggg@gmail.com",
+      "password": "gggggggggggg@gmail.com",
+      "id": 14
+    },
+    {
+      "email": "gggggggggggg@gmail.com",
+      "password": "gggggggggggg@gmail.com",
+      "id": 15
+    },
+    {
+      "email": "gggggggggggg@gmail.com",
+      "password": "gggggggggggg@gmail.com",
+      "id": 16
+    },
+    {
+      "email": "gggggggggggg@gmail.com",
+      "password": "gggggggggggg@gmail.com",
+      "id": 17
+    },
+    {
+      "email": "gggggggggggg@gmail.com",
+      "password": "gggggggggggg@gmail.com",
+      "id": 18
+    },
+    {
+      "email": "losvagossac@gmail.com",
+      "password": "losvagossac@gmail.com",
+      "role": "ROLE_COMPANY",
+      "id": 19
+    },
+    {
+      "email": "losvagossac@gmail.com",
+      "password": "losvagossac@gmail.com",
+      "id": 20
+    },
+    {
+      "email": "losvagossac@gmail.com",
+      "password": "losvagossac@gmail.com",
+      "id": 21
+    },
+    {
+      "email": "losvagossac@gmail.com",
+      "password": "losvagossac@gmail.com",
+      "id": 22
+    },
+    {
+      "email": "losvagossac@gmail.com",
+      "password": "losvagossac@gmail.com",
+      "id": 23
+    },
+    {
+      "email": "losvagossac@gmail.com",
+      "password": "losvagossac@gmail.com",
+      "id": 24
+    },
+    {
+      "email": "losvagossac@gmail.com",
+      "password": "losvagossac@gmail.com",
+      "id": 25
+    },
+    {
+      "email": "zzzzzzzzzzzzzzzzzzzzz@gmail.com",
+      "password": "zzzzzzzzzzzzzzzzzzzzz@gmail.com",
+      "role": "ROLE_ENTREPRENEUR",
+      "id": 26
+    },
+    {
+      "email": "zzzzzzzzzzzzzzzzzzzzz@gmail.com",
+      "password": "zzzzzzzzzzzzzzzzzzzzz@gmail.com",
+      "id": 27
+    },
+    {
+      "email": "zzzzzzzzzzzzzzzzzzzzz@gmail.com",
+      "password": "zzzzzzzzzzzzzzzzzzzzz@gmail.com",
+      "id": 28
+    },
+    {
+      "email": "xd@gmail.com",
+      "password": "xd@gmail.com",
+      "role": "ROLE_COMPANY",
+      "id": 29
+    },
+    {
+      "email": "aaaa@gmail.com",
+      "password": "aaaa@gmail.com",
+      "role": "ROLE_COMPANY",
+      "id": 30
+    },
+    {
+      "email": "aaaa@gmail.com",
+      "password": "aaaa@gmail.com",
+      "id": 31
+    },
+    {
+      "email": "aaaa@gmail.com",
+      "password": "aaaa@gmail.com",
+      "id": 32
+    },
+    {
+      "email": "usuario123@gmail.com",
+      "password": "usuario123@gmail.com",
+      "role": "ROLE_COMPANY",
+      "id": 33
+    },
+    {
+      "email": "usuario123@gmail.com",
+      "password": "usuario123@gmail.com",
+      "id": 34
+    },
+    {
+      "email": "usuario123@gmail.com",
+      "password": "usuario123@gmail.com",
+      "id": 35
+    },
+    {
+      "email": "emepresario123@gmail.com",
+      "password": "emepresario123@gmail.com",
+      "role": "ROLE_ENTREPRENEUR",
+      "id": 36
+    },
+    {
+      "email": "emepresario123@gmail.com",
+      "password": "emepresario123@gmail.com",
+      "id": 37
+    },
+    {
+      "email": "emepresario123@gmail.com",
+      "password": "emepresario123@gmail.com",
+      "id": 38
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Envios SAC",
+      "lastname": "",
+      "email": "envios@gmail.com",
+      "phone": "987234512",
+      "password": "envios@gmail.com",
+      "roleId": 2
+    },
+    {
+      "id": 4,
+      "name": "pepitos123",
+      "lastname": "",
+      "email": "pepitos123@gmail.com",
+      "phone": "98712345",
+      "password": "pepitos123@gmail.com",
+      "roleId": 2
+    },
+    {
+      "id": 7,
+      "name": "z",
+      "lastname": "",
+      "email": "z@gmail.com",
+      "phone": "z@gmail.com",
+      "password": "z@gmail.com",
+      "roleId": 2
+    },
+    {
+      "id": 10,
+      "name": "gggggggggggg",
+      "lastname": "",
+      "email": "gggggggggggg@gmail.com",
+      "phone": "123243434",
+      "password": "gggggggggggg@gmail.com",
+      "roleId": 2
+    },
+    {
+      "id": 19,
+      "name": "LosVagosSAC",
+      "lastname": "",
+      "email": "losvagossac@gmail.com",
+      "phone": "72123123123",
+      "password": "losvagossac@gmail.com",
+      "roleId": 2
+    },
+    {
+      "id": 26,
+      "name": "zzzzzzzzzzzzzzzzzzzzz",
+      "lastname": "",
+      "email": "zzzzzzzzzzzzzzzzzzzzz@gmail.com",
+      "phone": "57546546546546",
+      "password": "zzzzzzzzzzzzzzzzzzzzz@gmail.com",
+      "roleId": 3
+    },
+    {
+      "id": 29,
+      "name": "xd",
+      "lastname": "",
+      "email": "xd@gmail.com",
+      "phone": "qweqwewqe",
+      "password": "xd@gmail.com",
+      "roleId": 2
+    },
+    {
+      "id": 30,
+      "name": "aaaa",
+      "lastname": "",
+      "email": "aaaa@gmail.com",
+      "phone": "465344353454",
+      "password": "aaaa@gmail.com",
+      "roleId": 2
+    },
+    {
+      "id": 33,
+      "name": "usuario123",
+      "lastname": "",
+      "email": "usuario123@gmail.com",
+      "phone": "932123213",
+      "password": "usuario123@gmail.com",
+      "roleId": 2
+    },
+    {
+      "id": 36,
+      "name": "emepresario123",
+      "lastname": "",
+      "email": "emepresario123@gmail.com",
+      "phone": "999999999",
+      "password": "emepresario123@gmail.com",
+      "roleId": 3
+    }
+  ],
+  "entrepreneurs": [
+    {
+      "id": 1,
+      "name": "zzzzzzzzzzzzzzzzzzzzz",
+      "location": "56456456",
+      "description": "456456456",
+      "userId": 26
+    },
+    {
+      "id": 2,
+      "name": "emepresario123",
+      "location": "av test",
+      "description": "av test",
+      "userId": 36
+    }
+  ],
+  "profiles": [
+    {
+      "id": 1,
+      "userId": 1,
+      "bio": "",
+      "avatar": ""
+    },
+    {
+      "id": 2,
+      "userId": 4,
+      "bio": "",
+      "avatar": ""
+    },
+    {
+      "id": 3,
+      "userId": 7,
+      "bio": "",
+      "avatar": ""
+    },
+    {
+      "id": 4,
+      "userId": 10,
+      "bio": "",
+      "avatar": ""
+    },
+    {
+      "id": 5,
+      "userId": 19,
+      "bio": "",
+      "avatar": ""
+    },
+    {
+      "id": 6,
+      "userId": 26,
+      "bio": "",
+      "avatar": ""
+    },
+    {
+      "id": 7,
+      "userId": 29,
+      "bio": "",
+      "avatar": ""
+    },
+    {
+      "id": 8,
+      "userId": 30,
+      "bio": "",
+      "avatar": ""
+    },
+    {
+      "id": 9,
+      "userId": 33,
+      "bio": "",
+      "avatar": ""
+    },
+    {
+      "id": 10,
+      "userId": 36,
+      "bio": "",
+      "avatar": ""
     }
   ],
   "drivers": [
     {
       "id": 1,
-      "name": "Juan Perez",
-      "dni": "12345678",
-      "phone": "912345678",
-      "license": "654321",
-      "url_image": "https://randomuser.me/api/portraits/men/1.jpg"
-    },
-    {
-      "id": 2,
-      "name": "Maria Garcia",
+      "name": "Jorge Salas",
       "dni": "87654321",
-      "phone": "987654321",
-      "license": "123456",
-      "url_image": "https://randomuser.me/api/portraits/women/2.jpg"
+      "phone": "923456789",
+      "license": "AIIIB",
+      "url_photo": "https://example.com/drivers/jorge.jpg"
     },
     {
       "id": 3,
-      "name": "Pedro Sanchez",
-      "dni": "11223344",
-      "phone": "911223344",
-      "license": "112233",
-      "url_image": "https://randomuser.me/api/portraits/men/3.jpg"
+      "name": "Pepito Rodriguez",
+      "dni": "74534543",
+      "phone": "945345345",
+      "license": "34C1-243R",
+      "url_photo": "FDFSDFSDF"
     },
     {
       "id": 4,
-      "name": "asdasd",
-      "dni": "asdasd",
-      "phone": "asdasd",
-      "license": "asd"
-    }
-  ],
-  "ordersOnTrip": [
-    {
-      "id": 1,
-      "clientName": "Juan Pérez",
-      "productName": "Leche Entera Lactosa",
-      "quantity": 10,
-      "status": "En tránsito",
-      "dispatchTime": "2024-09-25T08:30:00Z",
-      "estimatedDeliveryTime": "2024-09-27T12:00:00Z",
-      "currentLocation": "Lima, Perú",
-      "originAddress": "Av. Lechera 123, Lima, Perú",
-      "destinationAddress": "Calle Leche 456, Arequipa, Perú",
-      "driverName": "Carlos Ruiz",
-      "vehicleId": "V001",
-      "imageUrl": "https://lactosa.org/wp-content/uploads/2020/04/leche-paquete-mercadona-kpkD-620x349@abc.jpg"
-    },
-    {
-      "id": 2,
-      "clientName": "Ana Gómez",
-      "productName": "Yogur Natural",
-      "quantity": 50,
-      "status": "Entregado",
-      "dispatchTime": "2024-09-24T10:15:00Z",
-      "estimatedDeliveryTime": "2024-09-26T14:00:00Z",
-      "currentLocation": "Cusco, Perú",
-      "originAddress": "Calle Yogur 789, Lima, Perú",
-      "destinationAddress": "Av. Salud 654, Cusco, Perú",
-      "driverName": "Luis Martínez",
-      "vehicleId": "V002",
-      "imageUrl": "https://vitrina-emprendimiento-rural.aureliollano.org.co/wp-content/uploads/2023/03/producto-yogurt-litro-de-leche-de-cabra-El-cerrito-productos-lacteos.jpg"
-    },
-    {
-      "id": 3,
-      "clientName": "Pedro Rodríguez",
-      "productName": "Queso Fresco",
-      "quantity": 20,
-      "status": "Pendiente",
-      "dispatchTime": "2024-09-23T09:00:00Z",
-      "estimatedDeliveryTime": "2024-09-25T11:00:00Z",
-      "currentLocation": "Trujillo, Perú",
-      "originAddress": "Calle Queso 321, Lima, Perú",
-      "destinationAddress": "Calle Fresco 123, Trujillo, Perú",
-      "driverName": "María Fernández",
-      "vehicleId": "V003",
-      "imageUrl": "https://img.freepik.com/fotos-premium/surtido-queso-fresco-diferente_1398-6260.jpg"
-    },
-    {
-      "id": 4,
-      "clientName": "Laura Martínez",
-      "productName": "Mantequilla",
-      "quantity": 30,
-      "status": "En tránsito",
-      "dispatchTime": "2024-09-26T07:45:00Z",
-      "estimatedDeliveryTime": "2024-09-28T09:30:00Z",
-      "currentLocation": "Ica, Perú",
-      "originAddress": "Av. Mantequilla 456, Lima, Perú",
-      "destinationAddress": "Calle Sabor 789, Ica, Perú",
-      "driverName": "Jorge Pérez",
-      "vehicleId": "V004",
-      "imageUrl": "https://milqueso.com/wp-content/uploads/2022/02/Mantequilla-Natural-Bloque.png"
+      "name": "SADAS",
+      "dni": "123213",
+      "phone": "123123",
+      "license": "QWEQWAS",
+      "url_photo": "ASDASDASD"
     },
     {
       "id": 5,
-      "clientName": "Sofía López",
-      "productName": "Crema de Leche",
-      "quantity": 15,
-      "status": "Entregado",
-      "dispatchTime": "2024-09-24T14:30:00Z",
-      "estimatedDeliveryTime": "2024-09-26T16:00:00Z",
-      "currentLocation": "Arequipa, Perú",
-      "originAddress": "Calle Crema 321, Lima, Perú",
-      "destinationAddress": "Calle Postre 654, Arequipa, Perú",
-      "driverName": "Andrés Jiménez",
-      "vehicleId": "V005",
-      "imageUrl": "https://s.alicdn.com/@sc04/kf/H52b1550b98954171ae3e830c98c2b18d1.jpg"
+      "name": "asdasdas",
+      "dni": "asdasd",
+      "phone": "asdasdas",
+      "license": "dasdasd",
+      "url_photo": "asdasdasdasdsad"
     }
   ],
   "vehicles": [
@@ -151,117 +498,244 @@
       "id": 1,
       "model": "Volvo FH",
       "plate": "ABC-123",
-      "max_load": "18000",
-      "volume": "40",
-      "url_image": "https://www.novologistica.com/wp-content/uploads/2020/03/volvofh.jpg"
+      "max_load": 18000,
+      "volume": 40,
+      "url_image": "https://www.novologistica.com/wp-content/uploads/2020/03/volvofh.jpg",
+      "name": "Camión Principal"
     },
     {
       "id": 2,
-      "model": "Scania R500",
-      "plate": "DEF-456",
-      "max_load": "20000",
-      "volume": "45",
-      "url_image": "https://www.degrootetrucks.com/sites/degroote/files/uploads/b3/24074869-3.JPG"
+      "model": "MERCEDES-BENZ",
+      "plate": "231p-ER45",
+      "max_load": 1200,
+      "volume": 120,
+      "url_image": "ASDASD"
     },
     {
       "id": 3,
-      "model": "Mercedes-Benz Actros",
-      "plate": "GHI-789",
-      "max_load": "22000",
-      "volume": "50",
-      "url_image": "https://img.linemedia.com/img/s/box-truck-Mercedes-Benz-Actros-2542---1708193832047511762_big--24021720075948461400.jpg"
+      "model": "ASDASD",
+      "plate": "ASDASD",
+      "max_load": 123123,
+      "volume": 213213,
+      "url_image": "SADASDASD"
     }
   ],
   "trips": [
     {
       "id": 1,
-      "name": "test",
-      "type": "test type",
-      "weight": 2,
-      "unload_location": "Av. test",
-      "unload_date": "2024-01-01",
-      "expense_id": 1,
-      "alert_id": 1,
-      "ongoing_trip_id": 1,
-      "vehicle_id": 1,
-      "driver_id": 1,
-      "entrepreneur_id": 1,
-      "dimensionx": 1,
-      "dimensiony": 1,
-      "dimensionz": 1
+      "name": "",
+      "type": "Pesada",
+      "weight": 0,
+      "unload_direction": "",
+      "unload_location": "",
+      "unload_date": "2024-11-03T15:23:15.598Z",
+      "expenseId": 0,
+      "alertId": 0,
+      "ongoing_tripId": 0,
+      "vehicleId": "3",
+      "driverId": "5",
+      "entrepreneurId": 0,
+      "destination": "",
+      "department": "",
+      "district": "",
+      "country": "",
+      "numberPackages": 120,
+      "holderName": "pepito123",
+      "destinationDate": "2024-11-21",
+      "totalAmount": 1200,
+      "destinationAddress": "Peru, La Unión, San Martín de Socabaya, Socabaya, Province of Arequipa, Arequipa, 04012, Peru",
+      "loadDetail": "voy a llevar humanos",
+      "pickupAddress": "Universidad Peruana de Ciencias Aplicadas, Avenida Primavera, Parque Primavera, Santiago de Surco, Province of Lima, Lima Metropolitan Area, Lima, 15023, Peru"
+    },
+    {
+      "id": 4,
+      "name": "",
+      "type": "Pesada",
+      "weight": 0,
+      "unload_direction": "",
+      "unload_location": "",
+      "unload_date": "2024-11-03T16:43:26.237Z",
+      "expenseId": 0,
+      "alertId": 0,
+      "ongoing_tripId": 0,
+      "vehicleId": "1",
+      "driverId": "1",
+      "entrepreneurId": 0,
+      "destination": "",
+      "department": "",
+      "district": "",
+      "country": "",
+      "numberPackages": 120,
+      "holderName": "Jael Pinta",
+      "destinationDate": "2024-11-26",
+      "totalAmount": 300,
+      "destinationAddress": "Cajamarca, Peru",
+      "loadDetail": "Cuida con la humedad",
+      "pickupAddress": "Gamarra Lima, Avenida Del Deporte, Urbanización Magistral, Ayacucho, Province of Huamanga, Ayacucho, 05001, Peru"
+    }
+  ],
+  "requestServiceTrips": [
+    {
+      "id": 1,
+      "unload_direction": "",
+      "type": "Pesada",
+      "numberPackages": 120,
+      "country": "",
+      "department": "",
+      "district": "",
+      "destination": "",
+      "unload_location": "",
+      "unload_date": "2024-11-03T15:23:15.598Z",
+      "distance": 759393.6588732774,
+      "statusId": 1,
+      "holderName": "pepito123",
+      "pickupAddress": "Universidad Peruana de Ciencias Aplicadas, Avenida Primavera, Parque Primavera, Santiago de Surco, Province of Lima, Lima Metropolitan Area, Lima, 15023, Peru",
+      "pickupLat": -12.104031549999998,
+      "pickupLng": -76.96297465875287,
+      "destinationAddress": "Peru, La Unión, San Martín de Socabaya, Socabaya, Province of Arequipa, Arequipa, 04012, Peru",
+      "destinationLat": -16.447288,
+      "destinationLng": -71.5230014,
+      "loadDetail": "voy a llevar humanos",
+      "weight": 1200
     },
     {
       "id": 2,
-      "name": "test2",
-      "type": "test type 2",
-      "weight": 2,
-      "unload_location": "Av. test2",
-      "unload_date": "2024-01-02",
-      "expense_id": 1,
-      "alert_id": 1,
-      "ongoing_trip_id": 1,
-      "vehicle_id": 1,
-      "driver_id": 1,
-      "entrepreneur_id": 1,
-      "dimensionx": 1,
-      "dimensiony": 1,
-      "dimensionz": 1
+      "unload_direction": "",
+      "type": "Pesada",
+      "numberPackages": 120,
+      "country": "",
+      "department": "",
+      "district": "",
+      "destination": "",
+      "unload_location": "",
+      "unload_date": "2024-11-03T15:23:17.869Z",
+      "distance": 759393.6588732774,
+      "statusId": 3,
+      "holderName": "pepito123",
+      "pickupAddress": "Universidad Peruana de Ciencias Aplicadas, Avenida Primavera, Parque Primavera, Santiago de Surco, Province of Lima, Lima Metropolitan Area, Lima, 15023, Peru",
+      "pickupLat": -12.104031549999998,
+      "pickupLng": -76.96297465875287,
+      "destinationAddress": "Peru, La Unión, San Martín de Socabaya, Socabaya, Province of Arequipa, Arequipa, 04012, Peru",
+      "destinationLat": -16.447288,
+      "destinationLng": -71.5230014,
+      "loadDetail": "voy a llevar humanos",
+      "weight": 1200
     },
     {
       "id": 3,
-      "name": "1",
-      "type": "test type",
-      "weight": 2,
-      "unload_location": "Av. test 3",
-      "unload_date": "",
-      "expense_id": 0,
-      "alert_id": 0,
-      "ongoing_trip_id": 0,
-      "vehicle_id": "7",
-      "driver_id": "6",
-      "entrepreneur_id": 0,
-      "dimensionx": "3",
-      "dimensiony": "4",
-      "dimensionz": "5"
+      "unload_direction": "",
+      "type": "Pesada",
+      "numberPackages": 120,
+      "country": "",
+      "department": "",
+      "district": "",
+      "destination": "",
+      "unload_location": "",
+      "unload_date": "2024-11-03T16:42:31.830Z",
+      "distance": 918854.7571623159,
+      "statusId": 3,
+      "holderName": "Jael Pinta",
+      "pickupAddress": "Gamarra Lima, Avenida Del Deporte, Urbanización Magistral, Ayacucho, Province of Huamanga, Ayacucho, 05001, Peru",
+      "pickupLat": -13.153714749999999,
+      "pickupLng": -74.22306112506931,
+      "destinationAddress": "Cajamarca, Peru",
+      "destinationLat": -6.25,
+      "destinationLng": -78.833333,
+      "loadDetail": "Cuida con la humedad",
+      "weight": 120
+    },
+    {
+      "id": 4,
+      "unload_direction": "",
+      "type": "Pesada",
+      "numberPackages": 120,
+      "country": "",
+      "department": "",
+      "district": "",
+      "destination": "",
+      "unload_location": "",
+      "unload_date": "2024-11-03T16:43:26.237Z",
+      "distance": 918854.7571623159,
+      "statusId": 1,
+      "holderName": "Jael Pinta",
+      "pickupAddress": "Gamarra Lima, Avenida Del Deporte, Urbanización Magistral, Ayacucho, Province of Huamanga, Ayacucho, 05001, Peru",
+      "pickupLat": -13.153714749999999,
+      "pickupLng": -74.22306112506931,
+      "destinationAddress": "Cajamarca, Peru",
+      "destinationLat": -6.25,
+      "destinationLng": -78.833333,
+      "loadDetail": "Cuida con la humedad",
+      "weight": 120
     }
   ],
-  "expenses": [],
-  "alerts": [],
-  "ongoing_trips": [],
-  "evidences": [],
-  "payment_cards": [],
-  "data_statistics": [
+  "status": [
     {
-      "data": {
-        "chart1": {
-          "labels": [
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto"
-          ],
-          "orders": [
-            200,
-            179,
-            165,
-            134
-          ]
-        },
-        "chart2": {
-          "labels": [
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril"
-          ],
-          "profits": [
-            3000,
-            2500,
-            2000,
-            1500
-          ]
-        }
-      }
+      "id": 1,
+      "status": "accepted"
+    },
+    {
+      "id": 2,
+      "status": " rejected"
+    },
+    {
+      "id": 3,
+      "status": "pending"
     }
-  ]
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "description": "Combustible para viaje Lima",
+      "amount": 350,
+      "date": "2024-01-02"
+    }
+  ],
+  "alerts": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "message": "El conductor ha excedido el límite de velocidad.",
+      "severity": "Alta",
+      "createdAt": "2024-01-04T15:30:00Z"
+    }
+  ],
+  "ongoing_trips": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "status": "En tránsito",
+      "startedAt": "2024-01-01T08:00:00Z",
+      "updatedAt": "2024-01-03T12:00:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "userId": 1,
+      "message": "Tu solicitud ha sido aceptada",
+      "status": "unread",
+      "createdAt": "2024-10-20T08:00:00Z"
+    }
+  ],
+  "evidences": [
+    {
+      "id": 1,
+      "trip_id": 1,
+      "url_photo": "https://example.com/evidences/unload.jpg",
+      "description": "Foto del descargue en el punto de entrega",
+      "createdAt": "2024-01-05T14:00:00Z"
+    }
+  ],
+  "payment_cards": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "card_number": "4111111111111111",
+      "card_holder": "Ana Gómez",
+      "expiration_date": "2026-09",
+      "cvv": "123"
+    }
+  ],
+  "payments": []
 }
