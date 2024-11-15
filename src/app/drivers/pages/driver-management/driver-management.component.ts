@@ -12,8 +12,8 @@ import {
 } from "@angular/material/table";
 import {DriverService} from "../../services/driver.service";
 import {
-  DriversCreateAndEditComponent
-} from "../../components/drivers-create-and-edit/drivers-create-and-edit.component";
+  DriversEditComponent
+} from "../../components/drivers-edit/drivers-edit.component";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {NgClass} from "@angular/common";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -21,12 +21,14 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatInput} from "@angular/material/input";
 import {MatCard, MatCardTitle} from "@angular/material/card";
+import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-driver-management',
   standalone: true,
   imports: [
-    DriversCreateAndEditComponent,
+    DriversEditComponent,
     MatTable,
     MatSort,
     MatColumnDef,
@@ -50,123 +52,107 @@ import {MatCard, MatCardTitle} from "@angular/material/card";
     MatButton,
     MatLabel,
     MatCardTitle,
-    MatCard
+    MatCard,
+    ToolbarContentComponent
   ],
   templateUrl: './driver-management.component.html',
   styleUrl: './driver-management.component.css'
 })
-export class DriverManagementComponent implements OnInit, AfterViewInit {
+export class DriverManagementComponent  implements OnInit, AfterViewInit {
+  driverData: DriverEntity = new DriverEntity({});
+  columnsToDisplay: string[] = ['id', 'name', 'dni', 'phone', 'license', 'url_photo', 'actions'];
+  dataSource: MatTableDataSource<DriverEntity> = new MatTableDataSource();
+  editMode: boolean = false;
 
-  //#region Attributes
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  protected driverData!: DriverEntity;
-  protected columnsToDisplay: string[] = ['id', 'name', 'dni', 'phone','license', 'actions'];
-  @ViewChild(MatPaginator, {static: false})
-  protected paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  protected sort!: MatSort;
-  protected editMode: boolean = false;
-  protected dataSource!: MatTableDataSource<any>;
   private driverService: DriverService = inject(DriverService);
+  private dialog: MatDialog = inject(MatDialog);
 
-  //#endregion
-
-  //#region Methods
-
-  constructor() {
-    this.editMode = false;
-    this.driverData = new DriverEntity({});
-    this.dataSource = new MatTableDataSource();
-    console.log(this.driverData);
-  }
-  onSubmit(): void {
-    if (this.editMode) {
-
-      this.onDriverUpdateRequested(this.driverData!);
-    } else {
-
-      const newDriver: DriverEntity = {
-        id: this.dataSource.data.length + 1,
-        name: this.driverData?.name || '',
-        dni: this.driverData?.dni || '',
-        phone: this.driverData?.phone || '',
-        license: this.driverData?.license || ''
-      };
-      this.onDriverAddRequested(newDriver);
-    }
-  }
-
-  protected onEditItem(item: DriverEntity) {
-    this.editMode = true;
-    this.driverData = item;
-  }
-
-  protected onDeleteItem(item: DriverEntity) {
-    this.deleteDriver(item.id);
-  }
-
-  protected onCancelRequested() {
-    this.resetEditState();
+  ngOnInit(): void {
     this.getAllDrivers();
   }
-
-  protected onDriverAddRequested(item: DriverEntity) {
-    this.driverData = item;
-    this.createDriver();
-    this.resetEditState();
-  }
-
-  protected onDriverUpdateRequested(item: DriverEntity) {
-    this.driverData = item;
-    this.updateDriver();
-    this.resetEditState();
-  }
-
-  private resetEditState() {
-    this.driverData = new DriverEntity({});
-    this.editMode = false;
-  }
-
-  private getAllDrivers() {
-    this.driverService.getAll().subscribe((response: Array<DriverEntity>) => {
-      this.dataSource.data = response;
-    });
-  }
-
-  private createDriver() {
-    this.driverService.create(this.driverData).subscribe((response: DriverEntity) => {
-      this.dataSource.data.push(response);
-      this.dataSource.data = this.dataSource.data;
-    });
-  }
-
-  private updateDriver() {
-    let driverToUpdate = this.driverData;
-    this.driverService.update(driverToUpdate.id, driverToUpdate).subscribe((response: DriverEntity) => {
-      let index = this.dataSource.data.findIndex((driver: DriverEntity) => driver.id === response.id);
-      this.dataSource.data[index] = response;
-      this.dataSource.data = this.dataSource.data;
-    });
-  }
-
-  private deleteDriver(id: number) {
-    this.driverService.delete(id).subscribe(() => {
-      this.dataSource.data = this.dataSource.data.filter((driver: DriverEntity) => driver.id !== id);
-    });
-  }
-
-  //#endregion
-
-  //#region Lifecycle Hooks
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  ngOnInit(): void {
-    this.getAllDrivers();
+  onEditItem(item: DriverEntity): void {
+    this.editMode = true;
+    this.driverData = item;
+    this.openEditDialog(item);
   }
 
-  //#endregion
+  onDeleteItem(item: DriverEntity): void {
+    this.deleteDriver(item.id);
+  }
+
+  onAddDriver(): void {
+    this.editMode = false;
+    this.driverData = new DriverEntity({});
+    this.openEditDialog(this.driverData);
+  }
+
+  onDriverAddRequested(item: DriverEntity): void {
+    this.driverData = item;
+    this.createDriver();
+    this.resetEditState();
+  }
+
+  onDriverUpdateRequested(item: DriverEntity): void {
+    this.driverData = item;
+    this.updateDriver();
+    this.resetEditState();
+  }
+
+  private resetEditState(): void {
+    this.driverData = new DriverEntity({});
+    this.editMode = false;
+  }
+
+  private getAllDrivers(): void {
+    this.driverService.getAll().subscribe((response: DriverEntity[]) => {
+      this.dataSource.data = response;
+    });
+  }
+
+  private createDriver(): void {
+    this.driverService.create(this.driverData).subscribe((response: DriverEntity) => {
+      this.dataSource.data.push(response);
+      this.dataSource.data = [...this.dataSource.data];
+    });
+  }
+
+  private updateDriver(): void {
+    this.driverService.update(this.driverData.id, this.driverData).subscribe((response: DriverEntity) => {
+      const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
+      this.dataSource.data[index] = response;
+      this.dataSource.data = [...this.dataSource.data];
+    });
+  }
+
+  private deleteDriver(id: number): void {
+    this.driverService.delete(id).subscribe(() => {
+      this.dataSource.data = this.dataSource.data.filter(driver => driver.id !== id);
+    });
+  }
+
+  private openEditDialog(driver: DriverEntity): void {
+    const dialogRef = this.dialog.open(DriversEditComponent, {
+      width: '400px',
+      data: driver
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (this.editMode) {
+          this.onDriverUpdateRequested(result);
+        } else {
+          this.onDriverAddRequested(result);
+        }
+      }
+    });
+  }
 }
