@@ -9,7 +9,6 @@ import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {Subject, takeUntil} from "rxjs";
 import {MatBadge} from "@angular/material/badge";
 import {TripService} from "../../../trip/service/trip.service";
-import {UserApiService} from "../../../iam/service/user-api.service";
 import {
   ListTripsEntrepreneurComponent
 } from "../../../trip/components/list-trips-entrepreneur/list-trips-entrepreneur.component";
@@ -46,7 +45,7 @@ export class ToolbarEntrepreneurContentComponent implements OnInit, OnDestroy {
   constructor(
     private tripService: TripService,
     private router: Router,
-    private userApiService: UserApiService,
+
     private dialog: MatDialog
   ) {}
 
@@ -73,7 +72,7 @@ export class ToolbarEntrepreneurContentComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.userApiService.setLogged(false);
+
     this.router.navigate(['/login']);
   }
 

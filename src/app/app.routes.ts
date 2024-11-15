@@ -6,10 +6,6 @@ import { OrdersOnTripManagementComponent } from './orders-on-trip/pages/orders-o
 import { ListRequestTripComponent } from './request-service/components/list-request-trip/list-request-trip.component';
 import { VehiclesManagementComponent } from './vehicles/pages/vehicles-management/vehicles-management.component';
 import { StatisticsComponent } from './company/components/statistics/statistics.component';
-import { LoginComponent } from './iam/login/login.component';
-
-import { AuthGuard } from './auth/guards/auth.guard';
-import {EntrepreneurGuard} from "./auth/guards/entrepreneur.guard";
 import {
   ToolbarEntrepreneurContentComponent
 } from "./public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
@@ -29,25 +25,22 @@ import {
 } from "./trip/components/list-trips-entrepreneur/list-trips-entrepreneur.component";
 import {AddDetailsTripComponent} from "./trip/components/add-details-trip/add-details-trip.component";
 import {DetailsTripComponent} from "./trip/components/details-trip/details-trip.component";
-import {SignupComponent} from "./iam/pages/signup/signup.component";
-import {SignupEntrepreneurComponent} from "./iam/pages/signup-entrepreneur/signup-entrepreneur.component";
-import {SignupCompanyComponent} from "./iam/pages/signup-company/signup-company.component";
 import {ProfileComponent} from "./profile/components/profile/profile.component";
 import {ListTripEntrepreneurComponent} from "./trip/pages/list-trip-entrepreneur/list-trip-entrepreneur.component";
 import {MapsComponent} from "./maps/maps.component";
 import {PaymentComponent} from "./payment/component/payment/payment.component";
 import {HomeCompanyComponent} from "./public/pages/home-company/home-company.component";
+import {SignInComponent} from "./iam/pages/sign-in/sign-in.component";
+import {SignUpComponent} from "./iam/pages/sign-up/sign-up.component";
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'sign-up', pathMatch: 'full' },
   {path: 'home-company', component: HomeCompanyComponent},
 
 //IAM
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: SignupComponent},
-  {path: 'register/entrepreneur', component: SignupEntrepreneurComponent},
-  {path: 'register/company', component: SignupCompanyComponent},
+  { path: 'sign-in',          component: SignInComponent },
+  { path: 'sign-up',          component: SignUpComponent },
 
   //notfound
 

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {BaseFormComponent} from "../../../shared/components/base-form.component";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {SignInRequest} from "../../model/sign-in.request";
@@ -28,7 +27,7 @@ import {MatButton} from "@angular/material/button";
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
-export class SignInComponent extends BaseFormComponent implements OnInit {
+export class SignInComponent  implements OnInit {
   form!: FormGroup;
   submitted = false;
 
@@ -38,7 +37,7 @@ export class SignInComponent extends BaseFormComponent implements OnInit {
    * @param authenticationService {@link AuthenticationService} - authentication service
    */
   constructor(private builder: FormBuilder, private authenticationService: AuthenticationService) {
-    super();
+
   }
 
   /**
@@ -62,5 +61,26 @@ export class SignInComponent extends BaseFormComponent implements OnInit {
     this.authenticationService.signIn(signInRequest);
     this.submitted = true;
   }
+  protected isInvalidFormControl(form: FormGroup, controlName: string) {
+    return form.controls[controlName].invalid &&
+        form.controls[controlName].touched;
+  }
 
+  private errorMessageForControl(controlName: string, errorKey: string) {
+    switch (errorKey) {
+      case 'required': return `The field ${controlName} is required`;
+        // Add more cases here
+      default: return `The field ${controlName} is invalid`;
+    }
+  }
+
+  protected getErrorMessagesForControl(form: FormGroup, controlName: string) {
+    const control = form.controls[controlName];
+    let errorMessages = '';
+    let errors = control.errors;
+    if (!errors) return errorMessages;
+    Object.keys(errors).forEach((errorKey) =>
+        errorMessages += this.errorMessageForControl(controlName, errorKey));
+    return errorMessages;
+  }
 }

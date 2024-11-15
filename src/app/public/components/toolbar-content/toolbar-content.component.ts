@@ -5,7 +5,6 @@ import {MatIcon} from "@angular/material/icon";
 import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.component";
 import {Router, RouterLink} from "@angular/router";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
-import {UserApiService} from "../../../iam/service/user-api.service";
 import {NgClass, NgIf} from "@angular/common";
 import {
   RequestNotificationComponent
@@ -39,7 +38,7 @@ export class ToolbarContentComponent  {
   notificationCount: number = 0;
   isNotificationPanelExpanded: boolean = false;
 
-  constructor(private router: Router, private userApiService: UserApiService, private requestService: RequestService) {}
+  constructor(private router: Router, private requestService: RequestService) {}
 
   navigateToProfile() {
     this.router.navigate(['/profile']);
@@ -51,11 +50,6 @@ export class ToolbarContentComponent  {
       requests => this.notificationCount = requests.length,
       error => console.error('Error loading notification count', error)
     );
-  }
-  logout() {
-    this.userApiService.setLogged(false);
-    this.userApiService.setUserId(0);
-    this.router.navigate(['/login']);
   }
 
 

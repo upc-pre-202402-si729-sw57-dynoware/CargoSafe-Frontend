@@ -3,7 +3,6 @@ import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} f
 import {NgIf, NgStyle} from "@angular/common";
 import {ProfileEntity} from "../../model/profile.entity";
 import {ProfileService} from "../../service/profile.service";
-import {UserApiService} from "../../../iam/service/user-api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
@@ -47,7 +46,6 @@ export class ProfileComponent  implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private snackBar: MatSnackBar,
-    private userApiService: UserApiService,
     private profileService: ProfileService
   ) {
     this.profileForm = this.formBuilder.group({
@@ -57,23 +55,7 @@ export class ProfileComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId = this.userApiService.getUserId();
-    console.log('User ID in ProfileComponent:', userId);
 
-    if (userId) {
-      this.userApiService.getById(userId).subscribe({
-        next: (user) => {
-          this.user = user;
-          this.loadUserProfile(userId);
-        },
-        error: (error) => {
-          console.error('Error fetching user:', error);
-          this.snackBar.open('Error fetching user data', 'Close', { duration: 3000 });
-        }
-      });
-    } else {
-      this.snackBar.open('User ID not found', 'Close', { duration: 3000 });
-    }
   }
 
   loadUserProfile(userId: number): void {
@@ -100,30 +82,7 @@ export class ProfileComponent  implements OnInit {
       return;
     }
 
-    const userId = this.userApiService.getUserId();
-    if (userId && this.profile) {
-      const updatedProfile: ProfileEntity = {
-        id: this.profile.id,
-        userId: this.profile.userId,
-        bio: this.profileForm.value.bio,
-        avatar: this.profileForm.value.avatar,
-        name: this.profile.name,
-        email: this.profile.email,
-        phone: this.profile.phone
-      };
 
-      this.profileService.update(this.profile.id, updatedProfile).subscribe({
-        next: () => {
-          this.snackBar.open('Profile updated successfully', 'Close', { duration: 3000 });
-        },
-        error: (error) => {
-          console.error('Error updating profile:', error);
-          this.snackBar.open('Error updating profile', 'Close', { duration: 3000 });
-        }
-      });
-    } else {
-      this.snackBar.open('User I' + this.message + ' not found', 'Close', { duration: 3000 });
-    }
   }
 
   onFileChange(event: any): void {
