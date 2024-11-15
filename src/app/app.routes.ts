@@ -4,7 +4,6 @@ import { PageNotFoundComponent } from './public/pages/page-not-found/page-not-fo
 import { DriverManagementComponent } from './drivers/pages/driver-management/driver-management.component';
 import { OrdersOnTripManagementComponent } from './orders-on-trip/pages/orders-on-trip-management/orders-on-trip-management.component';
 import { ListRequestTripComponent } from './request-service/components/list-request-trip/list-request-trip.component';
-import { VehiclesManagementComponent } from './vehicles/pages/vehicles-management/vehicles-management.component';
 import { StatisticsComponent } from './company/components/statistics/statistics.component';
 import { LoginComponent } from './iam/login/login.component';
 
@@ -18,9 +17,6 @@ import {
   DriversEditComponent
 } from "./drivers/components/drivers-edit/drivers-edit.component";
 import {AddDriverManagementComponent} from "./drivers/pages/add-driver-management/add-driver-management.component";
-import {
-  AddVehiclesManagementComponent
-} from "./vehicles/pages/add-vehicles-management/add-vehicles-management.component";
 import {
   ListRequestStatusComponent
 } from "./request-service/components/list-request-status/list-request-status.component";
@@ -37,6 +33,10 @@ import {ListTripEntrepreneurComponent} from "./trip/pages/list-trip-entrepreneur
 import {MapsComponent} from "./maps/maps.component";
 import {PaymentComponent} from "./payment/component/payment/payment.component";
 import {HomeCompanyComponent} from "./public/pages/home-company/home-company.component";
+import {VehiclesManagementComponent} from "./vehicles/pages/vehicles-management/vehicles-management.component";
+import {
+  AddVehiclesManagementComponent
+} from "./vehicles/pages/add-vehicles-management/add-vehicles-management.component";
 
 
 export const routes: Routes = [
