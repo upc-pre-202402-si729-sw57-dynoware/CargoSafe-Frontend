@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {BaseFormComponent} from "../../../shared/components/base-form.component";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {SignUpRequest} from "../../model/sign-up.request";
 import {MatButton} from "@angular/material/button";
@@ -14,13 +15,12 @@ import {MatInput} from "@angular/material/input";
   selector: 'app-sign-up',
   standalone: true,
   imports: [
-    FormsModule,
     MatButton,
     MatCard,
     MatCardContent,
+    MatCardHeader,
     MatCardTitle,
     MatError,
-    MatCardHeader,
     MatFormField,
     MatInput,
     ReactiveFormsModule
@@ -28,59 +28,44 @@ import {MatInput} from "@angular/material/input";
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent extends BaseFormComponent implements OnInit {
   form!: FormGroup;
-  submitted: boolean = false;
-  protected isInvalidFormControl(form: FormGroup, controlName: string) {
-    return form.controls[controlName].invalid &&
-        form.controls[controlName].touched;
-  }
+  submitted = false;
 
-  private errorMessageForControl(controlName: string, errorKey: string) {
-    switch (errorKey) {
-      case 'required': return `The field ${controlName} is required`;
-        // Add more cases here
-      default: return `The field ${controlName} is invalid`;
-    }
-  }
-
-  protected getErrorMessagesForControl(form: FormGroup, controlName: string) {
-    const control = form.controls[controlName];
-    let errorMessages = '';
-    let errors = control.errors;
-    if (!errors) return errorMessages;
-    Object.keys(errors).forEach((errorKey) =>
-        errorMessages += this.errorMessageForControl(controlName, errorKey));
-    return errorMessages;
-  }
   /**
    * Constructor
-   * @param builder {@link FormBuilder} - form builder
-   * @param authenticationService {@link AuthenticationService} - authentication service
+   * @param builder {@link FormBuilder} instance
+   * @param authenticationService {@link AuthenticationService} instance
    */
   constructor(private builder: FormBuilder, private authenticationService: AuthenticationService) {
-
+    super();
   }
 
   /**
-   * On init Event Handler
+   * On Init Event Handler
+   * <p>
+   *  Initialize component
+   * </p>
    */
   ngOnInit(): void {
     this.form = this.builder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
   /**
-   * On submit Event Handler
+   * On Submit Event Handler
+   * <p>
+   *  Submit form
+   * </p>
    */
-  onSubmit() {
+  onSubmit(): void {
     if (this.form.invalid) return;
     let username = this.form.value.username;
     let password = this.form.value.password;
-    const signUnRequest = new SignUpRequest(username, password);
-    this.authenticationService.signUp(signUnRequest);
+    const signUpRequest = new SignUpRequest(username, password);
+    this.authenticationService.signUp(signUpRequest);
     this.submitted = true;
   }
 }

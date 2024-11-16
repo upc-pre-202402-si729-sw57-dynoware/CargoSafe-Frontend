@@ -5,11 +5,12 @@ import {map, take} from "rxjs";
 
 /**
  * Guard to check if user is authenticated
- * @summary
- * This guard is used to check if the user is authenticated.
- * If the user is not authenticated, it will redirect the user to the sign-in page.
- * @param route The route
- * @param state The state
+ * <p>
+ *   If user is not authenticated, it will redirect to sign-in page
+ *   and return false
+ * </p>
+ * @param route The route object that will be used to determine if the user can access the route.
+ * @param state The state object that will be used to determine if the user can access the route.
  */
 export const authenticationGuard: CanActivateFn = (route, state) => {
   const authenticationService = inject(AuthenticationService);

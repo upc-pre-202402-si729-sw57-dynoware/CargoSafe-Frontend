@@ -1,5 +1,5 @@
 /**
- * Model class for SignUpResponse
+ * Model for the response of the sign-up endpoint
  */
 export class SignUpResponse {
   public id: number;
@@ -12,7 +12,6 @@ export class SignUpResponse {
    */
   constructor(id: number, username: string) {
     this.id = id;
-    this.username = username;
+    this.username = username
   }
-
 }

@@ -32,51 +32,45 @@ import {PaymentComponent} from "./payment/component/payment/payment.component";
 import {HomeCompanyComponent} from "./public/pages/home-company/home-company.component";
 import {SignInComponent} from "./iam/pages/sign-in/sign-in.component";
 import {SignUpComponent} from "./iam/pages/sign-up/sign-up.component";
+import {authenticationGuard} from "./iam/services/authentication.guard";
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'sign-up', pathMatch: 'full' },
-  {path: 'home-company', component: HomeCompanyComponent},
+  { path: 'home-company', component: HomeCompanyComponent },
 
-//IAM
-  { path: 'sign-in',          component: SignInComponent },
-  { path: 'sign-up',          component: SignUpComponent },
+  // IAM
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent },
 
-  //notfound
-
+  // Not found
   { path: 'pages', component: PageNotFoundComponent },
 
-  //driver management
-  { path: 'drivers/management', component: DriverManagementComponent },
-  {path: 'management/driver/new',component: AddDriverManagementComponent},
+  // Driver management
+  { path: 'drivers/management', component: DriverManagementComponent, canActivate: [authenticationGuard] },
+  { path: 'management/driver/new', component: AddDriverManagementComponent, canActivate: [authenticationGuard] },
 
-  //vehicles management
-  {path: 'management/vehicle/new',component: AddVehiclesManagementComponent},
-  { path: 'vehicles/management', component: VehiclesManagementComponent },
+  // Vehicles management
+  { path: 'management/vehicle/new', component: AddVehiclesManagementComponent, canActivate: [authenticationGuard] },
+  { path: 'vehicles/management', component: VehiclesManagementComponent, canActivate: [authenticationGuard] },
 
-//add new order
-  { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent },
+  // Add new order
+  { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent, canActivate: [authenticationGuard] },
 
+  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard] },
+  { path: 'stadistics', component: StatisticsComponent, canActivate: [authenticationGuard] },
 
-  { path: 'list-request-trip', component: ListRequestTripComponent },
-  { path: 'stadistics', component: StatisticsComponent},
-
-
-
-
-  //ENTREPRENEUR
-  {path:'a', component: ToolbarEntrepreneurContentComponent },
-  {path:'request/trip/new', component: RequestComponent},
-  {path:'list-request-trip', component:ListRequestTripComponent},
-  {path:'list-request-history', component: ListRequestStatusComponent},
-  { path: 'home-entrepreneur', component: HomeComponent },
-  {path:'list-trips', component: ListTripEntrepreneurComponent},
-  { path: 'add-trip-details', component: AddDetailsTripComponent },
-  { path: 'trip/details/:id', component: DetailsTripComponent },
-  { path: 'maps/details', component: MapsComponent },
-  { path: 'profile', component: ProfileComponent },
-  {path: 'payment',component: PaymentComponent},
+  // Entrepreneur
+  { path: 'a', component: ToolbarEntrepreneurContentComponent, canActivate: [authenticationGuard] },
+  { path: 'request/trip/new', component: RequestComponent, canActivate: [authenticationGuard] },
+  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard] },
+  { path: 'list-request-history', component: ListRequestStatusComponent, canActivate: [authenticationGuard] },
+  { path: 'home-entrepreneur', component: HomeComponent, canActivate: [authenticationGuard] },
+  { path: 'list-trips', component: ListTripsEntrepreneurComponent, canActivate: [authenticationGuard] },
+  { path: 'add-trip-details', component: AddDetailsTripComponent, canActivate: [authenticationGuard] },
+  { path: 'trip/details/:id', component: DetailsTripComponent, canActivate: [authenticationGuard] },
+  { path: 'maps/details', component: MapsComponent, canActivate: [authenticationGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [authenticationGuard] },
+  { path: 'payment', component: PaymentComponent, canActivate: [authenticationGuard] },
   { path: '**', component: PageNotFoundComponent },
-
 ];
-//,canActivate: [AuthGuard]

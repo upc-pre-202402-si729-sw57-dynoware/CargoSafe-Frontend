@@ -12,30 +12,15 @@ import {ToolbarContentComponent} from "./public/components/toolbar-content/toolb
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
 
-  constructor(private router: Router) {}
 
-  shouldShowToolbar(): boolean {
-    return !['/login', '/register'].includes(this.router.url);
-  }
 
-  isLeftSidebarCollapsed = signal<boolean>(false);
-  screenWidth = signal<number>(window.innerWidth);
 
-  @HostListener('window:resize')
-  onResize() {
-    this.screenWidth.set(window.innerWidth);
-    if (this.screenWidth() < 768) {
-      this.isLeftSidebarCollapsed.set(true);
-    }
-  }
 
-  ngOnInit(): void {
-    this.isLeftSidebarCollapsed.set(this.screenWidth() < 768);
-  }
 
-  changeIsLeftSidebarCollapsed(isLeftSidebarCollapsed: boolean): void {
-    this.isLeftSidebarCollapsed.set(isLeftSidebarCollapsed);
-  }
+
+
+
+
 }

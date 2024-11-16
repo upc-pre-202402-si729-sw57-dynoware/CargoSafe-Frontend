@@ -7,14 +7,14 @@
       <form [formGroup]="form" (submit)="onSubmit()">
         <mat-form-field>
           <input matInput placeholder="Username" id="username" name="username" required formControlName="username">
-          @if (isInvalidFormControl(form, 'username')) {
-            <mat-error>{{ getErrorMessagesForControl(form, 'username')}}</mat-error>
+          @if (isInvalidControl(form, 'username')) {
+            <mat-error>{{ errorMessagesForControl(form, 'username')}}</mat-error>
           }
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="password" placeholder="Password" id="password" name="password" required formControlName="password">
-          @if (isInvalidFormControl(form, 'password')) {
-            <mat-error>{{ getErrorMessagesForControl(form, 'password')}}</mat-error>
+          <input matInput placeholder="Password" id="password" name="password" type="password" required formControlName="password">
+          @if (isInvalidControl(form, 'password')) {
+            <mat-error>{{ errorMessagesForControl(form, 'password')}}</mat-error>
           }
         </mat-form-field>
         <button mat-raised-button color="primary">Sign Up</button>

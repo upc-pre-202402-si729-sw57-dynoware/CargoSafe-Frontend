@@ -4,10 +4,7 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {MatButton} from "@angular/material/button";
 
 /**
- * Authentication Section Component
- * @summary
- * This component is responsible for displaying the authentication section of the application.
- * It displays the current username and provides the user with the ability to sign in, sign up, or sign out.
+ * Authentication section component
  */
 @Component({
   selector: 'app-authentication-section',
@@ -24,35 +21,32 @@ export class AuthenticationSectionComponent {
 
   /**
    * Constructor
-   * @param router The {@link Router} service
-   * @param authenticationService The {@link AuthenticationService} service
+   * @param router the router
+   * @param authenticationService the authentication service
    */
-  constructor(private router: Router, private authenticationService: AuthenticationService ) {
-    this.authenticationService.currentUsername
-      .subscribe((username) => this.currentUsername = username);
-    this.authenticationService.isSignedIn
-      .subscribe((isSignedIn) => this.isSignedIn = isSignedIn);
+  constructor(private router: Router, private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUsername.subscribe(username => this.currentUsername = username);
+    this.authenticationService.isSignedIn.subscribe(isSignedIn => this.isSignedIn = isSignedIn);
   }
 
   /**
-   * On Sign In Event Handler
+   * Sign In Event Handler
    */
   onSignIn() {
     this.router.navigate(['/sign-in']).then();
   }
 
   /**
-   * On Sign Up Event Handler
+   * Sign Up Event Handler
    */
   onSignUp() {
     this.router.navigate(['/sign-up']).then();
   }
 
   /**
-   * On Sign Out Event Handler
+   * Sign Out Event Handler
    */
   onSignOut() {
     this.authenticationService.signOut();
   }
-
 }

@@ -1,5 +1,5 @@
 /**
- * Model class for SignInResponse
+ * Model class for sign-in response.
  */
 export class SignInResponse {
   public id: number;
@@ -8,7 +8,7 @@ export class SignInResponse {
 
   /**
    * Constructor for SignInResponse
-   * @param id The id
+   * @param id The user id
    * @param username The username
    * @param token The generated token
    */
