@@ -79,7 +79,7 @@ export class AuthenticationService {
         }
       });
   }
-
+//sign
   /**
    * Signs in a user
    * <p>
