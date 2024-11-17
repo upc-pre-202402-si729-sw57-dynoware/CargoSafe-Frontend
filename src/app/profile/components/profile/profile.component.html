@@ -1,43 +1,41 @@
 <app-toolbar-entrepreneur-content></app-toolbar-entrepreneur-content>
 <div class="profile-container">
   <div class="profile-header">
-    <img src="https://i.pinimg.com/originals/c7/f5/78/c7f578937fdc07702eacff129b4107f7.png" alt="Profile Avatar" class="profile-avatar" />
+    <img [src]="profile?.avatar || 'https://i.pinimg.com/originals/c7/f5/78/c7f578937fdc07702eacff129b4107f7.png'" alt="Profile Avatar" class="profile-avatar" />
     <div class="profile-info">
-      <h2 class="profile-name">Madara</h2>
+      <h2 class="profile-name">{{ currentUsername }}</h2>
       <p class="profile-role">Entrepreneur on EmpresaFantasma</p>
       <div class="profile-buttons">
-
+        <!-- Add any buttons if needed -->
       </div>
     </div>
   </div>
 
   <div class="tabs">
     <span class="tab active">Edit Profile</span>
-
   </div>
 
   <div class="edit-profile-section">
     <h3>Edit Profile</h3>
     <p>Update profile picture, full name, username, biography, contact information, and recent activity or posts</p>
-    <form class="edit-form">
+    <form class="edit-form" [formGroup]="profileForm" (ngSubmit)="onUpdate()">
       <label>Avatar</label>
-
       <label for="file-upload" class="custom-file-upload">
         <i class="material-icons">cloud_upload</i> Update Profile Image
       </label>
       <input id="file-upload" type="file" (change)="onFileChange($event)" />
 
       <label>New Password</label>
-      <input type="password" placeholder="New Password" />
+      <input type="password" placeholder="New Password" formControlName="password" />
 
       <label>Biography</label>
-      <textarea placeholder="Biography"></textarea>
+      <textarea placeholder="Biography" formControlName="bio"></textarea>
 
       <label>Phone Number</label>
-      <input type="text" placeholder="Phone Number" />
+      <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
 
       <label>Location</label>
-      <input type="text" placeholder="Location" />
+      <input type="text" placeholder="Location" formControlName="location" />
 
       <button type="submit" class="update-btn">Update</button>
     </form>

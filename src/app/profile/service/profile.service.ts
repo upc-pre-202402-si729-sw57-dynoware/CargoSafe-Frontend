@@ -33,4 +33,8 @@ export class ProfileService  extends BaseService<ProfileEntity> {
       map(profiles => profiles[0])
     );
   }
+
+  getByUsername(username: string): Observable<ProfileEntity> {
+    return this.http.get<ProfileEntity>(`${this.baseUrl}/username/${username}`);
+  }
 }

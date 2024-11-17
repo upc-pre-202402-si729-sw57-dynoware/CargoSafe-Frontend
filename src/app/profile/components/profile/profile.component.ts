@@ -13,6 +13,7 @@ import {
 } from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {Router} from "@angular/router";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-profile',
@@ -41,12 +42,14 @@ export class ProfileComponent  implements OnInit {
   profileForm: FormGroup;
   user: any;
   profile: ProfileEntity | null = null;
+  currentUsername: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private snackBar: MatSnackBar,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private authenticationService: AuthenticationService
   ) {
     this.profileForm = this.formBuilder.group({
       bio: ['', Validators.required],
@@ -55,11 +58,14 @@ export class ProfileComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.authenticationService.currentUsername.subscribe(username => {
+      this.currentUsername = username;
+      this.loadUserProfile(username);
+    });
   }
 
-  loadUserProfile(userId: number): void {
-    this.profileService.getByUserId(userId).subscribe({
+  loadUserProfile(username: string): void {
+    this.profileService.getByUsername(username).subscribe({
       next: (profile) => {
         this.profile = profile;
         this.profileForm.patchValue({
@@ -74,25 +80,15 @@ export class ProfileComponent  implements OnInit {
     });
   }
 
-  private message = 'D';
-
-  onSubmit(): void {
-    if (this.profileForm.invalid) {
-      this.snackBar.open('Please fill out all required fields.', 'Close', { duration: 3000 });
-      return;
-    }
-
-
-  }
-
   onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
       this.profileForm.patchValue({ avatar: file });
     }
   }
+
   onUpdate() {
-    // Lógica para actualizar el perfil
+    // Logic to update the profile
     console.log('Profile updated');
   }
 }

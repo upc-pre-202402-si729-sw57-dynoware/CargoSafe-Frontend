@@ -36,8 +36,8 @@ import {authenticationGuard} from "./iam/services/authentication.guard";
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'sign-up', pathMatch: 'full' },
-  { path: 'home-company', component: HomeCompanyComponent },
+  { path: '', redirectTo: 'home-company', pathMatch: 'full' },
+  { path: 'home-company', component: HomeCompanyComponent, canActivate: [authenticationGuard] },
 
   // IAM
   { path: 'sign-in', component: SignInComponent },
