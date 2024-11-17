@@ -2,13 +2,11 @@
   <div class="auth-card">
     <h1 class="auth-title">Sign Up</h1>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-
       <div class="auth-input-group">
-        <label for="username">username</label>
+        <label for="username">Username</label>
         <input
           id="username"
-          type="username"
+          type="text"
           placeholder="Enter your username"
           formControlName="username"
           class="auth-input"
@@ -30,6 +28,14 @@
         <span *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="auth-error">
           Password must be at least 6 characters.
         </span>
+      </div>
+
+      <div class="auth-input-group">
+        <label for="role">Role</label>
+        <select id="role" formControlName="role" class="auth-input">
+          <option value="ROL_ENTREPRENEUR">Entrepreneur</option>
+          <option value="ROL_COMPANY">Company</option>
+        </select>
       </div>
 
       <button type="submit" class="auth-button">Sign Up</button>

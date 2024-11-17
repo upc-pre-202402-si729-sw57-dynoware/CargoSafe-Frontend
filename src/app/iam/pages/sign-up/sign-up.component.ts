@@ -8,7 +8,7 @@ import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {BaseFormComponent} from "../../../../shared/components/base-form.component";
 import {NgIf} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 
 /**
  * Sign up component
@@ -33,47 +33,35 @@ import {RouterLink} from "@angular/router";
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
-export class SignUpComponent extends BaseFormComponent implements OnInit {
+export class SignUpComponent  implements OnInit {
   form!: FormGroup;
   submitted = false;
 
+  constructor(
+    private builder: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {}
 
-  /**
-   * Constructor
-   * @param builder {@link FormBuilder} instance
-   * @param authenticationService {@link AuthenticationService} instance
-   */
-  constructor(private builder: FormBuilder, private authenticationService: AuthenticationService) {
-    super();
-  }
-
-  /**
-   * On Init Event Handler
-   * <p>
-   *  Initialize component
-   * </p>
-   */
   ngOnInit(): void {
     this.form = this.builder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
+      role: ['ROL_ENTREPRENEUR', Validators.required]
     });
   }
 
-  /**
-   * On Submit Event Handler
-   * <p>
-   *  Submit form
-   * </p>
-   */
   onSubmit(): void {
     if (this.form.invalid) return;
-    let username = this.form.value.username;
-    let password = this.form.value.password;
-    const signUpRequest = new SignUpRequest(username, password);
-    this.authenticationService.signUp(signUpRequest);
-    this.submitted = true;
-  }
-
-
+    const { username, password, role } = this.form.value;
+    const signUpRequest = new SignUpRequest(username, password, role);
+    this.authenticationService.signUp(signUpRequest).subscribe({
+      next: () => {
+        this.submitted = true;
+        this.router.navigate(['/sign-in']);
+      },
+      error: (error) => {
+        console.error('Error signing up', error);
+      }
+    });}
 }

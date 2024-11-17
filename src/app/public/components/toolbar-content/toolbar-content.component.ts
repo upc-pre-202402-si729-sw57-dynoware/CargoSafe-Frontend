@@ -53,7 +53,10 @@ export class ToolbarContentComponent  {
   }
 
 
+  logout() {
 
+    this.router.navigate(['/sign-in']).then();
+  }
   onNotificationDeleted() {
     this.notificationCount--;
   }

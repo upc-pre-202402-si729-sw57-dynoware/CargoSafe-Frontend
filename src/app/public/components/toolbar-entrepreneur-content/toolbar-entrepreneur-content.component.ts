@@ -73,7 +73,7 @@ export class ToolbarEntrepreneurContentComponent implements OnInit, OnDestroy {
 
   logout() {
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/sign-in']).then();
   }
 
   openTripsDialog(): void {
