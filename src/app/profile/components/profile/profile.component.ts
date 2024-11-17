@@ -3,7 +3,6 @@ import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} f
 import {NgIf, NgStyle} from "@angular/common";
 import {ProfileEntity} from "../../model/profile.entity";
 import {ProfileService} from "../../service/profile.service";
-import {UserApiService} from "../../../iam/service/user-api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
@@ -14,6 +13,7 @@ import {
 } from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {Router} from "@angular/router";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-profile',
@@ -42,13 +42,14 @@ export class ProfileComponent  implements OnInit {
   profileForm: FormGroup;
   user: any;
   profile: ProfileEntity | null = null;
+  currentUsername: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private snackBar: MatSnackBar,
-    private userApiService: UserApiService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private authenticationService: AuthenticationService
   ) {
     this.profileForm = this.formBuilder.group({
       bio: ['', Validators.required],
@@ -57,27 +58,14 @@ export class ProfileComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId = this.userApiService.getUserId();
-    console.log('User ID in ProfileComponent:', userId);
-
-    if (userId) {
-      this.userApiService.getById(userId).subscribe({
-        next: (user) => {
-          this.user = user;
-          this.loadUserProfile(userId);
-        },
-        error: (error) => {
-          console.error('Error fetching user:', error);
-          this.snackBar.open('Error fetching user data', 'Close', { duration: 3000 });
-        }
-      });
-    } else {
-      this.snackBar.open('User ID not found', 'Close', { duration: 3000 });
-    }
+    this.authenticationService.currentUsername.subscribe(username => {
+      this.currentUsername = username;
+      this.loadUserProfile(username);
+    });
   }
 
-  loadUserProfile(userId: number): void {
-    this.profileService.getByUserId(userId).subscribe({
+  loadUserProfile(username: string): void {
+    this.profileService.getByUsername(username).subscribe({
       next: (profile) => {
         this.profile = profile;
         this.profileForm.patchValue({
@@ -92,48 +80,15 @@ export class ProfileComponent  implements OnInit {
     });
   }
 
-  private message = 'D';
-
-  onSubmit(): void {
-    if (this.profileForm.invalid) {
-      this.snackBar.open('Please fill out all required fields.', 'Close', { duration: 3000 });
-      return;
-    }
-
-    const userId = this.userApiService.getUserId();
-    if (userId && this.profile) {
-      const updatedProfile: ProfileEntity = {
-        id: this.profile.id,
-        userId: this.profile.userId,
-        bio: this.profileForm.value.bio,
-        avatar: this.profileForm.value.avatar,
-        name: this.profile.name,
-        email: this.profile.email,
-        phone: this.profile.phone
-      };
-
-      this.profileService.update(this.profile.id, updatedProfile).subscribe({
-        next: () => {
-          this.snackBar.open('Profile updated successfully', 'Close', { duration: 3000 });
-        },
-        error: (error) => {
-          console.error('Error updating profile:', error);
-          this.snackBar.open('Error updating profile', 'Close', { duration: 3000 });
-        }
-      });
-    } else {
-      this.snackBar.open('User I' + this.message + ' not found', 'Close', { duration: 3000 });
-    }
-  }
-
   onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
       this.profileForm.patchValue({ avatar: file });
     }
   }
+
   onUpdate() {
-    // Lógica para actualizar el perfil
+    // Logic to update the profile
     console.log('Profile updated');
   }
 }

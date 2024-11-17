@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatisticsResponse, StadisticsService } from "../../services/stadistics.service";
 import { MatGridList, MatGridTile } from "@angular/material/grid-list";
-import { StatisticsEntity } from "../../model/statistics.entity";
 import { Chart, registerables } from 'chart.js';
 import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {TripService} from "../../../trip/service/trip.service";

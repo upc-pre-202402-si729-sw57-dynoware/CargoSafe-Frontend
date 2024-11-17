@@ -10,7 +10,7 @@ import {map} from "rxjs/operators";
 })
 export class ProfileService  extends BaseService<ProfileEntity> {
 
-  //private baseUrl = 'http://localhost:3000/profiles';
+ // private baseUrl = 'http://localhost:3000/profiles';
 
   constructor(private httpClient: HttpClient) {
     super();
@@ -32,5 +32,9 @@ export class ProfileService  extends BaseService<ProfileEntity> {
     return this.http.get<ProfileEntity[]>(`${this.baseUrl}?userId=${userId}`).pipe(
       map(profiles => profiles[0])
     );
+  }
+
+  getByUsername(username: string): Observable<ProfileEntity> {
+    return this.http.get<ProfileEntity>(`${this.baseUrl}/username/${username}`);
   }
 }

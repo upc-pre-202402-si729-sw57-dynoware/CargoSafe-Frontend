@@ -18,10 +18,11 @@ import {VehiclesService} from "../../../vehicles/services/vehicles.service";
   imports: [
     FormsModule,
     ToolbarContentComponent,
-    ToolbarEntrepreneurContentComponent,
+
     NgIf,
     DatePipe,
-    CurrencyPipe
+    CurrencyPipe,
+    ToolbarEntrepreneurContentComponent
   ],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'

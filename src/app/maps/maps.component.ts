@@ -12,7 +12,7 @@ import {
   selector: 'app-maps',
   standalone: true,
   templateUrl: './maps.component.html',
-  imports: [FormsModule, HttpClientModule, DecimalPipe, NgIf, NgForOf, ToolbarEntrepreneurContentComponent],
+  imports: [FormsModule, HttpClientModule, DecimalPipe, NgIf, NgForOf],
   styleUrls: ['./maps.component.css']
 })
 export class MapsComponent /*implements OnInit, AfterViewInit*/ {
