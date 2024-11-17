@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {BaseFormComponent} from "../../../shared/components/base-form.component";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {SignInRequest} from "../../model/sign-in.request";
@@ -7,6 +6,7 @@ import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/mat
 import {MatError, MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
+import {BaseFormComponent} from "../../../../shared/components/base-form.component";
 
 /**
  * Sign in component
