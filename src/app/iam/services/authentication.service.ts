@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {SignUpRequest} from "../model/sign-up.request";
 import {SignUpResponse} from "../model/sign-up.response";
@@ -25,7 +25,7 @@ export class AuthenticationService {
   private signedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private signedInUserId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private signedInUsername: BehaviorSubject<string> = new BehaviorSubject<string>('');
-
+  private signedInUserRoles: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   /**
    * Constructor
    * @param router the router
@@ -39,7 +39,9 @@ export class AuthenticationService {
   get isSignedIn() {
     return this.signedIn.asObservable();
   }
-
+  get currentUserRoles() {
+    return this.signedInUserRoles.asObservable();
+  }
   /**
    * Gets the current user id
    */
@@ -71,7 +73,30 @@ export class AuthenticationService {
   }
 
   signIn(signInRequest: SignInRequest): Observable<SignInResponse> {
-    return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions);
+    return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions).pipe(
+      tap(response => {
+        console.log('SignInResponse:', response); // Debugging log
+        if (!response) {
+          console.error('No response received from server');
+          return;
+        }
+        if (!response.roles) {
+          console.error('Roles not defined in response:', response);
+          return;
+        }
+        this.signedIn.next(true);
+        this.signedInUserId.next(response.id);
+        this.signedInUsername.next(response.username);
+        this.signedInUserRoles.next(response.roles); // Ensure roles are set
+        localStorage.setItem('token', response.token);
+        // Navigate based on roles
+        if (response.roles.includes('ROLE_ENTREPRENEUR')) {
+          this.router.navigate(['/home-entrepreneur']).then();
+        } else if (response.roles.includes('ROLE_COMPANY')) {
+          this.router.navigate(['/home-company']).then();
+        }
+      })
+    );
   }
 
   /**
@@ -86,5 +111,8 @@ export class AuthenticationService {
     this.signedInUsername.next('');
     localStorage.removeItem('token');
     this.router.navigate(['/sign-in']).then();
+  }
+  updateSignedInUserRoles(roles: string[]): void {
+    this.signedInUserRoles.next(roles);
   }
 }

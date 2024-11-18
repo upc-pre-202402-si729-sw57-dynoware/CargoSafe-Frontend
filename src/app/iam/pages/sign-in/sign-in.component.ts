@@ -67,14 +67,21 @@ export class SignInComponent extends BaseFormComponent implements OnInit{
      *  Submit the form data to the server
      * </p>
      */
-    onSubmit() {
+    onSubmit(): void {
       if (this.form.invalid) return;
-      let username = this.form.value.username;
-      let password = this.form.value.password;
+      const { username, password } = this.form.value;
       const signInRequest = new SignInRequest(username, password);
-      this.authenticationService.signIn(signInRequest);
-      this.submitted = true;
-      this.router.navigate(['/drivers/management']);
+      this.authenticationService.signIn(signInRequest).subscribe({
+        next: (response) => {
+          console.log('SignInResponse:', response); // Debugging log
+          this.submitted = true;
+          localStorage.setItem('token', response.token);
+          this.authenticationService.updateSignedInUserRoles(response.roles);
+          // Navigation is handled in the signIn method of AuthenticationService
+        },
+        error: (error) => {
+          console.error('Error signing in', error);
+        }
+      });
     }
-
 }

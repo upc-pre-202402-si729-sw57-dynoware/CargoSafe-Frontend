@@ -6,7 +6,7 @@
       <h2 class="profile-name">{{ currentUsername }}</h2>
       <p class="profile-role">Entrepreneur on EmpresaFantasma</p>
       <div class="profile-buttons">
-        <!-- Add any buttons if needed -->
+
       </div>
     </div>
   </div>
@@ -19,23 +19,29 @@
     <h3>Edit Profile</h3>
     <p>Update profile picture, full name, username, biography, contact information, and recent activity or posts</p>
     <form class="edit-form" [formGroup]="profileForm" (ngSubmit)="onUpdate()">
-      <label>Avatar</label>
-      <label for="file-upload" class="custom-file-upload">
-        <i class="material-icons">cloud_upload</i> Update Profile Image
-      </label>
-      <input id="file-upload" type="file" (change)="onFileChange($event)" />
+      <label>First Name</label>
+      <input type="text" placeholder="First Name" formControlName="firstName" />
 
-      <label>New Password</label>
-      <input type="password" placeholder="New Password" formControlName="password" />
+      <label>Last Name</label>
+      <input type="text" placeholder="Last Name" formControlName="lastName" />
 
-      <label>Biography</label>
-      <textarea placeholder="Biography" formControlName="bio"></textarea>
+      <label>Email</label>
+      <input type="email" placeholder="Email" formControlName="email" />
 
-      <label>Phone Number</label>
-      <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
+      <label>Street</label>
+      <input type="text" placeholder="Street" formControlName="street" />
 
-      <label>Location</label>
-      <input type="text" placeholder="Location" formControlName="location" />
+      <label>Number</label>
+      <input type="text" placeholder="Number" formControlName="number" />
+
+      <label>City</label>
+      <input type="text" placeholder="City" formControlName="city" />
+
+      <label>Postal Code</label>
+      <input type="text" placeholder="Postal Code" formControlName="postalCode" />
+
+      <label>Country</label>
+      <input type="text" placeholder="Country" formControlName="country" />
 
       <button type="submit" class="update-btn">Update</button>
     </form>

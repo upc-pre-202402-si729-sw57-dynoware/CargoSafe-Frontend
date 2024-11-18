@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {SignUpRequest} from "../../model/sign-up.request";
 import {MatButton} from "@angular/material/button";
@@ -46,15 +46,15 @@ export class SignUpComponent  implements OnInit {
   ngOnInit(): void {
     this.form = this.builder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
-      role: ['ROL_ENTREPRENEUR', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      roles: ['', Validators.required]
     });
   }
 
   onSubmit(): void {
     if (this.form.invalid) return;
-    const { username, password, role } = this.form.value;
-    const signUpRequest = new SignUpRequest(username, password, role);
+    const { username, password, roles } = this.form.value;
+    const signUpRequest = new SignUpRequest(username, password, [roles]);
     this.authenticationService.signUp(signUpRequest).subscribe({
       next: () => {
         this.submitted = true;
@@ -63,5 +63,18 @@ export class SignUpComponent  implements OnInit {
       error: (error) => {
         console.error('Error signing up', error);
       }
-    });}
+    });
+  }
+
+  onCheckboxChange(event: Event): void {
+    const checkbox = event.target as HTMLInputElement;
+    const rolesArray = this.form.get('roles') as FormArray;
+
+    if (checkbox.checked) {
+      rolesArray.push(new FormControl(checkbox.value));
+    } else {
+      const index = rolesArray.controls.findIndex(control => control.value === checkbox.value);
+      rolesArray.removeAt(index);
+    }
+  }
 }

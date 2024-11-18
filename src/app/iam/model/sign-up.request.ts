@@ -4,11 +4,11 @@
 export class SignUpRequest {
   public username: string;
   public password: string;
-  public role: string;
+  public roles: string[];
 
-  constructor(username: string, password: string, role: string) {
+  constructor(username: string, password: string, roles: string[]) {
     this.username = username;
     this.password = password;
-    this.role = role;
+    this.roles = roles;
   }
 }

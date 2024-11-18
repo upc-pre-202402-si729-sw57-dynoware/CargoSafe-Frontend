@@ -10,22 +10,23 @@ import {map} from "rxjs/operators";
 })
 export class ProfileService  extends BaseService<ProfileEntity> {
 
- // private baseUrl = 'http://localhost:3000/profiles';
-
   constructor(private httpClient: HttpClient) {
     super();
     this.resourceEndpoint = '/profiles';
   }
 
-  override create(profile: ProfileEntity): Observable<ProfileEntity> {
-    return this.http.post<ProfileEntity>(this.baseUrl, profile);
-  }
-
   override update(id: number, profile: ProfileEntity): Observable<ProfileEntity> {
-    const formData = new FormData();
-    formData.append('bio', profile.bio);
-
-    return this.http.put<ProfileEntity>(`${this.resourcePath()}/${id}`, formData);
+    const requestPayload = {
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      email: profile.email,
+      street: profile.street,
+      number: profile.number,
+      city: profile.city,
+      postalCode: profile.postalCode,
+      country: profile.country
+    };
+    return this.http.put<ProfileEntity>(`${this.resourcePath()}/${id}`, requestPayload, this.httOptions);
   }
 
   getByUserId(userId: number): Observable<ProfileEntity> {

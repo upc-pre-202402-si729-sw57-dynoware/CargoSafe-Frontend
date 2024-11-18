@@ -26,13 +26,15 @@ import {
 import {AddDetailsTripComponent} from "./trip/components/add-details-trip/add-details-trip.component";
 import {DetailsTripComponent} from "./trip/components/details-trip/details-trip.component";
 import {ProfileComponent} from "./profile/components/profile/profile.component";
-import {ListTripEntrepreneurComponent} from "./trip/pages/list-trip-entrepreneur/list-trip-entrepreneur.component";
 import {MapsComponent} from "./maps/maps.component";
 import {PaymentComponent} from "./payment/component/payment/payment.component";
 import {HomeCompanyComponent} from "./public/pages/home-company/home-company.component";
 import {SignInComponent} from "./iam/pages/sign-in/sign-in.component";
 import {SignUpComponent} from "./iam/pages/sign-up/sign-up.component";
 import {authenticationGuard} from "./iam/services/authentication.guard";
+
+import {companyRoleGuard} from "./iam/services/companyRoleGuard.guard";
+import {entrepreneurRoleGuard} from "./iam/services/entrepreneurRoleGuard.guard";
 
 
 export const routes: Routes = [
@@ -46,31 +48,30 @@ export const routes: Routes = [
   // Not found
   { path: 'pages', component: PageNotFoundComponent },
 
-  // Driver management
-  { path: 'drivers/management', component: DriverManagementComponent, canActivate: [authenticationGuard] },
-  { path: 'management/driver/new', component: AddDriverManagementComponent, canActivate: [authenticationGuard] },
+// Driver management
+  { path: 'drivers/management', component: DriverManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
+  { path: 'management/driver/new', component: AddDriverManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
 
   // Vehicles management
-  { path: 'management/vehicle/new', component: AddVehiclesManagementComponent, canActivate: [authenticationGuard] },
-  { path: 'vehicles/management', component: VehiclesManagementComponent, canActivate: [authenticationGuard] },
+  { path: 'management/vehicle/new', component: AddVehiclesManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
+  { path: 'vehicles/management', component: VehiclesManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
 
   // Add new order
-  { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent, canActivate: [authenticationGuard] },
-
-  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard] },
-  { path: 'stadistics', component: StatisticsComponent, canActivate: [authenticationGuard] },
+  { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
+  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard, companyRoleGuard] },
+  { path: 'stadistics', component: StatisticsComponent, canActivate: [authenticationGuard, companyRoleGuard] },
 
   // Entrepreneur
-  { path: 'a', component: ToolbarEntrepreneurContentComponent, canActivate: [authenticationGuard] },
-  { path: 'request/trip/new', component: RequestComponent, canActivate: [authenticationGuard] },
-  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard] },
-  { path: 'list-request-history', component: ListRequestStatusComponent, canActivate: [authenticationGuard] },
-  { path: 'home-entrepreneur', component: HomeComponent, canActivate: [authenticationGuard] },
-  { path: 'list-trips', component: ListTripsEntrepreneurComponent, canActivate: [authenticationGuard] },
-  { path: 'add-trip-details', component: AddDetailsTripComponent, canActivate: [authenticationGuard] },
-  { path: 'trip/details/:id', component: DetailsTripComponent, canActivate: [authenticationGuard] },
-  { path: 'maps/details', component: MapsComponent, canActivate: [authenticationGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [authenticationGuard] },
-  { path: 'payment', component: PaymentComponent, canActivate: [authenticationGuard] },
+  { path: 'a', component: ToolbarEntrepreneurContentComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'request/trip/new', component: RequestComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'list-request-history', component: ListRequestStatusComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'home-entrepreneur', component: HomeComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'list-trips', component: ListTripsEntrepreneurComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'add-trip-details', component: AddDetailsTripComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'trip/details/:id', component: DetailsTripComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'maps/details', component: MapsComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'payment', component: PaymentComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];
