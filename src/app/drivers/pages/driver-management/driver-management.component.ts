@@ -60,7 +60,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class DriverManagementComponent implements OnInit, AfterViewInit {
   driverData: DriverEntity = new DriverEntity({});
-  columnsToDisplay: string[] = ['id', 'name', 'dni', 'phone', 'license', 'actions'];
+  columnsToDisplay: string[] = ['id', 'name', 'dni', 'contactNum', 'license', 'photoUrl', 'actions'];
   dataSource: MatTableDataSource<DriverEntity> = new MatTableDataSource();
   editMode: boolean = false;
 
@@ -95,6 +95,11 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
     this.openEditDialog(this.driverData);
   }
 
+  private resetEditState(): void {
+    this.driverData = new DriverEntity({});
+    this.editMode = false;
+  }
+
   private getAllDrivers(): void {
     this.driverService.getAll().subscribe((response: DriverEntity[]) => {
       this.dataSource.data = response;
@@ -109,13 +114,12 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
   }
 
   private updateDriver(): void {
-    console.log('Updating driver:', this.driverData);
     this.driverService.update(this.driverData.id, this.driverData).subscribe({
       next: (response: DriverEntity) => {
         const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
         this.dataSource.data[index] = response;
         this.dataSource.data = [...this.dataSource.data];
-        console.log('Driver updated successfully:', response);
+        console.log('Driver Response: ', response);
       },
       error: (error) => {
         console.error('Error updating driver:', error);
@@ -124,16 +128,14 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
   }
 
   private deleteDriver(id: number): void {
-    console.log('Deleting driver with ID:', id);
     this.driverService.delete(id).subscribe({
       next: () => {
         this.dataSource.data = this.dataSource.data.filter(driver => driver.id !== id);
+        this.dataSource._updateChangeSubscription();
         console.log('Driver deleted successfully');
       },
       error: (error) => {
         console.error('Error deleting driver:', error);
-
-        alert('An error occurred while deleting the driver. Please try again later.');
       }
     });
   }
@@ -156,6 +158,4 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-
 }

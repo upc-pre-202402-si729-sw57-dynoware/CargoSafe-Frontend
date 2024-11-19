@@ -25,6 +25,9 @@ export class DriverService extends BaseService<DriverEntity> {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+
+
+
   public override delete(driverId: number): Observable<void> {
     console.log(`Deleting driver with ID: ${driverId}`);
     return this.http.delete<void>(`${this.resourcePath()}/${driverId}`, this.httOptions)

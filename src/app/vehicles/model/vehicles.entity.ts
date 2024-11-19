@@ -1,20 +1,17 @@
 export class VehiclesEntity {
-
   id: number;
   model: string;
   plate: string;
-  maxLoad: string;
-  volume: string;
-  urlImage: string;
+  maxLoad: number;
+  volume: number;
+  photoUrl: string;
 
-  constructor(vehicle: {id?: number, model?: string, plate?: string, max_load?: string, volume?: string, url_image?: string}) {
+  constructor(vehicle: {id?: number, model?: string, plate?: string, maxLoad?: number, volume?: number, photoUrl?: string}) {
     this.id = vehicle.id || 0;
     this.model = vehicle.model || '';
     this.plate = vehicle.plate || '';
-    this.maxLoad = vehicle.max_load || '';
-    this.volume = vehicle.volume || '';
-    this.urlImage = vehicle.url_image || '';
+    this.maxLoad = vehicle.maxLoad || 0;
+    this.volume = vehicle.volume || 0;
+    this.photoUrl = vehicle.photoUrl || '';
   }
 }
-
-
