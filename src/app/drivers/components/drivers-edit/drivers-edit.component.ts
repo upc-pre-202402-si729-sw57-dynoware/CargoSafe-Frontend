@@ -48,6 +48,7 @@ import {
 export class DriversEditComponent {
   driver: DriverEntity;
 
+
   constructor(
     public dialogRef: MatDialogRef<DriversEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DriverEntity

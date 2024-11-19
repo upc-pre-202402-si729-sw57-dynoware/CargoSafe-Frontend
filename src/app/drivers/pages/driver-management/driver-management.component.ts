@@ -58,9 +58,9 @@ import {MatDialog} from "@angular/material/dialog";
   templateUrl: './driver-management.component.html',
   styleUrl: './driver-management.component.css'
 })
-export class DriverManagementComponent  implements OnInit, AfterViewInit {
+export class DriverManagementComponent implements OnInit, AfterViewInit {
   driverData: DriverEntity = new DriverEntity({});
-  columnsToDisplay: string[] = ['id', 'name', 'dni', 'phone', 'license', 'url_photo', 'actions'];
+  columnsToDisplay: string[] = ['id', 'name', 'dni', 'phone', 'license', 'actions'];
   dataSource: MatTableDataSource<DriverEntity> = new MatTableDataSource();
   editMode: boolean = false;
 
@@ -95,23 +95,6 @@ export class DriverManagementComponent  implements OnInit, AfterViewInit {
     this.openEditDialog(this.driverData);
   }
 
-  onDriverAddRequested(item: DriverEntity): void {
-    this.driverData = item;
-    this.createDriver();
-    this.resetEditState();
-  }
-
-  onDriverUpdateRequested(item: DriverEntity): void {
-    this.driverData = item;
-    this.updateDriver();
-    this.resetEditState();
-  }
-
-  private resetEditState(): void {
-    this.driverData = new DriverEntity({});
-    this.editMode = false;
-  }
-
   private getAllDrivers(): void {
     this.driverService.getAll().subscribe((response: DriverEntity[]) => {
       this.dataSource.data = response;
@@ -126,16 +109,32 @@ export class DriverManagementComponent  implements OnInit, AfterViewInit {
   }
 
   private updateDriver(): void {
-    this.driverService.update(this.driverData.id, this.driverData).subscribe((response: DriverEntity) => {
-      const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
-      this.dataSource.data[index] = response;
-      this.dataSource.data = [...this.dataSource.data];
+    console.log('Updating driver:', this.driverData);
+    this.driverService.update(this.driverData.id, this.driverData).subscribe({
+      next: (response: DriverEntity) => {
+        const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
+        this.dataSource.data[index] = response;
+        this.dataSource.data = [...this.dataSource.data];
+        console.log('Driver updated successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error updating driver:', error);
+      }
     });
   }
 
   private deleteDriver(id: number): void {
-    this.driverService.delete(id).subscribe(() => {
-      this.dataSource.data = this.dataSource.data.filter(driver => driver.id !== id);
+    console.log('Deleting driver with ID:', id);
+    this.driverService.delete(id).subscribe({
+      next: () => {
+        this.dataSource.data = this.dataSource.data.filter(driver => driver.id !== id);
+        console.log('Driver deleted successfully');
+      },
+      error: (error) => {
+        console.error('Error deleting driver:', error);
+
+        alert('An error occurred while deleting the driver. Please try again later.');
+      }
     });
   }
 
@@ -148,11 +147,15 @@ export class DriverManagementComponent  implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (this.editMode) {
-          this.onDriverUpdateRequested(result);
+          this.driverData = result;
+          this.updateDriver();
         } else {
-          this.onDriverAddRequested(result);
+          this.driverData = result;
+          this.createDriver();
         }
       }
     });
   }
+
+
 }

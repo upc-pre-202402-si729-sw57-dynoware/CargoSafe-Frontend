@@ -1,4 +1,3 @@
-
 <app-toolbar-content></app-toolbar-content>
 <div class="driver-management-container">
   <button mat-button class="add-driver-button" (click)="onAddDriver()">
@@ -26,7 +25,7 @@
 
         <ng-container matColumnDef="phone">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
-          <td mat-cell *matCellDef="let driver"> {{ driver.phone }} </td>
+          <td mat-cell *matCellDef="let driver"> {{ driver.contactNum }} </td>
         </ng-container>
 
         <ng-container matColumnDef="license">
@@ -34,20 +33,15 @@
           <td mat-cell *matCellDef="let driver"> {{ driver.license }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="url_photo">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Photo </th>
-          <td mat-cell *matCellDef="let driver">
-            <img [src]="driver.url_photo" alt="{{ driver.name }}" class="driver-photo">
-          </td>
-        </ng-container>
+
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Actions </th>
-          <td mat-cell *matCellDef="let driver">
-            <button mat-icon-button color="primary" (click)="onEditItem(driver)">
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="onEditItem(element)">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn" (click)="onDeleteItem(driver)">
+            <button mat-icon-button (click)="onDeleteItem(element)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>
