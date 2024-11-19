@@ -6,7 +6,7 @@
     <div class="notification-details">
       <span class="notification-type">{{ trip.holderName }}</span>
       <span class="notification-destination">{{ trip.destination }}</span>
-      <span class="notification-date">{{ trip.unload_date | date: 'shortDate' }}</span>
+      <span class="notification-date">{{ trip.unloadDate | date: 'shortDate' }}</span>
     </div>
     <button class="view-more-btn" (click)="viewMore()">Ver más</button>
     <button class="delete-btn" (click)="deleteNotification(i)">

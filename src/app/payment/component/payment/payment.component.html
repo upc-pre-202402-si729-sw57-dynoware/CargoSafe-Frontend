@@ -5,15 +5,15 @@
     <h2 class="payment-title">Payment Details</h2>
     <div class="payment-field">
       <label for="cardNumber">Card Number</label>
-      <input type="text" id="cardNumber" [(ngModel)]="payment.card_number" required placeholder="**** **** **** ****">
+      <input type="text" id="cardNumber" [(ngModel)]="payment.cardNumber" required placeholder="**** **** **** ****">
     </div>
     <div class="payment-field">
       <label for="expiryDate">Expiry Date</label>
-      <input type="text" id="expiryDate" [(ngModel)]="payment.expiry_Date" required placeholder="MM/YY">
+      <input type="text" id="expiryDate" [(ngModel)]="payment.expiryDate" required placeholder="MM/YY">
     </div>
     <div class="payment-field">
       <label for="securityCode">Security Code</label>
-      <input type="text" id="securityCode" [(ngModel)]="payment.security_code" required placeholder="***">
+      <input type="text" id="securityCode" [(ngModel)]="payment.securityCode" required placeholder="***">
     </div>
     <button class="submit-btn" (click)="onSubmit()">Submit Payment</button>
     <div class="payment-brands">

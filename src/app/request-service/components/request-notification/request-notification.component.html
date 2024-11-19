@@ -4,7 +4,7 @@
     <div class="notification-details">
       <span class="notification-type">{{ request.holderName }}</span>
       <span class="notification-destination">{{ request.destination }}</span>
-      <span class="notification-date">{{ request.unload_date | date: 'shortDate' }}</span>
+      <span class="notification-date">{{ request.unloadDate | date: 'shortDate' }}</span>
     </div>
     <button class="view-more-btn" (click)="viewMore()">Ver más</button>
     <button class="delete-btn" (click)="deleteNotification(i)">

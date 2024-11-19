@@ -49,29 +49,29 @@ export const routes: Routes = [
   { path: 'pages', component: PageNotFoundComponent },
 
 // Driver management
-  { path: 'drivers/management', component: DriverManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
-  { path: 'management/driver/new', component: AddDriverManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
+  { path: 'drivers/management', component: DriverManagementComponent, canActivate: [authenticationGuard] },
+  { path: 'management/driver/new', component: AddDriverManagementComponent, canActivate: [authenticationGuard] },
 
   // Vehicles management
-  { path: 'management/vehicle/new', component: AddVehiclesManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
-  { path: 'vehicles/management', component: VehiclesManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
+  { path: 'management/vehicle/new', component: AddVehiclesManagementComponent, canActivate: [authenticationGuard] },
+  { path: 'vehicles/management', component: VehiclesManagementComponent, canActivate: [authenticationGuard] },
 
   // Add new order
-  { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent, canActivate: [authenticationGuard, companyRoleGuard] },
-  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard, companyRoleGuard] },
-  { path: 'stadistics', component: StatisticsComponent, canActivate: [authenticationGuard, companyRoleGuard] },
+  { path: 'ordersOnTrip', component: OrdersOnTripManagementComponent, canActivate: [authenticationGuard] },
+  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard] },
+  { path: 'stadistics', component: StatisticsComponent, canActivate: [authenticationGuard] },
 
   // Entrepreneur
-  { path: 'a', component: ToolbarEntrepreneurContentComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'request/trip/new', component: RequestComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'list-request-history', component: ListRequestStatusComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'home-entrepreneur', component: HomeComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'list-trips', component: ListTripsEntrepreneurComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'add-trip-details', component: AddDetailsTripComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'trip/details/:id', component: DetailsTripComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'maps/details', component: MapsComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
-  { path: 'payment', component: PaymentComponent, canActivate: [authenticationGuard, entrepreneurRoleGuard] },
+  { path: 'a', component: ToolbarEntrepreneurContentComponent, canActivate: [authenticationGuard] },
+  { path: 'request/trip/new', component: RequestComponent, canActivate: [authenticationGuard] },
+  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard] },
+  { path: 'list-request-history', component: ListRequestStatusComponent, canActivate: [authenticationGuard] },
+  { path: 'home-entrepreneur', component: HomeComponent, canActivate: [authenticationGuard ] },
+  { path: 'list-trips', component: ListTripsEntrepreneurComponent, canActivate: [authenticationGuard] },
+  { path: 'add-trip-details', component: AddDetailsTripComponent, canActivate: [authenticationGuard] },
+  { path: 'trip/details/:id', component: DetailsTripComponent, canActivate: [authenticationGuard] },
+  { path: 'maps/details', component: MapsComponent, canActivate: [authenticationGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [authenticationGuard] },
+  { path: 'payment', component: PaymentComponent, canActivate: [authenticationGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];

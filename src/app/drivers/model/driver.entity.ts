@@ -4,7 +4,7 @@ export class DriverEntity {
   dni: string;
   phone: string;
   license: string;
-  url_photo: string;
+  urlPhoto: string;
 
   constructor(driver: { id?: number; name?: string; dni?: string; phone?: string; license?: string;url_photo?: string }) {
     this.id = driver.id || 0;
@@ -12,6 +12,6 @@ export class DriverEntity {
     this.dni = driver.dni || '';
     this.phone = driver.phone || '';
     this.license = driver.license || '';
-    this.url_photo = driver.url_photo || '';
+      this.urlPhoto = driver.url_photo || '';
   }
 }

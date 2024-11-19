@@ -15,6 +15,26 @@ export class ProfileService  extends BaseService<ProfileEntity> {
     this.resourceEndpoint = '/profiles';
   }
 
+
+  override getById(profileId: number): Observable<ProfileEntity> {
+    return this.http.get<any>(`${this.baseUrl}/profiles/${profileId}`).pipe(
+      map(response => {
+        const [firstName, lastName] = response.fullName.split(' ');
+        return new ProfileEntity({
+          id: response.id,
+          firstName: firstName,
+          lastName: lastName,
+          email: response.email,
+          street: response.street,
+          number: response.number,
+          city: response.city,
+          postalCode: response.postalCode,
+          country: response.country
+        });
+      })
+    );
+  }
+
   override update(id: number, profile: ProfileEntity): Observable<ProfileEntity> {
     const requestPayload = {
       firstName: profile.firstName,
@@ -36,9 +56,6 @@ export class ProfileService  extends BaseService<ProfileEntity> {
   }
 
 
-  override getById(profileId: number): Observable<ProfileEntity> {
-    return this.http.get<ProfileEntity>(`${this.baseUrl}/profiles/${profileId}`);
-  }
 
 
   getByUsername(username: string): Observable<ProfileEntity> {
