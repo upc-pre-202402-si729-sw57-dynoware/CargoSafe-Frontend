@@ -20,8 +20,9 @@ import {SignInResponse} from "../model/sign-in.response";
 export class AuthenticationService {
   basePath: string = `${environment.serverBasePath}`;
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+  private userIdSubject = new BehaviorSubject<number>(0);
+  currentUserId = this.userIdSubject.asObservable();
 
-  // states
   private signedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private signedInUserId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private signedInUsername: BehaviorSubject<string> = new BehaviorSubject<string>('');
@@ -32,6 +33,9 @@ export class AuthenticationService {
    * @param http the http client
    */
   constructor(private router: Router, private http: HttpClient) { }
+
+
+
 
   /**
    * Validates if the user is signed in
@@ -45,9 +49,7 @@ export class AuthenticationService {
   /**
    * Gets the current user id
    */
-  get currentUserId() {
-    return this.signedInUserId.asObservable();
-  }
+
 
   /**
    * Gets the current username
@@ -75,7 +77,7 @@ export class AuthenticationService {
   signIn(signInRequest: SignInRequest): Observable<SignInResponse> {
     return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions).pipe(
       tap(response => {
-        console.log('SignInResponse:', response); // Debugging log
+        console.log('SignInResponse:', response);
         if (!response) {
           console.error('No response received from server');
           return;
@@ -87,9 +89,11 @@ export class AuthenticationService {
         this.signedIn.next(true);
         this.signedInUserId.next(response.id);
         this.signedInUsername.next(response.username);
-        this.signedInUserRoles.next(response.roles); // Ensure roles are set
+        this.signedInUserRoles.next(response.roles);
         localStorage.setItem('token', response.token);
-        // Navigate based on roles
+
+        this.setUserId(response.id);
+
         if (response.roles.includes('ROLE_ENTREPRENEUR')) {
           this.router.navigate(['/home-entrepreneur']).then();
         } else if (response.roles.includes('ROLE_COMPANY')) {
@@ -97,6 +101,11 @@ export class AuthenticationService {
         }
       })
     );
+  }
+
+
+  setUserId(userId: number): void {
+    this.userIdSubject.next(userId);
   }
 
   /**

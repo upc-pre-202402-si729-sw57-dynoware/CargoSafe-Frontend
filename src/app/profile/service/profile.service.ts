@@ -35,7 +35,13 @@ export class ProfileService  extends BaseService<ProfileEntity> {
     );
   }
 
+
+  override getById(profileId: number): Observable<ProfileEntity> {
+    return this.http.get<ProfileEntity>(`${this.baseUrl}/profiles/${profileId}`);
+  }
+
+
   getByUsername(username: string): Observable<ProfileEntity> {
-    return this.http.get<ProfileEntity>(`${this.baseUrl}/username/${username}`);
+    return this.http.get<ProfileEntity>(`${this.baseUrl}/profiles/username/${username}`);
   }
 }

@@ -63,14 +63,13 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authenticationService.currentUsername.subscribe(username => {
-      this.currentUsername = username;
-      this.loadUserProfile(username);
+    this.authenticationService.currentUserId.subscribe(userId => {
+      this.loadUserProfile(userId);
     });
   }
 
-  loadUserProfile(username: string): void {
-    this.profileService.getByUsername(username).subscribe({
+  loadUserProfile(profileId: number): void {
+    this.profileService.getById(profileId).subscribe({
       next: (profile) => {
         this.profile = profile;
         this.profileForm.patchValue({
