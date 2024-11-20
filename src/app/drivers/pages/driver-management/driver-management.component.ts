@@ -23,6 +23,7 @@ import {MatInput} from "@angular/material/input";
 import {MatCard, MatCardTitle} from "@angular/material/card";
 import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {MatDialog} from "@angular/material/dialog";
+import {VehiclesEntity} from "../../../vehicles/model/vehicles.entity";
 
 @Component({
   selector: 'app-driver-management',
@@ -117,8 +118,10 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
     this.driverService.update(this.driverData.id, this.driverData).subscribe({
       next: (response: DriverEntity) => {
         const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
-        this.dataSource.data[index] = response;
-        this.dataSource.data = [...this.dataSource.data];
+        if (index !== -1) {
+          this.dataSource.data[index] = response;
+          this.dataSource.data = [...this.dataSource.data];
+        }
         console.log('Driver Response: ', response);
       },
       error: (error) => {
@@ -131,7 +134,7 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
     this.driverService.delete(id).subscribe({
       next: () => {
         this.dataSource.data = this.dataSource.data.filter(driver => driver.id !== id);
-        this.dataSource._updateChangeSubscription();
+        this.dataSource.data = [...this.dataSource.data];
         console.log('Driver deleted successfully');
       },
       error: (error) => {

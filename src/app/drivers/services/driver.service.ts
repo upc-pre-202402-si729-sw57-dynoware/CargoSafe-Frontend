@@ -7,12 +7,10 @@ import {catchError, Observable, retry} from "rxjs";
   providedIn: 'root'
 })
 export class DriverService extends BaseService<DriverEntity> {
-
   constructor() {
     super();
     this.resourceEndpoint = '/drivers';
   }
-
 
   public override create(driver: DriverEntity): Observable<DriverEntity> {
     return this.http.post<DriverEntity>(this.resourcePath(), driver, this.httOptions)
@@ -20,21 +18,13 @@ export class DriverService extends BaseService<DriverEntity> {
   }
 
   public override update(driverId: number, driver: DriverEntity): Observable<DriverEntity> {
-    console.log(`Updating driver with ID: ${driverId}`, driver);
     return this.http.put<DriverEntity>(`${this.resourcePath()}/${driverId}`, driver, this.httOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-
-
-
   public override delete(driverId: number): Observable<void> {
-    console.log(`Deleting driver with ID: ${driverId}`);
     return this.http.delete<void>(`${this.resourcePath()}/${driverId}`, this.httOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      );
+      .pipe(retry(2), catchError(this.handleError));
   }
 
   public override getAll(): Observable<DriverEntity[]> {

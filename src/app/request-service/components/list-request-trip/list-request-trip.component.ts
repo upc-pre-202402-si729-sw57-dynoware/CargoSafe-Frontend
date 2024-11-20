@@ -119,6 +119,8 @@ export class ListRequestTripComponent  implements OnInit, AfterViewInit {
     );
   }
 
+
+
   updateStatus(trip: RequestServiceEntity, statusName: string): void {
     const statusId = this.statuses.find(status => status.name === statusName)?.id;
     if (statusId !== undefined) {

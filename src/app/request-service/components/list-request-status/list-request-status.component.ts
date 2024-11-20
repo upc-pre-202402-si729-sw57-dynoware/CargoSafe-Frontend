@@ -16,12 +16,18 @@ import {RequestServiceEntity} from "../../model/request-service.entity";
 import {RequestService} from "../../service/request.service";
 import {MatCard, MatCardTitle} from "@angular/material/card";
 import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
-import {DatePipe} from "@angular/common";
+import {DatePipe, NgForOf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {
   ToolbarEntrepreneurContentComponent
 } from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
+import {StatusEntity} from "../../model/status.entity";
+import {StatusService} from "../../service/status.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatFormField} from "@angular/material/form-field";
+import {MatOption} from "@angular/material/core";
+import {MatSelect} from "@angular/material/select";
 
 
 
@@ -48,29 +54,32 @@ import {
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    ToolbarEntrepreneurContentComponent
+    ToolbarEntrepreneurContentComponent,
+    MatFormField,
+    MatOption,
+    MatSelect,
+    NgForOf
   ],
   templateUrl: './list-request-status.component.html',
   styleUrl: './list-request-status.component.css'
 })
 export class ListRequestStatusComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'holderName', 'loadDetail', 'destinationAddress','pickupAddress' ,'unload_date','result'];
+  displayedColumns: string[] = ['id', 'holderName', 'loadDetail', 'destinationAddress', 'pickupAddress', 'unload_date', 'result'];
   dataSource = new MatTableDataSource<RequestServiceEntity>();
-  searchId: string = '';
+  statuses: StatusEntity[] = [];
+
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  constructor(private requestService: RequestService) {
-    {
-      this.dataSource.filterPredicate = (data: RequestServiceEntity, filter: string) => {
-        return data.id.toString() === filter;
-      };
-    }
-  }
+  searchId: string = '';
+  constructor(
+    private requestService: RequestService,
+    private statusService: StatusService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.loadRequests();
-
+    this.loadStatuses();
   }
 
   ngAfterViewInit(): void {
@@ -79,11 +88,42 @@ export class ListRequestStatusComponent implements OnInit, AfterViewInit {
   }
 
   loadRequests(): void {
-    this.requestService.getAll().subscribe(requests => {
-      this.dataSource.data = requests;
-    });
+    this.requestService.getAll().subscribe(
+      requests => {
+        this.dataSource.data = requests;
+        console.log('Requests loaded:', requests);
+      },
+      error => this.handleError('Error loading requests', error)
+    );
+  }
+
+  loadStatuses(): void {
+    this.statusService.getAllStatuses().subscribe(
+      statuses => {
+        if (statuses && statuses.length > 0) {
+          this.statuses = statuses;
+        } else {
+          console.error('No statuses found');
+        }
+      },
+      error => {
+        console.error('Error loading statuses', error);
+      }
+    );
+  }
+
+
+  getStatusName(statusId: number): string {
+    const status = this.statuses.find(status => status.id === statusId);
+    return status ? status.name : 'Unknown';
+  }
+
+  private handleError(message: string, error: any): void {
+    console.error(message, error);
+    this.snackBar.open(message, 'Close', { duration: 2000 });
   }
   applyFilter(): void {
     this.dataSource.filter = this.searchId.trim().toLowerCase();
   }
+
 }
