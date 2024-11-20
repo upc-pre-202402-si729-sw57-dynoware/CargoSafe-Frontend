@@ -57,6 +57,13 @@ import {MatDialog} from "@angular/material/dialog";
   templateUrl: './vehicles-management.component.html',
   styleUrl: './vehicles-management.component.css'
 })
+
+/**
+ * Vehicles management component
+ * This class is in charge of managing the vehicles management component
+ * @class
+ */
+
 export class VehiclesManagementComponent implements OnInit, AfterViewInit {
   vehicleData: VehiclesEntity = new VehiclesEntity({});
   columnsToDisplay: string[] = ['id', 'model', 'plate', 'maxLoad', 'volume', 'photo', 'actions'];

@@ -1,3 +1,9 @@
+/**
+ * Vehicles Entity
+ * This is the entity class for the Vehicles.
+ * @class
+ */
+
 export class VehiclesEntity {
   id: number;
   model: string;

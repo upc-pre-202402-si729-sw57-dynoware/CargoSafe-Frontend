@@ -30,6 +30,13 @@ import {
   templateUrl: './vehicles-edit.component.html',
   styleUrl: './vehicles-edit.component.css'
 })
+
+/**
+ * Vehicles edit component
+ * This class is in charge of managing the vehicles edit component
+ * @class
+ */
+
 export class VehiclesEdit {
   vehicle: VehiclesEntity;
 

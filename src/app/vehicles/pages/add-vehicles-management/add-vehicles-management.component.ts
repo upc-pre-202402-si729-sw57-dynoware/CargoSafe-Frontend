@@ -26,6 +26,13 @@ import {MatDialog} from "@angular/material/dialog";
   templateUrl: './add-vehicles-management.component.html',
   styleUrl: './add-vehicles-management.component.css'
 })
+
+/**
+ * Add vehicles management component
+ * This class is in charge of managing the add vehicles management component
+ * @class
+ */
+
 export class AddVehiclesManagementComponent {
   vehicle: VehiclesEntity = new VehiclesEntity({});
   @Output() vehicleAddRequested = new EventEmitter<VehiclesEntity>();

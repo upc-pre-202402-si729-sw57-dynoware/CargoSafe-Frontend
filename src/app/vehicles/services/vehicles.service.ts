@@ -6,6 +6,13 @@ import {catchError, Observable, retry} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Vehicles service
+ * This class is in charge of managing the vehicles service
+ * @class
+ */
+
 export class VehiclesService extends BaseService<VehiclesEntity> {
   constructor() {
     super();
