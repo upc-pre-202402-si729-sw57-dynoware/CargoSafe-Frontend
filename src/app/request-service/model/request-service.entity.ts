@@ -54,7 +54,9 @@ export class RequestServiceEntity {
     this.district = requestService.district || '';
     this.destination = requestService.destination || '';
     this.unloadLocation = requestService.unloadLocation || '';
-    this.unloadDate = requestService.unloadDate || '';
+    this.unloadDate = requestService.unloadDate && !isNaN(Date.parse(requestService.unloadDate))
+      ? requestService.unloadDate
+      : new Date().toISOString();
     this.distance = requestService.distance ?? null;
     this.statusId = requestService.statusId || 3;
     this.holderName = requestService.holderName || '';

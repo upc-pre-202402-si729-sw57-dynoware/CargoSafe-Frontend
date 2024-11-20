@@ -1,9 +1,9 @@
 export class StatusEntity {
   id: number;
-  status: string;
+  name: string;
 
-  constructor(data: { id?: number, status?: string }) {
+  constructor(data: { id?: number, name?: string }) {
     this.id = data.id || 0;
-    this.status = data.status || '';
+    this.name = data.name || '';
   }
 }

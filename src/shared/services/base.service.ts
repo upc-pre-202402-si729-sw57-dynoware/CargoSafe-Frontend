@@ -11,13 +11,6 @@ export class BaseService<T> {
  /* protected token: string | null = null;*/
   extraUrl: string = '';
 
-  /*protected httOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
-    })
-  };*/
-
   constructor() {
     /*this.setToken();*/
   }
@@ -25,40 +18,6 @@ export class BaseService<T> {
     return this.baseUrl + this.extraUrl;
   }
 
-  /*newToken(token: any) {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem('token', token);
-    }
-   /* this.token = token;
-    this.updateHttpOptions();
-  }
-  */
-
-  /*setToken() {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const token = localStorage.getItem('token');
-      if (token) {
-       /* this.token = token;
-        this.updateHttpOptions();
-      }
-    }
-  }*/
-  /*clearToken() {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.removeItem('token');
-    }
-    this.token = null;
-    this.updateHttpOptions();
-  }*/
-
-  /*protected updateHttpOptions() {
-    this.httOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
-      })
-    };
-  }*/
   protected httOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
 

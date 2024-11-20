@@ -16,7 +16,7 @@ import {MatSort, MatSortHeader} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {AddRequestTripComponent} from "../add-request-trip/add-request-trip.component";
 import {MatIcon} from "@angular/material/icon";
-import {DatePipe, NgClass, NgIf} from "@angular/common";
+import {DatePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {TripEntity} from "../../../trip/model/trip.entity";
 import {TripService} from "../../../trip/service/trip.service";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -33,6 +33,8 @@ import {RequestService} from "../../service/request.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {MatOption, MatSelect} from "@angular/material/select";
+import {StatusService} from "../../service/status.service";
+import {StatusEntity} from "../../model/status.entity";
 
 @Component({
   selector: 'app-list-request-trip',
@@ -68,34 +70,25 @@ import {MatOption, MatSelect} from "@angular/material/select";
     DatePipe,
     ToolbarContentComponent,
     MatSelect,
-    MatOption
+    MatOption,
+    NgForOf
   ],
   templateUrl: './list-request-trip.component.html',
   styleUrl: './list-request-trip.component.css'
 })
-export class ListRequestTripComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'holderName', 'loadDetail', 'destinationAddress','pickupAddress' ,'unload_date', 'actions'];
+export class ListRequestTripComponent  implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['id', 'holderName', 'loadDetail', 'destinationAddress', 'pickupAddress', 'unload_date', 'actions'];
   dataSource = new MatTableDataSource<RequestServiceEntity>();
-  columns = [
-    { def: 'id', header: 'ID' },
-    { def: 'holderName', header: 'Cliente' },
-    { def: 'loadDetail', header: 'Detalles del pedido' },
-    { def: 'destinationAddress', header: 'Ubicación de Descarga' },
-    { def: 'pickupAddress', header: 'Ubicacion de carga' },
-    { def: 'unload_date', header: 'Fecha de Solicitud' },
-    { def: 'actions', header: 'Acciones' },
-    { def: 'district', header: 'Distrito' },
-    { def: 'country', header: 'País' }
-  ];
   searchId: string = '';
+  statuses: StatusEntity[] = [];
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private requestService: RequestService,
-    private tripService: TripService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private statusService: StatusService,
   ) {
     this.dataSource.filterPredicate = (data: RequestServiceEntity, filter: string) => {
       return data.id.toString() === filter;
@@ -104,6 +97,7 @@ export class ListRequestTripComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadRequests();
+    this.loadStatuses();
   }
 
   ngAfterViewInit(): void {
@@ -118,80 +112,35 @@ export class ListRequestTripComponent implements OnInit, AfterViewInit {
     );
   }
 
-  acceptTrip(trip: RequestServiceEntity): void {
-    trip.statusId = 1;
-    this.requestService.update(trip.id, trip).subscribe(
-      () => this.createTrip(trip),
-      error => this.handleError('Error accepting trip', error)
+  loadStatuses(): void {
+    this.statusService.getAllStatuses().subscribe(
+      statuses => this.statuses = statuses,
+      error => this.handleError('Error loading statuses', error)
     );
   }
 
-  rejectTrip(trip: RequestServiceEntity): void {
-    trip.statusId = 2;
-    this.requestService.update(trip.id, trip).subscribe(
-      () => {
-        this.snackBar.open('Solicitud rechazada', 'Cerrar', { duration: 2000 });
-        this.loadRequests();
-      },
-      error => this.handleError('Error rejecting trip', error)
-    );
-  }
-
-  addDetails(requestId: number): void {
-    this.router.navigate(['/trip/details', requestId]);
-  }
-
-  isTripAccepted(tripId: number): boolean {
-    return this.requestService.hasTrip(tripId);
-  }
-
-  updateStatus(trip: RequestServiceEntity): void {
-    this.requestService.update(trip.id, trip).subscribe(
-      () => {
-        this.snackBar.open('Status updated successfully', 'Cerrar', { duration: 2000 });
-        if (trip.statusId === 1) {
-          this.acceptTrip(trip);
-        } else if (trip.statusId === 2) {
-          this.rejectTrip(trip);
-        } else {
+  updateStatus(trip: RequestServiceEntity, statusName: string): void {
+    const statusId = this.statuses.find(status => status.name === statusName)?.id;
+    if (statusId !== undefined) {
+      this.requestService.updateStatus(trip.id, statusId).subscribe(
+        () => {
+          this.snackBar.open('Status updated successfully', 'Close', { duration: 2000 });
           this.loadRequests();
-        }
-      },
-      error => this.handleError('Error updating status', error)
-    );
+        },
+        error => this.handleError('Error updating status', error)
+      );
+    }
   }
 
-  private createTrip(trip: RequestServiceEntity): void {
-    const newTrip = new TripEntity({
-      id: trip.id,
-      type: trip.type,
-      unloadDirection: trip.unloadDirection,
-      unloadLocation: trip.unloadLocation,
-      unloadDate: trip.unloadDate,
-      destination: trip.destination,
-      department: trip.department,
-      district: trip.district,
-      country: trip.country,
-      numberPackages: trip.numberPackages,
-      holderName: trip.holderName,
-      loadDetail: trip.loadDetail,
-      destinationAddress: trip.destinationAddress,
-      pickupAddress: trip.pickupAddress
-    });
-    this.tripService.create(newTrip).subscribe(
-      () => {
-        this.snackBar.open('Solicitud aceptada y convertida a viaje', 'Cerrar', { duration: 2000 });
-        this.loadRequests();
-      },
-      error => this.handleError('Error creating trip', error)
-    );
+  private handleError(message: string, error: any): void {
+    console.error(message, error);
+    this.snackBar.open(message, 'Close', { duration: 2000 });
   }
 
   applyFilter(): void {
     this.dataSource.filter = this.searchId.trim().toLowerCase();
   }
-  private handleError(message: string, error: any): void {
-    console.error(message, error);
-    this.snackBar.open(message, 'Cerrar', { duration: 2000 });
-  }
+
+  protected readonly isNaN = isNaN;
+  protected readonly Date = Date;
 }

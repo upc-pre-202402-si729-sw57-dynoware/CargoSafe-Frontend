@@ -20,6 +20,23 @@ export class RequestService extends BaseService<RequestServiceEntity> {
     );
   }
 
+  updateStatus(id: number, statusId: number): Observable<any> {
+    const url = `${this.resourcePath()}/${id}/status`;
+    return this.http.put(url, { statusId }, this.httOptions).pipe(
+      tap(() => this.notificationService.showNotification(
+        'Status updated',
+        'The status has been updated successfully.',
+        'success'
+      )),
+      catchError(this.handleError)
+    );
+  }
+
+   handleErrorUpdate(error: HttpErrorResponse) {
+    console.error('Error updating status', error);
+    return throwError(() => new Error('Error updating status'));
+  }
+
   saveRequestServiceTrip(trip: RequestServiceEntity): Observable<any> {
     return this.http.post(this.resourcePath(), trip, this.httOptions).pipe(
       tap(() => this.notificationService.showNotification(

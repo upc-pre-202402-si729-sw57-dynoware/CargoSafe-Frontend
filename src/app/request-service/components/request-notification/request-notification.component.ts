@@ -45,4 +45,7 @@ export class RequestNotificationComponent implements OnInit {
     this.requests.splice(index, 1);
     this.notificationDeleted.emit();
   }
+
+  protected readonly Date = Date;
+  protected readonly isNaN = isNaN;
 }
