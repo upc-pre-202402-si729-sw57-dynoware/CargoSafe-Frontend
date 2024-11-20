@@ -25,6 +25,13 @@ export class StatisticsComponent implements OnInit {
     this.loadTripData();
   }
 
+  /**
+   * Load trip data
+   * @param void
+   * @return void
+   * In charge of loading trip data and creating the chart with the monthly earnings
+   */
+
   loadTripData(): void {
     this.tripService.getAllTrips().subscribe(
       trips => {
@@ -34,6 +41,14 @@ export class StatisticsComponent implements OnInit {
       error => console.error('Error loading trip data:', error)
     );
   }
+
+  /**
+   * Calculate monthly earnings
+   * @param trips
+   * Calculate the monthly earnings based on the trips
+   * @return { [key: string]: number }
+   * Returns an object with the monthly earnings
+   */
 
   calculateMonthlyEarnings(trips: TripEntity[]): { [key: string]: number } {
     const earnings: { [key: string]: number } = {};
@@ -48,6 +63,13 @@ export class StatisticsComponent implements OnInit {
 
     return earnings;
   }
+
+  /**
+   * Create chart
+   * @param monthlyEarnings
+   * Create the chart with the monthly earnings data
+   * @return void
+   */
 
   createChart(monthlyEarnings: { [key: string]: number }): void {
     const labels = Object.keys(monthlyEarnings);
