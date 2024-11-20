@@ -16,6 +16,13 @@ import {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
+
+/**
+ * Home component
+ * This class is in charge of managing the home component
+ * @class
+ */
+
 export class HomeComponent {
   trips: any[] = [];
   openAssignDialog(trip: any) {

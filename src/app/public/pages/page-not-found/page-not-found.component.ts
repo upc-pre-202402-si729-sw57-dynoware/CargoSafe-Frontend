@@ -11,5 +11,4 @@ import {ToolbarContentComponent} from "../../components/toolbar-content/toolbar-
   styleUrl: './page-not-found.component.css'
 })
 export class PageNotFoundComponent {
-
 }

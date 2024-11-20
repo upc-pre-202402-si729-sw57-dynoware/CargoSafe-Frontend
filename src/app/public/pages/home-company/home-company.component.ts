@@ -17,5 +17,4 @@ import {ToolbarContentComponent} from "../../components/toolbar-content/toolbar-
   styleUrl: './home-company.component.css'
 })
 export class HomeCompanyComponent {
-
 }
