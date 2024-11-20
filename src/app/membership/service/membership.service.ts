@@ -5,6 +5,12 @@ import {MembershipEntity} from "../model/membership.entity";
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Membership Service
+ * This class is in charge of managing the membership service
+ */
+
 export class MembershipService extends BaseService<MembershipEntity>{
 
   constructor() {

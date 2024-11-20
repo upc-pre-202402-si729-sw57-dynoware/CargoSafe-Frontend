@@ -1,3 +1,9 @@
+/**
+ * Membership Entity
+ * This class is in charge of managing the membership entity
+ * @class
+ */
+
 export class MembershipEntity {
   id: number;
   type: string;
