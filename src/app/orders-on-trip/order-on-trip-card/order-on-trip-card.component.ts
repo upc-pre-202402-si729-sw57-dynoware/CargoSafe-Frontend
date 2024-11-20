@@ -59,6 +59,11 @@ import {ToolbarContentComponent} from "../../public/components/toolbar-content/t
   templateUrl: './order-on-trip-card.component.html',
   styleUrl: './order-on-trip-card.component.css'
 })
+
+/**
+ * OrderOnTripCardComponent
+ * This class is in charge of managing the order on trip card component
+ */
 export class OrderOnTripCardComponent {
   @Input() orderOnTrip!: OrderOnTripEntity;
   @Input() editMode: boolean = false;
@@ -72,14 +77,25 @@ export class OrderOnTripCardComponent {
     this.orderOnTrip = new OrderOnTripEntity({});
   }
 
-// Private methods
+
+  /**
+   * Reset Edit State
+   * @private
+   * @param void
+   * This function is in charge of resetting the edit state
+   */
   private resetEditState() {
     this.orderOnTrip = new OrderOnTripEntity({});
     this.editMode = false;
     this.orderOnTripForm.resetForm();
   }
 
-// Event Handlers
+  /**
+   * On Submit
+   * @param void
+   * This function is in charge of submitting the form
+   */
+
   onSubmit() {
     if (this.orderOnTripForm.form.valid) {
       let emitter = this.editMode ? this.orderOnTripUpdateRequested : this.orderOnTripAddRequested;
@@ -89,6 +105,12 @@ export class OrderOnTripCardComponent {
       console.error('Invalid form data');
     }
   }
+
+  /**
+   * On Cancel
+   * @param void
+   * This function is in charge of canceling the form
+   */
 
   onCancel() {
     this.cancelRequested.emit();

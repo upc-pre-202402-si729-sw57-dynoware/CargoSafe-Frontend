@@ -1,3 +1,7 @@
+/**
+ * OrderOnTripEntity
+ * This is the entity class for the OrderOnTrip model.
+ */
 export class OrderOnTripEntity {
 
   id: number;
