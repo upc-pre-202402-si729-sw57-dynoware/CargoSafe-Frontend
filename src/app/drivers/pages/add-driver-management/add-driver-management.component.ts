@@ -1,10 +1,9 @@
-import { Component,inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, inject, Output, ViewChild} from '@angular/core';
 import {
     DriversEditComponent
 } from "../../components/drivers-edit/drivers-edit.component";
 import {DriverEntity} from "../../model/driver.entity";
-import {FormsModule} from "@angular/forms";
-import {MatTableDataSource} from "@angular/material/table";
+import {FormsModule, NgForm} from "@angular/forms";
 import {DriverService} from "../../services/driver.service";
 import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {NgIf} from "@angular/common";
@@ -40,84 +39,38 @@ import {Router} from "@angular/router";
   templateUrl: './add-driver-management.component.html',
   styleUrl: './add-driver-management.component.css'
 })
-export class AddDriverManagementComponent implements OnInit {
-  protected driverData: DriverEntity = new DriverEntity({});
-  protected editMode: boolean = false;
-  protected dataSource: MatTableDataSource<DriverEntity> = new MatTableDataSource();
+export class AddDriverManagementComponent {
+  driver: DriverEntity = new DriverEntity({});
+  @Output() driverAddRequested = new EventEmitter<DriverEntity>();
+  @ViewChild('driverForm', { static: false }) driverForm!: NgForm;
 
   private driverService: DriverService = inject(DriverService);
   private dialog: MatDialog = inject(MatDialog);
   private router: Router = inject(Router);
 
-  ngOnInit(): void {
-    this.getAllDrivers();
-  }
-
   onSubmit(): void {
-    if (this.editMode) {
-      this.updateDriver();
+    if (this.driverForm.form.valid) {
+      console.log('Submitting driver data:', this.driver);
+      this.driverService.create(this.driver).subscribe({
+        next: (response) => {
+          console.log('Driver created successfully:', response);
+          this.driverAddRequested.emit(response);
+          this.showSuccessDialog();
+        },
+        error: (error) => {
+          console.error('Error creating driver:', error);
+          alert('An error occurred while creating the driver. Please try again later.');
+        }
+      });
     } else {
-      this.createDriver();
+      console.error('Invalid form data');
     }
-    this.resetEditState();
   }
 
-  private resetEditState(): void {
-    this.driverData = new DriverEntity({});
-    this.editMode = false;
-  }
-
-  private getAllDrivers(): void {
-    this.driverService.getAll().subscribe((response: DriverEntity[]) => {
-      this.dataSource.data = response;
-    });
-  }
-
-  private createDriver(): void {
-    this.driverService.create(this.driverData).subscribe({
-      next: (response: DriverEntity) => {
-        console.log('Driver created successfully:', response);
-        this.showSuccessDialog('Driver created successfully!');
-      },
-      error: (error) => {
-        console.error('Error creating driver:', error);
-      }
-    });
-  }
-
-  private updateDriver(): void {
-    this.driverService.update(this.driverData.id, this.driverData).subscribe({
-      next: (response: DriverEntity) => {
-        const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
-        this.dataSource.data[index] = response;
-        this.dataSource.data = [...this.dataSource.data];
-        console.log('Driver Response: ', response);
-        this.showSuccessDialog('Driver updated successfully!');
-      },
-      error: (error) => {
-        console.error('Error updating driver:', error);
-      }
-    });
-  }
-
-  private deleteDriver(driverId: number): void {
-    this.driverService.delete(driverId).subscribe({
-      next: () => {
-        this.dataSource.data = this.dataSource.data.filter(driver => driver.id !== driverId);
-        console.log('Driver deleted successfully');
-      },
-      error: (error) => {
-        console.error('Error deleting driver:', error);
-      }
-    });
-  }
-
-
-  private showSuccessDialog(message: string): void {
+  private showSuccessDialog(): void {
     const dialogRef = this.dialog.open(DialogSuccessfullyComponent, {
-      data: { message }
+      data: {message: 'Driver added successfully!'}
     });
-
 
     dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['/drivers/management']);
@@ -125,6 +78,11 @@ export class AddDriverManagementComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['/drivers/management']);
+    this.router.navigate(['/management/driver/new']);
+  }
+
+  private resetForm(): void {
+    this.driver = new DriverEntity({});
+    this.driverForm.resetForm();
   }
 }
