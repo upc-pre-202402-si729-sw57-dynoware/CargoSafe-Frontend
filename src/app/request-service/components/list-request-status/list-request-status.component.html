@@ -51,7 +51,7 @@
 
         <ng-container matColumnDef="result">
           <th mat-header-cell *matHeaderCellDef> Resultado </th>
-          <td mat-cell *matCellDef="let trip"> {{ trip.statusId === 1 ? 'Accepted' : 'Rejected' }} </td>
+          <td mat-cell *matCellDef="let trip"> {{ trip.statusId === 1 ? 'c' : 'Rejected' }} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

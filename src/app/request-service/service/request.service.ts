@@ -25,8 +25,7 @@ export class RequestService extends BaseService<RequestServiceEntity> {
       tap(() => this.notificationService.showNotification(
         'Solicitud guardada',
         'The trip has been saved successfully.',
-        'success',
-        'path/to/success-image.jpg'
+        'success'
       )),
       catchError(this.handleError)
     );
