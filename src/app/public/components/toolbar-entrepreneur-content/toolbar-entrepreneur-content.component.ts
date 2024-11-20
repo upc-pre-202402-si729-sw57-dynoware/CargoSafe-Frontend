@@ -37,6 +37,13 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
   templateUrl: './toolbar-entrepreneur-content.component.html',
   styleUrl: './toolbar-entrepreneur-content.component.css'
 })
+
+/**
+ * Toolbar entrepreneur content component
+ * This class is in charge of managing the toolbar entrepreneur content component
+ * @class
+ */
+
 export class ToolbarEntrepreneurContentComponent implements OnInit, OnDestroy {
   notificationCount: number = 0;
   isNotificationPanelExpanded: boolean  = false;

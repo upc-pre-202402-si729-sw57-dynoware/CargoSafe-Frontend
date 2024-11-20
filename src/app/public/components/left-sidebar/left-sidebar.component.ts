@@ -13,6 +13,13 @@ import {NgClass} from "@angular/common";
   templateUrl: './left-sidebar.component.html',
   styleUrl: './left-sidebar.component.css'
 })
+
+/**
+ * Left sidebar component
+ * This class is in charge of managing the left sidebar component
+ * @class
+ */
+
 export class LeftSidebarComponent {
   isLeftSidebarCollapsed = input.required<boolean>();
   changeIsLeftSidebarCollapsed = output<boolean>();

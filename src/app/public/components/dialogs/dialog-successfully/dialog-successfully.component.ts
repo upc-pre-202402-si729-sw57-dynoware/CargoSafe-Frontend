@@ -22,6 +22,13 @@ import {MatIcon} from "@angular/material/icon";
   templateUrl: './dialog-successfully.component.html',
   styleUrl: './dialog-successfully.component.css'
 })
+
+/**
+ * Dialog successfully component
+ * This class is in charge of managing the dialog successfully component
+ * @class
+ */
+
 export class DialogSuccessfullyComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogSuccessfullyComponent>,

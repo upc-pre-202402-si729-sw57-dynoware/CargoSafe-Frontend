@@ -12,6 +12,13 @@ import {TranslateService} from "@ngx-translate/core";
   templateUrl: './language-switcher.component.html',
   styleUrl: './language-switcher.component.css'
 })
+
+/**
+ * Language switcher component
+ * This class is in charge of managing the language switcher component
+ * @class
+ */
+
 export class LanguageSwitcherComponent {  protected currentLang = 'en';
 
   protected languages = ['en', 'es'];

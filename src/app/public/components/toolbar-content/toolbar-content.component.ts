@@ -33,6 +33,13 @@ import {RequestService} from "../../../request-service/service/request.service";
   templateUrl: './toolbar-content.component.html',
   styleUrl: './toolbar-content.component.css'
 })
+
+/**
+ * Toolbar content component
+ * This class is in charge of managing the toolbar content component
+ * @class
+ */
+
 export class ToolbarContentComponent  {
   showNotifications: boolean = false;
   notificationCount: number = 0;
