@@ -1,3 +1,9 @@
+/**
+ * Payment entity
+ * This class is in charge of managing the payment entity
+ * @class
+ */
+
 export class PaymentEntity {
   id: number;
   cardNumber: string;
