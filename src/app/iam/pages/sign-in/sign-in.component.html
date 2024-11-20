@@ -1,14 +1,14 @@
 <div class="auth-container">
   <div class="auth-card">
-    <h1 class="auth-title">Welcome to CargoSafe</h1>
+    <h1 class="auth-title">{{ 'welcome' | translate }}</h1>
     <img src="assets/images/cargosafe-logo.png" alt="CargoSafe Logo" class="auth-logo">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="auth-input-group">
-        <label for="username">Email</label>
+        <label for="username">{{ 'username' | translate }}</label>
         <input
           id="username"
           type="username"
-          placeholder="Enter your username"
+          placeholder="{{ 'enter-us' | translate }}"
           formControlName="username"
           class="auth-input"
         />
@@ -18,11 +18,11 @@
       </div>
 
       <div class="auth-input-group">
-        <label for="password">Password</label>
+        <label for="password">{{ 'password' | translate }}</label>
         <input
           id="password"
           type="password"
-          placeholder="Enter your password"
+          placeholder="{{ 'enter-pa' | translate }}"
           formControlName="password"
           class="auth-input"
         />
@@ -31,8 +31,8 @@
         </span>
       </div>
 
-      <button type="submit" class="auth-button">Sign In</button>
-      <a class="auth-link" routerLink="/sign-up">Don't have an account? Sign Up</a>
+      <button type="submit" class="auth-button">{{ 'sign-in' | translate }}</button>
+      <a class="auth-link" routerLink="/sign-up">{{ 'have-no' | translate }}</a>
     </form>
   </div>
 </div>

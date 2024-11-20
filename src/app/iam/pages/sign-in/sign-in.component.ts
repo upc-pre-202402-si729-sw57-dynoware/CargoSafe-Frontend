@@ -9,6 +9,7 @@ import {MatButton} from "@angular/material/button";
 import {BaseFormComponent} from "../../../../shared/components/base-form.component";
 import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
+import {TranslateModule} from "@ngx-translate/core";
 
 /**
  * Sign in component
@@ -28,7 +29,8 @@ import {Router, RouterLink} from "@angular/router";
     MatButton,
     NgIf,
     MatLabel,
-    RouterLink
+    RouterLink,
+    TranslateModule
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
@@ -54,34 +56,34 @@ export class SignInComponent extends BaseFormComponent implements OnInit{
    *  Initialize the component
    * </p>
    */
-    ngOnInit(): void {
-      this.form = this.builder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
-      });
-    }
+  ngOnInit(): void {
+    this.form = this.builder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
-    /**
-     * On Submit Event Handler
-     * <p>
-     *  Submit the form data to the server
-     * </p>
-     */
-    onSubmit(): void {
-      if (this.form.invalid) return;
-      const { username, password } = this.form.value;
-      const signInRequest = new SignInRequest(username, password);
-      this.authenticationService.signIn(signInRequest).subscribe({
-        next: (response) => {
-          console.log('SignInResponse:', response); // Debugging log
-          this.submitted = true;
-          localStorage.setItem('token', response.token);
-          this.authenticationService.updateSignedInUserRoles(response.roles);
-          // Navigation is handled in the signIn method of AuthenticationService
-        },
-        error: (error) => {
-          console.error('Error signing in', error);
-        }
-      });
-    }
+  /**
+   * On Submit Event Handler
+   * <p>
+   *  Submit the form data to the server
+   * </p>
+   */
+  onSubmit(): void {
+    if (this.form.invalid) return;
+    const { username, password } = this.form.value;
+    const signInRequest = new SignInRequest(username, password);
+    this.authenticationService.signIn(signInRequest).subscribe({
+      next: (response) => {
+        console.log('SignInResponse:', response); // Debugging log
+        this.submitted = true;
+        localStorage.setItem('token', response.token);
+        this.authenticationService.updateSignedInUserRoles(response.roles);
+        // Navigation is handled in the signIn method of AuthenticationService
+      },
+      error: (error) => {
+        console.error('Error signing in', error);
+      }
+    });
+  }
 }
