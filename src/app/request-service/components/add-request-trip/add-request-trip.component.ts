@@ -259,7 +259,7 @@ export class AddRequestTripComponent implements OnInit, AfterViewInit {
         pickupLng: this.pickupLatLng.lng,
         destinationLat: this.destinationLatLng.lat,
         destinationLng: this.destinationLatLng.lng,
-        unload_date: currentDate
+        unloadDate: currentDate
       });
 
       this.requestService.saveRequestServiceTrip(data)

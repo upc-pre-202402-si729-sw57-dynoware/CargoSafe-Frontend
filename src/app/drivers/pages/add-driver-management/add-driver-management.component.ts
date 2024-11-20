@@ -74,25 +74,50 @@ export class AddDriverManagementComponent implements OnInit {
   }
 
   private createDriver(): void {
-    this.driverService.create(this.driverData).subscribe((response: DriverEntity) => {
-      this.dataSource.data = [...this.dataSource.data, response];
-      this.showSuccessDialog();
+    this.driverService.create(this.driverData).subscribe({
+      next: (response: DriverEntity) => {
+        console.log('Driver created successfully:', response);
+        this.showSuccessDialog('Driver created successfully!');
+      },
+      error: (error) => {
+        console.error('Error creating driver:', error);
+      }
     });
   }
 
   private updateDriver(): void {
-    this.driverService.update(this.driverData.id, this.driverData).subscribe((response: DriverEntity) => {
-      const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
-      this.dataSource.data[index] = response;
-      this.dataSource.data = [...this.dataSource.data];
-      this.showSuccessDialog();
+    this.driverService.update(this.driverData.id, this.driverData).subscribe({
+      next: (response: DriverEntity) => {
+        const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
+        this.dataSource.data[index] = response;
+        this.dataSource.data = [...this.dataSource.data];
+        console.log('Driver Response: ', response);
+        this.showSuccessDialog('Driver updated successfully!');
+      },
+      error: (error) => {
+        console.error('Error updating driver:', error);
+      }
     });
   }
 
-  private showSuccessDialog(): void {
-    const dialogRef = this.dialog.open(DialogSuccessfullyComponent, {
-      data: { message: 'Driver added successfully!' }
+  private deleteDriver(driverId: number): void {
+    this.driverService.delete(driverId).subscribe({
+      next: () => {
+        this.dataSource.data = this.dataSource.data.filter(driver => driver.id !== driverId);
+        console.log('Driver deleted successfully');
+      },
+      error: (error) => {
+        console.error('Error deleting driver:', error);
+      }
     });
+  }
+
+
+  private showSuccessDialog(message: string): void {
+    const dialogRef = this.dialog.open(DialogSuccessfullyComponent, {
+      data: { message }
+    });
+
 
     dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['/drivers/management']);

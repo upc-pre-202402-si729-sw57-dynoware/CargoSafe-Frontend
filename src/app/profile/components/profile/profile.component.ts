@@ -38,12 +38,11 @@ import {AuthenticationService} from "../../../iam/services/authentication.servic
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent  implements OnInit {
+export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
-  user: any;
   profile: ProfileEntity | null = null;
   currentUsername: string = '';
-
+  fullName: string = '';
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -52,43 +51,86 @@ export class ProfileComponent  implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     this.profileForm = this.formBuilder.group({
-      bio: ['', Validators.required],
-      avatar: ['']
+      avatar: [''],
+      bio: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      street: ['', Validators.required],
+      number: ['', Validators.required],
+      city: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      country: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
-    this.authenticationService.currentUsername.subscribe(username => {
-      this.currentUsername = username;
-      this.loadUserProfile(username);
+    this.authenticationService.currentUserId.subscribe(userId => {
+      this.loadUserProfile(userId);
     });
   }
 
-  loadUserProfile(username: string): void {
-    this.profileService.getByUsername(username).subscribe({
+  loadUserProfile(profileId: number): void {
+    if (profileId === 0) {
+      console.error('Invalid profile ID');
+      return;
+    }
+    this.profileService.getById(profileId).subscribe({
       next: (profile) => {
         this.profile = profile;
+        this.fullName = `${profile.firstName} ${profile.lastName}`;
         this.profileForm.patchValue({
+          avatar: profile.avatar,
           bio: profile.bio,
-          avatar: profile.avatar
+          firstName: profile.firstName,
+          lastName: profile.lastName,
+          email: profile.email,
+          street: profile.street,
+          number: profile.number,
+          city: profile.city,
+          postalCode: profile.postalCode,
+          country: profile.country
         });
       },
       error: (error) => {
         console.error('Error fetching profile:', error);
-        this.snackBar.open('Error fetching profile data', 'Close', { duration: 3000 });
+        this.snackBar.open('Error fetching profile data', 'Close', {duration: 3000});
       }
     });
   }
 
-  onFileChange(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.profileForm.patchValue({ avatar: file });
+  onUpdate(): void {
+    if (this.profileForm.invalid) {
+      return;
     }
+    const updatedProfile = new ProfileEntity(this.profileForm.value);
+    const profileId = this.profile?.id || 0;
+    if (profileId === 0) {
+      console.error('Profile ID is invalid');
+      return;
+    }
+    this.profileService.update(profileId, updatedProfile).subscribe({
+      next: (response) => {
+        this.snackBar.open('Profile updated successfully', 'Close', { duration: 3000 });
+        this.fullName = `${response.firstName} ${response.lastName}`;
+        this.profileForm.patchValue({
+          avatar: response.avatar,
+          bio: response.bio,
+          firstName: response.firstName,
+          lastName: response.lastName,
+          email: response.email,
+          street: response.street,
+          number: response.number,
+          city: response.city,
+          postalCode: response.postalCode,
+          country: response.country
+        });
+      },
+      error: (error) => {
+        console.error('Error updating profile:', error);
+        this.snackBar.open('Error updating profile', 'Close', { duration: 3000 });
+      }
+    });
   }
 
-  onUpdate() {
-    // Logic to update the profile
-    console.log('Profile updated');
-  }
 }

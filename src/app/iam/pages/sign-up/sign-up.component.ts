@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {SignUpRequest} from "../../model/sign-up.request";
 import {MatButton} from "@angular/material/button";
@@ -8,7 +8,7 @@ import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {BaseFormComponent} from "../../../../shared/components/base-form.component";
 import {NgIf} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 
 /**
  * Sign up component
@@ -33,47 +33,48 @@ import {RouterLink} from "@angular/router";
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
-export class SignUpComponent extends BaseFormComponent implements OnInit {
+export class SignUpComponent  implements OnInit {
   form!: FormGroup;
   submitted = false;
 
+  constructor(
+    private builder: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {}
 
-  /**
-   * Constructor
-   * @param builder {@link FormBuilder} instance
-   * @param authenticationService {@link AuthenticationService} instance
-   */
-  constructor(private builder: FormBuilder, private authenticationService: AuthenticationService) {
-    super();
-  }
-
-  /**
-   * On Init Event Handler
-   * <p>
-   *  Initialize component
-   * </p>
-   */
   ngOnInit(): void {
     this.form = this.builder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      roles: ['', Validators.required]
     });
   }
 
-  /**
-   * On Submit Event Handler
-   * <p>
-   *  Submit form
-   * </p>
-   */
   onSubmit(): void {
     if (this.form.invalid) return;
-    let username = this.form.value.username;
-    let password = this.form.value.password;
-    const signUpRequest = new SignUpRequest(username, password);
-    this.authenticationService.signUp(signUpRequest);
-    this.submitted = true;
+    const { username, password, roles } = this.form.value;
+    const signUpRequest = new SignUpRequest(username, password, [roles]);
+    this.authenticationService.signUp(signUpRequest).subscribe({
+      next: () => {
+        this.submitted = true;
+        this.router.navigate(['/sign-in']);
+      },
+      error: (error) => {
+        console.error('Error signing up', error);
+      }
+    });
   }
 
+  onCheckboxChange(event: Event): void {
+    const checkbox = event.target as HTMLInputElement;
+    const rolesArray = this.form.get('roles') as FormArray;
 
+    if (checkbox.checked) {
+      rolesArray.push(new FormControl(checkbox.value));
+    } else {
+      const index = rolesArray.controls.findIndex(control => control.value === checkbox.value);
+      rolesArray.removeAt(index);
+    }
+  }
 }

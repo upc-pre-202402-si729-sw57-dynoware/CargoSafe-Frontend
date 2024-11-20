@@ -59,7 +59,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class VehiclesManagementComponent implements OnInit, AfterViewInit {
   vehicleData: VehiclesEntity = new VehiclesEntity({});
-  columnsToDisplay: string[] = ['id', 'model', 'plate', 'max_load', 'volume', 'photo', 'actions'];
+  columnsToDisplay: string[] = ['id', 'model', 'plate', 'maxLoad', 'volume', 'photo', 'actions'];
   dataSource: MatTableDataSource<VehiclesEntity> = new MatTableDataSource();
   editMode: boolean = false;
 
@@ -135,6 +135,7 @@ export class VehiclesManagementComponent implements OnInit, AfterViewInit {
   private deleteVehicle(id: number): void {
     this.vehicleService.delete(id).subscribe(() => {
       this.dataSource.data = this.dataSource.data.filter(vehicle => vehicle.id !== id);
+      this.dataSource._updateChangeSubscription();
     });
   }
 
@@ -147,11 +148,14 @@ export class VehiclesManagementComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (this.editMode) {
-          this.onVehicleUpdateRequested(result);
+          this.vehicleData = result;
+          this.updateVehicle();
         } else {
-          this.onVehicleAddRequested(result);
+          this.vehicleData = result;
+          this.createVehicle();
         }
       }
     });
   }
+
 }

@@ -3,12 +3,12 @@ export class TripEntity {
   name: string;
   type: string;
   weight: number;
-  unload_direction: string;
-  unload_location: string;
-  unload_date: string;
+  unloadDirection: string;
+  unloadLocation: string;
+  unloadDate: string;
   expenseId: number;
   alertId: number;
-  ongoing_tripId: number;
+  ongoingTripId: number;
   vehicleId: number;
   driverId: number;
   entrepreneurId: number;
@@ -29,12 +29,12 @@ export class TripEntity {
     name?: string,
     type?: string,
     weight?: number,
-    unload_direction?: string,
-    unload_location?: string,
-    unload_date?: string,
+    unloadDirection?: string,
+    unloadLocation?: string,
+    unloadDate?: string,
     expenseId?: number,
     alertId?: number,
-    ongoing_tripId?: number,
+    ongoingTripId?: number,
     vehicleId?: number,
     driverId?: number,
     entrepreneurId?: number,
@@ -54,12 +54,12 @@ export class TripEntity {
     this.name = trip.name || '';
     this.type = trip.type || '';
     this.weight = trip.weight || 0;
-    this.unload_location = trip.unload_location || '';
-    this.unload_direction = trip.unload_direction || '';
-    this.unload_date = trip.unload_date || '';
+    this.unloadLocation = trip.unloadLocation || '';
+    this.unloadDirection = trip.unloadDirection || '';
+    this.unloadDate = trip.unloadDate || '';
     this.expenseId = trip.expenseId || 0;
     this.alertId = trip.alertId || 0;
-    this.ongoing_tripId = trip.ongoing_tripId || 0;
+    this.ongoingTripId = trip.ongoingTripId || 0;
     this.vehicleId = trip.vehicleId || 0;
     this.driverId = trip.driverId || 0;
     this.entrepreneurId = trip.entrepreneurId || 0;

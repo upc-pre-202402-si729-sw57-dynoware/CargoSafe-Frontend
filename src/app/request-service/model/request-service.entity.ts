@@ -1,14 +1,14 @@
 export class RequestServiceEntity {
   id: number;
-  unload_direction: string;
+  unloadDirection: string;
   type: string;
   numberPackages: number;
   country: string;
   department: string;
   district: string;
   destination: string;
-  unload_location: string;
-  unload_date: string;
+  unloadLocation: string;
+  unloadDate: string;
   distance: number | null | undefined;
   statusId: number;
   holderName: string;
@@ -23,15 +23,15 @@ export class RequestServiceEntity {
 
   constructor(requestService: {
     id?: number,
-    unload_direction?: string,
+    unloadDirection?: string,
     type?: string,
     name?: string,
     country?: string,
     department?: string,
     district?: string,
     destination?: string,
-    unload_location?: string,
-    unload_date?: string,
+    unloadLocation?: string,
+    unloadDate?: string,
     distance?: number | null,
     statusId?: number,
     holderName?: string,
@@ -46,15 +46,15 @@ export class RequestServiceEntity {
     weight?: any
   }) {
     this.id = requestService.id || 0;
-    this.unload_direction = requestService.unload_direction || '';
+    this.unloadDirection = requestService.unloadDirection || '';
     this.type = requestService.type || '';
     this.numberPackages = requestService.numberPackages || 0;
     this.country = requestService.country || '';
     this.department = requestService.department || '';
     this.district = requestService.district || '';
     this.destination = requestService.destination || '';
-    this.unload_location = requestService.unload_location || '';
-    this.unload_date = requestService.unload_date || '';
+    this.unloadLocation = requestService.unloadLocation || '';
+    this.unloadDate = requestService.unloadDate || '';
     this.distance = requestService.distance ?? null;
     this.statusId = requestService.statusId || 3;
     this.holderName = requestService.holderName || '';

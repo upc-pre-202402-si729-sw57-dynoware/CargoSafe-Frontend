@@ -37,13 +37,16 @@ export class AddVehiclesManagementComponent {
 
   onSubmit() {
     if (this.vehicleForm.form.valid) {
+      console.log('Submitting vehicle data:', this.vehicle);
       this.vehiclesService.create(this.vehicle).subscribe({
         next: (response) => {
+          console.log('Vehicle created successfully:', response);
           this.vehicleAddRequested.emit(response);
           this.showSuccessDialog();
         },
         error: (error) => {
           console.error('Error creating vehicle:', error);
+          alert('An error occurred while creating the vehicle. Please try again later.');
         }
       });
     } else {

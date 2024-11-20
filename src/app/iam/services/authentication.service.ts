@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {SignUpRequest} from "../model/sign-up.request";
 import {SignUpResponse} from "../model/sign-up.response";
@@ -20,12 +20,13 @@ import {SignInResponse} from "../model/sign-in.response";
 export class AuthenticationService {
   basePath: string = `${environment.serverBasePath}`;
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+  private userIdSubject = new BehaviorSubject<number>(0);
+  currentUserId = this.userIdSubject.asObservable();
 
-  // states
   private signedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private signedInUserId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private signedInUsername: BehaviorSubject<string> = new BehaviorSubject<string>('');
-
+  private signedInUserRoles: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   /**
    * Constructor
    * @param router the router
@@ -33,19 +34,22 @@ export class AuthenticationService {
    */
   constructor(private router: Router, private http: HttpClient) { }
 
+
+
+
   /**
    * Validates if the user is signed in
    */
   get isSignedIn() {
     return this.signedIn.asObservable();
   }
-
+  get currentUserRoles() {
+    return this.signedInUserRoles.asObservable();
+  }
   /**
    * Gets the current user id
    */
-  get currentUserId() {
-    return this.signedInUserId.asObservable();
-  }
+
 
   /**
    * Gets the current username
@@ -66,46 +70,42 @@ export class AuthenticationService {
    * </p>
    * @param signUpRequest The {@link SignUpRequest} object
    */
-  signUp(signUpRequest: SignUpRequest) {
-    return this.http.post<SignUpResponse>(`${this.basePath}/authentication/sign-up`, signUpRequest, this.httpOptions)
-      .subscribe({
-        next: (response) => {
-          console.log(`Signed up as ${response.username} with id ${response.id}`);
-          this.router.navigate(['/sign-in']).then();
-        },
-        error: (error) => {
-          console.error('Error signing up', error);
-          this.router.navigate(['/sign-up']).then();
-        }
-      });
+  signUp(signUpRequest: SignUpRequest): Observable<SignUpResponse> {
+    return this.http.post<SignUpResponse>(`${this.basePath}/authentication/sign-up`, signUpRequest, this.httpOptions);
   }
-//sign
-  /**
-   * Signs in a user
-   * <p>
-   *   This method sends a sign-in request to the server.
-   *   If the request is successful, the user is signed in and redirected to the home page.
-   *   If the request fails, an error message is logged and the user is redirected to the sign-in page.
-   * </p>
-   * @param signInRequest The {@link SignInRequest} object
-   */
-  signIn(signInRequest: SignInRequest) {
-    console.log(signInRequest);
-    return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions)
-      .subscribe({
-        next: (response) => {
-          this.signedIn.next(true);
-          this.signedInUserId.next(response.id);
-          this.signedInUsername.next(response.username);
-          localStorage.setItem('token', response.token);
-          console.log(`Signed in as ${response.username} with token ${response.token}`);
-          this.router.navigate(['/']).then();
-        },
-        error: (error) => {
-          console.error('Error signing in', error);
-          this.router.navigate(['/sign-in']).then();
+
+  signIn(signInRequest: SignInRequest): Observable<SignInResponse> {
+    return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions).pipe(
+      tap(response => {
+        console.log('SignInResponse:', response);
+        if (!response) {
+          console.error('No response received from server');
+          return;
         }
-      });
+        if (!response.roles) {
+          console.error('Roles not defined in response:', response);
+          return;
+        }
+        this.signedIn.next(true);
+        this.signedInUserId.next(response.id);
+        this.signedInUsername.next(response.username);
+        this.signedInUserRoles.next(response.roles);
+        localStorage.setItem('token', response.token);
+
+        this.setUserId(response.id);
+
+        if (response.roles.includes('ROLE_ENTREPRENEUR')) {
+          this.router.navigate(['/home-entrepreneur']).then();
+        } else if (response.roles.includes('ROLE_COMPANY')) {
+          this.router.navigate(['/home-company']).then();
+        }
+      })
+    );
+  }
+
+
+  setUserId(userId: number): void {
+    this.userIdSubject.next(userId);
   }
 
   /**
@@ -120,5 +120,8 @@ export class AuthenticationService {
     this.signedInUsername.next('');
     localStorage.removeItem('token');
     this.router.navigate(['/sign-in']).then();
+  }
+  updateSignedInUserRoles(roles: string[]): void {
+    this.signedInUserRoles.next(roles);
   }
 }

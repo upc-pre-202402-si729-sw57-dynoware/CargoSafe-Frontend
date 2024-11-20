@@ -165,9 +165,9 @@ export class ListRequestTripComponent implements OnInit, AfterViewInit {
     const newTrip = new TripEntity({
       id: trip.id,
       type: trip.type,
-      unload_direction: trip.unload_direction,
-      unload_location: trip.unload_location,
-      unload_date: trip.unload_date,
+      unloadDirection: trip.unloadDirection,
+      unloadLocation: trip.unloadLocation,
+      unloadDate: trip.unloadDate,
       destination: trip.destination,
       department: trip.department,
       district: trip.district,
