@@ -57,6 +57,13 @@ import {MatIcon} from "@angular/material/icon";
   templateUrl: './details-trip.component.html',
   styleUrl: './details-trip.component.css'
 })
+
+/**
+ * Details trip component
+ * This class is in charge of managing the details trip component
+ * @class
+ */
+
 export class DetailsTripComponent implements OnInit {
   trips: TripEntity[] = [];
   drivers: DriverEntity[] = [];

@@ -17,5 +17,4 @@ import {
   styleUrl: './list-trip-entrepreneur.component.css'
 })
 export class ListTripEntrepreneurComponent {
-
 }

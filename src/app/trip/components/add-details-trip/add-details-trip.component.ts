@@ -58,6 +58,13 @@ import {MatSort} from "@angular/material/sort";
   templateUrl: './add-details-trip.component.html',
   styleUrl: './add-details-trip.component.css'
 })
+
+/**
+ * Add details trip component
+ * This class is in charge of managing the add details trip component
+ * @class
+ */
+
 export class AddDetailsTripComponent implements OnInit {
   trips: TripEntity[] = [];
   drivers: DriverEntity[] = [];

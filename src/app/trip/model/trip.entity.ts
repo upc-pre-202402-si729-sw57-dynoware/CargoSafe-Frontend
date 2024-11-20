@@ -1,3 +1,9 @@
+/**
+ * Trip entity
+ * This class is in charge of managing the trip entity
+ * @class
+ */
+
 export class TripEntity {
   id: number;
   name: string;

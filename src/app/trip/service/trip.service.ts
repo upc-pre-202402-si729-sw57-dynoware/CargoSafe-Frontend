@@ -6,6 +6,13 @@ import {catchError, Observable, retry} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Trip service
+ * This class is in charge of managing the trip service
+ * @class
+ */
+
 export class TripService extends BaseService<TripEntity> {
 
   constructor() {

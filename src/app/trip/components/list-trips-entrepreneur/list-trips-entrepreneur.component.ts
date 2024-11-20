@@ -22,6 +22,13 @@ import {MatIcon} from "@angular/material/icon";
   templateUrl: './list-trips-entrepreneur.component.html',
   styleUrl: './list-trips-entrepreneur.component.css'
 })
+
+/**
+ * List trips entrepreneur component
+ * This class is in charge of managing the list trips entrepreneur component
+ * @class
+ */
+
 export class ListTripsEntrepreneurComponent implements OnInit {
   trips: TripEntity[] = [];
   @Output() notificationDeleted = new EventEmitter<void>();
