@@ -48,6 +48,13 @@ export class AddDriverManagementComponent {
   private dialog: MatDialog = inject(MatDialog);
   private router: Router = inject(Router);
 
+  /**
+   * Submit
+   * @param void
+   * This function is in charge of submitting the driver data
+   * @return void
+   */
+
   onSubmit(): void {
     if (this.driverForm.form.valid) {
       console.log('Submitting driver data:', this.driver);
@@ -67,6 +74,12 @@ export class AddDriverManagementComponent {
     }
   }
 
+  /**
+   * Show success dialog
+   * @private
+   * This function is in charge of showing the success dialog
+   */
+
   private showSuccessDialog(): void {
     const dialogRef = this.dialog.open(DialogSuccessfullyComponent, {
       data: {message: 'Driver added successfully!'}
@@ -76,6 +89,13 @@ export class AddDriverManagementComponent {
       this.router.navigate(['/drivers/management']);
     });
   }
+
+
+  /**
+   * Cancel
+   * @param void
+   * This function is in charge of canceling the driver creation
+   */
 
   onCancel(): void {
     this.router.navigate(['/management/driver/new']);

@@ -1,3 +1,9 @@
+/**
+ * Driver Entity
+ * This class is in charge of managing the driver entity
+ * @class
+ */
+
 export class DriverEntity {
   id: number;
   name: string;

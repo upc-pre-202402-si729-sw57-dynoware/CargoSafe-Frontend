@@ -55,9 +55,21 @@ export class DriversEditComponent {
     this.driver = { ...data };
   }
 
+  /**
+   * Submit
+   * @param void
+   * This function is in charge of submitting the driver data
+   */
+
   onSubmit(): void {
     this.dialogRef.close(this.driver);
   }
+
+  /**
+   * Cancel
+   * @param void
+   * This function is in charge of closing the dialog
+   */
 
   onCancel(): void {
     this.dialogRef.close();

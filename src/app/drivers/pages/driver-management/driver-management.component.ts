@@ -74,10 +74,23 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
     this.getAllDrivers();
   }
 
+  /**
+   * After view init
+   * @param void
+   * @return void
+   * This method is used to initialize the paginator and sort
+   */
+
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
+  /**
+   * Edit item
+   * @param item
+   * This method is used to edit an item
+   */
 
   onEditItem(item: DriverEntity): void {
     this.editMode = true;
@@ -85,9 +98,21 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
     this.openEditDialog(item);
   }
 
+  /**
+   * Delete item
+   * @param item
+   * This method is used to delete an item
+   */
+
   onDeleteItem(item: DriverEntity): void {
     this.deleteDriver(item.id);
   }
+
+  /**
+   * Add driver
+   * @param void
+   * This method is used to add a driver
+   */
 
   onAddDriver(): void {
     this.editMode = false;
@@ -100,11 +125,23 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
     this.editMode = false;
   }
 
+  /**
+   * Get all drivers
+   * @private
+   * This method is used to get all drivers
+   */
+
   private getAllDrivers(): void {
     this.driverService.getAll().subscribe((response: DriverEntity[]) => {
       this.dataSource.data = response;
     });
   }
+
+  /**
+   * Create driver
+   * @private
+   * This method is used to create a driver
+   */
 
   private createDriver(): void {
     this.driverService.create(this.driverData).subscribe((response: DriverEntity) => {
@@ -112,6 +149,12 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
       this.dataSource.data = [...this.dataSource.data];
     });
   }
+
+  /**
+   * Update driver
+   * @private
+   * This method is used to update a driver
+   */
 
   private updateDriver(): void {
     this.driverService.update(this.driverData.id, this.driverData).subscribe({
@@ -127,6 +170,12 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Delete driver
+   * @param id
+   * This method is used to delete a driver
+   */
+
   private deleteDriver(id: number): void {
     this.driverService.delete(id).subscribe({
       next: () => {
@@ -139,6 +188,13 @@ export class DriverManagementComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  /**
+   * Open edit dialog
+   * @param driver
+   * @private
+   * This method is used to open the edit dialog
+   */
 
   private openEditDialog(driver: DriverEntity): void {
     const dialogRef = this.dialog.open(DriversEditComponent, {
