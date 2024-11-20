@@ -1,3 +1,8 @@
+/**
+ * Location Data Entity
+ * This class is in charge of managing the location data entity
+ */
+
 export class LocationDataEntity {
   constructor(
     public pickupAddress: string,

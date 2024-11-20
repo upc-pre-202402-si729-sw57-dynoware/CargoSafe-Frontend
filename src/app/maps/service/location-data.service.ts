@@ -6,6 +6,13 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Location Data Service
+ * This class is in charge of managing the location data service
+ * @class
+ */
+
 export class LocationDataService {
 
   private apiUrl = 'https://your-backend-url.com/api/locations';
