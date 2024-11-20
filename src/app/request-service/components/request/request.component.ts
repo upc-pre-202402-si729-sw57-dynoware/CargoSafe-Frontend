@@ -50,11 +50,7 @@ export class RequestComponent {
     this.getAllTrips();
   }
 
-  protected onTripAddRequested(item: RequestServiceEntity) {
-    this.tripData = item;
-    this.createTrip();
-    this.resetEditState();
-  }
+
 
   protected onTripUpdateRequested(item: RequestServiceEntity) {
     this.tripData = item;
@@ -73,12 +69,7 @@ export class RequestComponent {
     });
   }
 
-  private createTrip() {
-    this.tripService.create(this.tripData).subscribe((response: RequestServiceEntity) => {
-      this.dataSource.data.push(response);
-      this.dataSource.data = this.dataSource.data;
-    });
-  }
+
 
   private updateTrip() {
     let tripToUpdate = this.tripData;
@@ -102,5 +93,18 @@ export class RequestComponent {
 
   ngOnInit(): void {
     this.getAllTrips();
+  }
+
+  protected onTripAddRequested(item: RequestServiceEntity) {
+    this.tripData = item;
+    this.createTrip();
+    this.resetEditState();
+  }
+
+  private createTrip() {
+    this.tripService.create(this.tripData).subscribe((response: RequestServiceEntity) => {
+      this.dataSource.data.push(response);
+      this.dataSource.data = this.dataSource.data;
+    });
   }
 }

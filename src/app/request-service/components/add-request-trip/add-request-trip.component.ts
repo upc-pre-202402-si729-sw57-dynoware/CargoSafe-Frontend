@@ -61,7 +61,7 @@ import {LocationDataEntity} from "../../../maps/model/location-data.entity";
   templateUrl: './add-request-trip.component.html',
   styleUrl: './add-request-trip.component.css'
 })
-export class AddRequestTripComponent implements OnInit, AfterViewInit {
+export class AddRequestTripComponent  implements OnInit, AfterViewInit {
   @Input() trip: RequestServiceEntity = new RequestServiceEntity({});
   @Input() editMode: boolean = false;
   @Output() tripAddRequested = new EventEmitter<RequestServiceEntity>();
@@ -85,9 +85,7 @@ export class AddRequestTripComponent implements OnInit, AfterViewInit {
 
   formValid: any;
 
-  constructor(private router: Router, private http: HttpClient, private requestService: RequestService
-  ,  private dialog: MatDialog
-  ) {}
+  constructor(private router: Router, private http: HttpClient, private requestService: RequestService, private dialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -142,27 +140,39 @@ export class AddRequestTripComponent implements OnInit, AfterViewInit {
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
     return this.http.get<any[]>(url).toPromise().then(results => {
       if (results && results.length > 0) {
-        const result = results[0];
-        return L.latLng(result.lat, result.lon);
+        return L.latLng(results[0].lat, results[0].lon);
       } else {
-        throw new Error('Address not found');
+        throw new Error('No results found');
       }
+    }).catch(error => {
+      console.error('Error fetching coordinates:', error);
+      throw error;
     });
   }
 
   private getSuggestions(query: string): Promise<any[]> {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&addressdetails=1&limit=5`;
-    return this.http.get<any[]>(url).toPromise().then(results => results || []);
+    const url = `/api/search?format=json&q=${encodeURIComponent(query)}&addressdetails=1&limit=5`;
+    return this.http.get<any[]>(url).toPromise().then(results => {
+      return results || [];
+    }).catch(error => {
+      console.error('Error fetching suggestions:', error);
+      return [];
+    });
   }
+
 
   public async onPickupInput(): Promise<void> {
     if (this.pickupAddress.length > 2) {
-      this.pickupSuggestions = await this.getSuggestions(this.pickupAddress);
+      try {
+        this.pickupSuggestions = await this.getSuggestions(this.pickupAddress);
+      } catch (error) {
+        console.error('Error fetching pickup suggestions:', error);
+        this.pickupSuggestions = [];
+      }
     } else {
       this.pickupSuggestions = [];
     }
   }
-
   public async onDestinationInput(): Promise<void> {
     if (this.destinationAddress.length > 2) {
       this.destinationSuggestions = await this.getSuggestions(this.destinationAddress);
@@ -199,8 +209,6 @@ export class AddRequestTripComponent implements OnInit, AfterViewInit {
 
           this.pickupLatLng = pickupLatLng;
           this.destinationLatLng = destinationLatLng;
-
-          this.sendDataToBackend();
         }
       } else {
         console.error('Pickup or destination address is missing');
@@ -299,7 +307,6 @@ export class AddRequestTripComponent implements OnInit, AfterViewInit {
     this.map?.invalidateSize();
   }
 
-
   onCancel() {
     this.cancelRequested.emit();
     this.resetEditState();
@@ -316,16 +323,35 @@ export class AddRequestTripComponent implements OnInit, AfterViewInit {
   }
 
   public async onSubmit() {
-    try {
-      if (!this.pickupLatLng) {
-        this.pickupLatLng = await this.getCoordinates(this.pickupAddress);
+    if (this.pickupLatLng && this.destinationLatLng) {
+      const currentDate = new Date().toISOString();
+      const data = new RequestServiceEntity({
+        id: this.trip.id,
+        holderName: this.trip.holderName,
+        type: this.trip.type,
+        loadDetail: this.trip.loadDetail,
+        numberPackages: this.trip.numberPackages,
+        weight: this.trip.weight,
+        pickupAddress: this.pickupAddress,
+        destinationAddress: this.destinationAddress,
+        distance: this.distance,
+        pickupLat: this.pickupLatLng.lat,
+        pickupLng: this.pickupLatLng.lng,
+        destinationLat: this.destinationLatLng.lat,
+        destinationLng: this.destinationLatLng.lng,
+        unloadDate: currentDate,
+        statusId: 3
+      });
+
+      try {
+        const savedTrip = await this.requestService.saveRequestServiceTrip(data).toPromise();
+        console.log('Request saved successfully', savedTrip);
+
+      } catch (error) {
+        console.error('Error saving request', error);
       }
-      if (!this.destinationLatLng) {
-        this.destinationLatLng = await this.getCoordinates(this.destinationAddress);
-      }
-      this.sendDataToBackend();
-    } catch (error) {
-      console.error('Error getting coordinates', error);
+    } else {
+      console.error('Pickup and destination locations are required');
     }
   }
 

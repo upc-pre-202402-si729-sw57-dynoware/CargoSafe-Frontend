@@ -24,9 +24,14 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.add-trip-card, .map-section {
-  flex: 1;
+.add-trip-card {
+  flex:1;
 }
+
+ .map-section {
+  flex: 3;
+}
+
 
 .add-trip-header {
   display: flex;

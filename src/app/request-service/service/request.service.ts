@@ -12,7 +12,7 @@ export class RequestService extends BaseService<RequestServiceEntity> {
   constructor(http: HttpClient, private notificationService: NotificationService) {
     super();
     this.http = http;
-    this.resourceEndpoint = '/requestServiceTrips';
+    this.resourceEndpoint = '/requestServices';
   }
   getAllRequests(): Observable<RequestServiceEntity[]> {
     return this.http.get<RequestServiceEntity[]>(this.resourcePath()).pipe(
@@ -51,10 +51,10 @@ export class RequestService extends BaseService<RequestServiceEntity> {
     const statusUpdate = { id: id, status: 'rejected', requestServiceTripId: id };
     return this.http.post(url, statusUpdate, this.httOptions).pipe(
       tap(() => this.notificationService.showNotification(
-        'Solicitud rechazada',
+        'Bad request',
         'The trip you requested has been rejected.',
-        'error',
-        'path/to/error-image.jpg'
+        'error'
+
       )),
       catchError(this.handleError)
     );
