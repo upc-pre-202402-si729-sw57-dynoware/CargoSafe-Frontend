@@ -1,3 +1,15 @@
 {
-
+  "welcome": "Welcome to CargoSafe",
+  "username": "Username",
+  "password": "Password",
+  "roles": {
+    "company": "Company",
+    "entrepreneur": "Entrepreneur"
+  },
+  "sign-up": "Sign Up",
+  "sign-in": "Sign In",
+  "have": "Already have an account? Sign In",
+  "have-no": "Don't have an account? Sign Up",
+  "enter-us": "Enter your username",
+  "enter-pa": "Enter your password"
 }

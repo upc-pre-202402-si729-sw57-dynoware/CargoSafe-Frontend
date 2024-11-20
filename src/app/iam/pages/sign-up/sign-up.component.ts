@@ -9,6 +9,7 @@ import {MatInput} from "@angular/material/input";
 import {BaseFormComponent} from "../../../../shared/components/base-form.component";
 import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
+import {TranslateModule} from "@ngx-translate/core";
 
 /**
  * Sign up component
@@ -28,7 +29,8 @@ import {Router, RouterLink} from "@angular/router";
     ReactiveFormsModule,
     NgIf,
     MatLabel,
-    RouterLink
+    RouterLink,
+    TranslateModule
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
