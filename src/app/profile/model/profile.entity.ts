@@ -1,3 +1,9 @@
+/**
+ * Profile entity
+ * This class is in charge of managing the profile entity
+ * @class
+ */
+
 export class ProfileEntity {
   id: number;
   userId: number;

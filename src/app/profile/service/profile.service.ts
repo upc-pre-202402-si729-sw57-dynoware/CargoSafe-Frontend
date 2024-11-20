@@ -8,6 +8,12 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Profile service
+ * This class is in charge of managing the profile service
+ * @class
+ */
 export class ProfileService  extends BaseService<ProfileEntity> {
 
   constructor(private httpClient: HttpClient) {
@@ -15,7 +21,11 @@ export class ProfileService  extends BaseService<ProfileEntity> {
     this.resourceEndpoint = '/profiles';
   }
 
-
+  /**
+   * get all profiles
+   * @param profileId
+   * @returns Observable<ProfileEntity>
+   */
   override getById(profileId: number): Observable<ProfileEntity> {
     return this.http.get<any>(`${this.baseUrl}/profiles/${profileId}`).pipe(
       map(response => {
@@ -34,6 +44,13 @@ export class ProfileService  extends BaseService<ProfileEntity> {
       })
     );
   }
+
+  /**
+   * update profile
+   * @param id
+   * @param profile
+   * @returns Observable<ProfileEntity>
+   */
 
   override update(id: number, profile: ProfileEntity): Observable<ProfileEntity> {
     const requestPayload = {
@@ -54,9 +71,6 @@ export class ProfileService  extends BaseService<ProfileEntity> {
       map(profiles => profiles[0])
     );
   }
-
-
-
 
   getByUsername(username: string): Observable<ProfileEntity> {
     return this.http.get<ProfileEntity>(`${this.baseUrl}/profiles/username/${username}`);

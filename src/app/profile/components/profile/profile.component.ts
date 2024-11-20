@@ -38,6 +38,12 @@ import {AuthenticationService} from "../../../iam/services/authentication.servic
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
+
+/**
+ * Profile component
+ * This class is in charge of managing the profile component
+ * @class
+ */
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   profile: ProfileEntity | null = null;
